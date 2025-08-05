@@ -1,0 +1,14 @@
+{
+  "shopDashboard": "Do‘kon Boshqaruvi",
+  "title": "Do‘kon tanlang",
+  "description": "Ishni davom ettirish uchun do‘kon tanlang",
+  "continue": "Davom etish",
+  "continueAs": "{{role}} sifatida davom etish",
+  "error": "Xatolik yuz berdi",
+  "retry": "Qayta urinib ko‘rish",
+  "toggleTheme": "Mavzuni almashtirish",
+  "logoutConfirm": "Tizimdan chiqishni tasdiqlaysizmi?",
+  "logoutDescription": "Tizimdan chiqqaningizdan so‘ng, barcha sessiya maʼlumotlari o‘chiriladi.",
+  "yes": "Ha",
+  "no": "Yo‘q"
+}

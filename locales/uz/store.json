@@ -1,0 +1,53 @@
+{
+  "store": {
+    "table": {
+      "id": "ID raqami",
+      "image": "Rasm",
+      "name": "Doʻkon nomi",
+      "phone_number": "Telefon raqami",
+      "role": "Rol",
+      "admin": "Admin",
+      "manager": "Menejer",
+      "staff": "Hodim",
+      "delete": "Oʻchirish",
+      "no_store": "Hech qanday doʻkon topilmadi"
+    },
+    "share": "Ulashish",
+    "edit": "Tahrirlash",
+    "delete": "Oʻchirish",
+    "not_found": "Doʻkon topilmadi",
+    "error_load": "Doʻkon maʼlumotlarini yuklashda xatolik yuz berdi",
+    "try_again": "Iltimos, keyinroq yana urinib ko‘ring",
+    "no_description": "Tavsif mavjud emas",
+    "created": "Yaratilgan",
+    "tabs": {
+      "details": "Doʻkon tafsilotlari",
+      "contact": "Aloqa maʼlumotlari",
+      "media": "Media"
+    },
+    "details": {
+      "name": "Doʻkon nomi",
+      "id": "Doʻkon ID",
+      "description": "Tavsif",
+      "created_at": "Yaratilgan sana"
+    },
+    "contact": {
+      "phone": "Telefon raqami",
+      "address": "Manzil",
+      "coordinates": "Joylashuv koordinatalari",
+      "no_phone": "Telefon raqami kiritilmagan",
+      "no_address": "Manzil kiritilmagan",
+      "no_coords": "Koordinatalar mavjud emas",
+      "incomplete": "Aloqa maʼlumotlari toʻliq emas. Mijozlarga xizmat sifatini oshirish uchun maʼlumotlarni yangilashingiz tavsiya etiladi."
+    },
+    "media": {
+      "logo": "Doʻkon logotipi",
+      "banner": "Doʻkon banneri",
+      "current_logo": "Joriy logotip",
+      "current_banner": "Joriy banner",
+      "no_logo": "Logotip yuklanmagan",
+      "no_banner": "Banner yuklanmagan",
+      "default_background": "Standart gradient fon ishlatilmoqda"
+    }
+  }
+}

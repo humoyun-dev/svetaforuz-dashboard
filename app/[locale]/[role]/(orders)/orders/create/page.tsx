@@ -1,0 +1,320 @@
+"use client";
+import { useOrder } from "@/stores/order.store";
+import type { OrderItemsFormType } from "@/types/orders.type";
+import { formatCurrencyPure } from "@/lib/currency";
+import { Button } from "@/components/ui/button";
+import {
+  Minus,
+  Plus,
+  Trash2,
+  ShoppingCart,
+  Package,
+  Edit2,
+} from "lucide-react";
+import { useCurrencyStore } from "@/stores/currency.store";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { useTranslation } from "react-i18next";
+
+const Page = () => {
+  const {
+    orderItems,
+    removeOrderItem,
+    updateOrderItem,
+    setIndex,
+    setAddMode,
+    setOrderItem,
+    setSubmitMode,
+    resetOrder,
+  } = useOrder();
+  const { currency, usd } = useCurrencyStore();
+  const { t } = useTranslation();
+
+  const handleQuantityChange = (index: number, newQuantity: number) => {
+    const item = orderItems[index];
+    if (item) {
+      updateOrderItem(index, { ...item, quantity: newQuantity.toString() });
+    }
+  };
+
+  const handleRemoveItem = (index: number) => {
+    removeOrderItem(index);
+  };
+
+  const handleEdit = (index: number) => {
+    setIndex(index);
+    setAddMode(true);
+    setOrderItem(orderItems[index]);
+  };
+
+  const total = orderItems.reduce((sum, item) => {
+    return sum + Number(item.price) * Number(item.quantity);
+  }, 0);
+
+  const income = orderItems.reduce((sum, item) => {
+    return (
+      sum +
+      (Number(item.price) - Number(item.product_data.enter_price)) *
+        Number(item.quantity)
+    );
+  }, 0);
+
+  if (orderItems.length === 0) {
+    return <EmptyCart />;
+  }
+
+  return (
+    <div className="flex flex-col h-full">
+      <div className="p-4 border-b bg-white">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <ShoppingCart className="h-5 w-5 text-gray-600" />
+            <h2 className="text-lg font-semibold">{t("cart.title")}</h2>
+          </div>
+          <Badge variant="secondary" className="text-sm">
+            {orderItems.length}{" "}
+            {t(orderItems.length === 1 ? "cart.item" : "cart.items")}
+          </Badge>
+        </div>
+      </div>
+
+      <ScrollArea className="flex-1 p-4">
+        <div className="space-y-3">
+          {orderItems.map((item, index) => (
+            <OrderItemCard
+              key={`${item.product_id}-${index}`}
+              item={item}
+              index={index}
+              onQuantityChange={handleQuantityChange}
+              onRemove={handleRemoveItem}
+              onEdit={handleEdit}
+            />
+          ))}
+        </div>
+      </ScrollArea>
+
+      <div className="border-t bg-white p-4">
+        <Card className="gap-2">
+          <CardHeader>
+            <CardTitle className="text-base">{t("cart.summary")}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-600">{t("cart.income")}</span>
+              <span className="font-medium">
+                {formatCurrencyPure({
+                  currency: "USD",
+                  number: income,
+                  appCurrency: currency,
+                  rate: usd,
+                })}
+              </span>
+            </div>
+            <Separator />
+            <div className="flex justify-between text-lg font-bold">
+              <span>{t("cart.total")}</span>
+              <span>
+                {formatCurrencyPure({
+                  currency: "USD",
+                  number: total,
+                  appCurrency: currency,
+                  rate: usd,
+                })}
+              </span>
+            </div>
+            <Button
+              onClick={() => {
+                setAddMode(false);
+                setSubmitMode(true);
+              }}
+              className="w-full mt-4"
+              size="lg"
+            >
+              {t("cart.proceedToCheckout")}
+            </Button>
+
+            <Button className={`w-full`} onClick={resetOrder} variant="outline">
+              {t("cart.empty.button")}
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
+export default Page;
+
+interface OrderItemCardProps {
+  item: OrderItemsFormType;
+  index: number;
+  onQuantityChange: (index: number, newQuantity: number) => void;
+  onRemove: (index: number) => void;
+  isLoading?: boolean;
+  onEdit: (index: number) => void;
+}
+
+const OrderItemCard = ({
+  item,
+  index,
+  onQuantityChange,
+  onRemove,
+  onEdit,
+  isLoading = false,
+}: OrderItemCardProps) => {
+  const { currency, usd } = useCurrencyStore();
+  const product = item.product_data;
+  const totalPrice = Number(item.price) * Number(item.quantity);
+  const quantity = Number(item.quantity);
+  const { t } = useTranslation();
+
+  const handleQuantityChange = (newQuantity: number) => {
+    if (newQuantity < 1) return;
+    onQuantityChange(index, newQuantity);
+  };
+
+  const handleRemove = () => {
+    onRemove(index);
+  };
+
+  const handleEdit = () => {
+    onEdit(index);
+  };
+
+  return (
+    <Card className="group relative p-2 transition-all hover:shadow-md">
+      <CardContent className="p-2">
+        <div className="flex gap-4">
+          <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
+            <img
+              src={
+                product.images[0]?.image ||
+                "/placeholder.svg?height=64&width=64&query=product" ||
+                "/placeholder.svg"
+              }
+              alt={product.name}
+              className="h-full w-full object-cover transition-transform"
+            />
+            {!product.in_stock && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                <Badge variant="destructive" className="text-xs">
+                  Out of Stock
+                </Badge>
+              </div>
+            )}
+          </div>
+
+          <div className="flex flex-1 flex-col justify-between">
+            <div className="flex items-start justify-between">
+              <div className="flex-1 min-w-0">
+                <h3 className="font-medium text-gray-900 capitalize truncate text-sm">
+                  {product.name}
+                </h3>
+              </div>
+
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-6 w-6 p-0 text-gray-400 hover:text-primary hover:bg-red-50  transition-opacity"
+                onClick={handleEdit}
+                disabled={isLoading}
+              >
+                <Edit2 className="h-3 w-3" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-6 w-6 p-0 text-gray-400 hover:text-red-600 hover:bg-red-50  transition-opacity"
+                onClick={handleRemove}
+                disabled={isLoading}
+              >
+                <Trash2 className="h-3 w-3" />
+              </Button>
+            </div>
+
+            <div className="mt-3 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-medium text-gray-600">
+                  {t("quantity.label")}:
+                </span>
+                <div className="flex items-center rounded-md border border-gray-200">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0 rounded-r-none hover:bg-gray-100"
+                    onClick={() => handleQuantityChange(quantity - 1)}
+                    disabled={quantity <= 1 || isLoading}
+                  >
+                    <Minus className="h-3 w-3" />
+                  </Button>
+                  <div className="flex h-6 w-8 items-center justify-center border-x border-gray-200 bg-gray-50 text-xs font-medium">
+                    {quantity}
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-6 w-6 p-0 rounded-l-none hover:bg-gray-100"
+                    onClick={() => handleQuantityChange(quantity + 1)}
+                    disabled={isLoading}
+                  >
+                    <Plus className="h-3 w-3" />
+                  </Button>
+                </div>
+              </div>
+
+              <div className="text-right">
+                <div className="text-xs text-gray-500">
+                  {formatCurrencyPure({
+                    currency: item.currency,
+                    number: Number(item.price),
+                    appCurrency: currency,
+                    rate: usd,
+                  })}{" "}
+                  {t("product.each")}
+                </div>
+                <div className="text-sm font-bold text-gray-900">
+                  {formatCurrencyPure({
+                    currency: item.currency,
+                    number: totalPrice,
+                    appCurrency: currency,
+                    rate: usd,
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white/80 rounded-lg">
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-blue-600" />
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
+
+const EmptyCart = () => {
+  const { t } = useTranslation();
+  const { resetOrder } = useOrder();
+
+  return (
+    <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+      <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+        <Package className="w-12 h-12 text-gray-400" />
+      </div>
+      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+        {t("cart.empty.title")}{" "}
+      </h3>
+      <p className="text-gray-500 mb-6 max-w-sm">
+        {t("cart.empty.description")}
+      </p>
+      <Button onClick={resetOrder} variant="outline">
+        {t("cart.empty.button")}
+      </Button>
+    </div>
+  );
+};

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8309fd09-f4d8-4e5c-b94c-c9e2d8a25640" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/[locale]/(auth)/auth/bot/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/(auth)/auth/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/(auth)/auth/login/@choose/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/(auth)/auth/login/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/(auth)/auth/login/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/(auth)/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(orders)/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(orders)/orders/[id]/components/customer-info-card.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(orders)/orders/[id]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(orders)/orders/create/@products/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(orders)/orders/create/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(orders)/orders/create/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(orders)/orders/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(products)/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(products)/products/[id]/edit/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(products)/products/[id]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(products)/products/create/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(products)/products/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(root)/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(root)/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(store)/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(store)/store/[id]/edit/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(store)/store/[id]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(store)/store/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(store)/store/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/sellect/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/sellect/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/device/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/checker/token.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/barcode.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/combobox/combobox.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/combobox/search.combobox.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/connection-status.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/dynamic-breadcrumb.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/form/products/create/basic.form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/form/products/create/form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/form/products/create/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/form/products/create/inventor.form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/form/products/create/media.form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/form/products/create/price.form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/form/products/create/properties.form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/form/products/create/stock.form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/header.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/loading/loading.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/logout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/delete-store.modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/order-item.modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/order-submit.modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/settings.modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/settings/account.section.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/settings/appearance.sections.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/settings/devices.sections.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/settings/dollar.section.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/settings/language.sections.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/network-quality.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/order-print.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/qr-code.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/table/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/table/orders/orders.table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/table/orders/products.table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/table/pagination.table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/table/products/products.table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/table/store/store.table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/togglies/currency.togglie.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ui/image.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ui/phone-number.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ui/price-input.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-check-rate.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-crud.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-delete-store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-fetch.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-guard.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-hydration.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-network-quality.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-online-status.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-settings.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/i18n.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/i18nConfig.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/constants.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/cookie.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/currency.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/device.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/fetcher.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/formData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/jwt.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/sidebar.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/toast.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/validation.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/ru/layout.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/uz/auth.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/uz/layout.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/uz/orders.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/uz/products.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/uz/root.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/uz/select.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/uz/store.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/providers/theme-provider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/providers/translate-provider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/SFProDisplay-BlackItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/SFProDisplay-Bold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/SFProDisplay-HeavyItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/SFProDisplay-LightItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/SFProDisplay-Medium.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/SFProDisplay-Regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/SFProDisplay-SemiboldItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/SFProDisplay-ThinItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/SFProDisplay-UltralightItalic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/russia.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/samarqand.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/ping.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stores/currency.store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stores/device.store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stores/order.store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stores/store.store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stores/user.store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/orders.type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/products.type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/store.type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/user.type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/[locale]/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2zEfDCTHa3TUxQwJeLUu5YSW3BP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mac/Projects/svetaforuz/new/public/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/mac/Projects/svetaforuz/new/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/mac/Projects/svetaforuz/new/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/images" />
+      <recent name="$PROJECT_DIR$/components" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/app/[locale]" />
+      <recent name="$PROJECT_DIR$/app/[locale]/auth" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/components/table/products" />
+      <recent name="$PROJECT_DIR$/components" />
+      <recent name="$PROJECT_DIR$/app/[locale]/[role]/(root)" />
+      <recent name="$PROJECT_DIR$/components/sidebar/sections" />
+      <recent name="$PROJECT_DIR$/components/sidebar" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.25659.40" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8309fd09-f4d8-4e5c-b94c-c9e2d8a25640" name="Changes" comment="" />
+      <created>1751301031830</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751301031830</updated>
+      <workItem from="1751301033384" duration="80101000" />
+      <workItem from="1752273961343" duration="23000" />
+      <workItem from="1752330356150" duration="5000" />
+      <workItem from="1752341978554" duration="600000" />
+      <workItem from="1752511518988" duration="71875000" />
+      <workItem from="1752774568621" duration="44586000" />
+      <workItem from="1753333673576" duration="70473000" />
+      <workItem from="1753778905075" duration="8597000" />
+      <workItem from="1753803865651" duration="48000" />
+      <workItem from="1753810111680" duration="2611000" />
+      <workItem from="1753878274271" duration="18000" />
+      <workItem from="1753922224499" duration="258000" />
+      <workItem from="1753922626251" duration="9200000" />
+      <workItem from="1753940223606" duration="9000" />
+      <workItem from="1753948791376" duration="1000" />
+      <workItem from="1753980083573" duration="66922000" />
+      <workItem from="1754386906358" duration="1492000" />
+      <workItem from="1754411011555" duration="277000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

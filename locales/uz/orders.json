@@ -1,0 +1,207 @@
+{
+  "common": {
+    "cancel": "Bekor qilish",
+    "loading": "Yuklanmoqda...",
+    "error": "Xatolik",
+    "success": "Muvaffaqiyat",
+    "yes": "Ha",
+    "no": "Yo'q"
+  },
+  "order": {
+    "table": {
+      "id": "Buyurtma raqami",
+      "phone_number": "Telefon raqami",
+      "date": "Sana",
+      "total_price": "Umumiy narx",
+      "total_profit": "Foyda",
+      "paid_amount": "Toʻlangan summa",
+      "change_amount": "Qaytim",
+      "unreturned_income": "Qoldiq summa",
+      "delete": "Oʻchirish",
+      "no_orders": "Buyurtmalar mavjud emas"
+    },
+    "create_success": "Buyurtma muvaffaqiyatli yaratildi",
+    "create_error": "Buyurtma yaratilmadi",
+    "info": "Buyurtma haqida",
+    "products": "Mahsulotlar",
+    "delete_success": "Buyurtma muvaffaqiyatli o'chirildi",
+    "delete_error": "Buyurtmani o'chirishda xatolik",
+    "delete_button": "Buyurtmani o'chirish",
+    "loading": "Yuklanmoqda...",
+    "not_found": "Buyurtma topilmadi",
+    "title": "Buyurtma",
+    "created_on": "Yaratilgan sana",
+    "items_count": "ta mahsulot",
+    "total_amount": "Jami summa",
+    "back_to_orders": "Buyurtmalarga qaytish",
+    "delete_dialog": {
+      "title": "Buyurtmani o'chirish",
+      "description": "Haqiqatan ham bu buyurtmani o'chirmoqchimisiz? Bu amalni bekor qilib boʻlmaydi.",
+      "confirm": "Buyurtmani o'chirish"
+    },
+    "status": {
+      "title": "Buyurtma holati",
+      "created": "Yaratilgan",
+      "deleted": "O'chirilgan",
+      "active": "Faol",
+      "label": "Holat"
+    },
+    "error": {
+      "not_found_description": "Siz qidirayotgan buyurtma mavjud emas yoki o'chirilgan."
+    }
+  },
+  "product": {
+    "table": {
+      "title": "Buyurtmangizga {{product}} mahsuloti qo'shilsinmi?",
+      "description": "Iltimos, miqdorni va har qanday maxsus ko'rsatmalarni kiriting.",
+      "image": "Rasm",
+      "product": "Mahsulot nomi",
+      "product_name": "Mahsulot nomi",
+      "category": "Kategoriya",
+      "enter_price": "Kirim narxi",
+      "out_price": "Chiqim narxi",
+      "count": "Do'kondagi soni",
+      "warehouse_count": "Ombordagi soni",
+      "remainder": "Qolgan miqdor",
+      "edit": "Tahrirlash",
+      "add": "Qo'shish",
+      "delete": "Oʻchirish",
+      "no_products": "Mahsulotlar topilmadi",
+      "quantity": "Miqdor",
+      "amount": "Summa",
+      "income": "Daromad",
+      "price": "Narxi",
+      "unit_price": "Sotilgan narxi",
+      "currency": "Valyuta",
+      "quantity_short": "Miqdor",
+      "total": "Jami"
+    },
+    "modal": {
+      "save": "Saqlash"
+    },
+    "outOfStock": "Omborda yo'q",
+    "each": "dona narxi",
+    "sku": "SKU"
+  },
+  "create_order": "Buyurtma yaratish",
+  "search_placeholder": "Qidirish ...",
+  "loading_orders": "Buyurtmalar yuklanmoqda...",
+  "orders_table_title": "Buyurtmalar ro'yxati",
+  "no_orders": "Buyurtmalar topilmadi",
+  "pagination_prev": "Oldingi",
+  "pagination_next": "Keyingi",
+  "page": "Sahifa",
+  "of": "dan",
+  "order_created_successfully": "Buyurtma muvaffaqiyatli yaratildi",
+  "order_updated_successfully": "Buyurtma muvaffaqiyatli yangilandi",
+  "order_deleted_successfully": "Buyurtma muvaffaqiyatli o'chirildi",
+  "modal": {
+    "cancel": "Bekor qilish"
+  },
+  "cart": {
+    "title": "Savat",
+    "items": "ta mahsulot",
+    "item": "ta mahsulot",
+    "proceedToCheckout": "Buyurtmani rasmiylashtirish",
+    "income": "Daromad",
+    "total": "Jami",
+    "empty": {
+      "title": "Savat bo'sh",
+      "description": "Buyurtmani boshlash uchun katalogdan mahsulotlar qo'shing.",
+      "button": "Savatni tozalash"
+    },
+    "summary": "Buyurtma haqida"
+  },
+  "quantity": {
+    "label": "Miqdor"
+  },
+  "buttons": {
+    "edit": "Tahrirlash",
+    "remove": "O'chirish"
+  },
+  "search": {
+    "placeholder": "Mahsulot qidiring...",
+    "clear": "Qidiruvni tozalash",
+    "searching": "Qidirilmoqda...",
+    "results": "\"{{search}}\" bo'yicha {{count}} ta natija topildi",
+    "notFoundTitle": "Mahsulot topilmadi",
+    "notFoundDescription": "\"{{search}}\" so'roviga mos mahsulot topilmadi. Qidiruv so'zlarini o'zgartirib ko'ring.",
+    "noProductsTitle": "Mahsulotlar mavjud emas",
+    "noProductsDescription": "Bu do'konda hali mahsulotlar mavjud emas. Yangi mahsulot qo'shing.",
+    "addProduct": "Mahsulot qo'shish"
+  },
+  "submit": {
+    "title": "Buyurtmani tasdiqlash",
+    "description": "Siz buyurtmani tasdiqlash arafasidasiz. Davom etishdan oldin maʼlumotlarni diqqat bilan tekshiring.",
+    "confirm_button": "Buyurtmani tasdiqlash",
+    "cash_payment": "Naqd to'lov",
+    "card_payment": "Karta orqali to'lov",
+    "order_details": "Buyurtma tafsilotlari",
+    "customer_phone_label": "Telefon raqami",
+    "currency_label": "Valyuta",
+    "select_currency": "Valyutani tanlang",
+    "payment_amount_label": "Toʻlov summasi",
+    "change_amount_label": "Qaytim summasi",
+    "payment_summary_payment": "Toʻlov",
+    "payment_summary_change": "Qaytim",
+    "payment_summary_income": "Daromad",
+    "payment_summary_total": "Jami",
+    "errors": {
+      "required_phone": "Telefon raqami majburiy",
+      "required_paid_amount": "To'lov summasi majburiy"
+    }
+  },
+  "customer": {
+    "name": "Ism",
+    "phone": "Telefon",
+    "information": "Mijoz ma'lumotlari",
+    "role": "Mijoz",
+    "phone_label": "Telefon raqami"
+  },
+  "payment": {
+    "type": "To'lov turi",
+    "details": "To'lov tafsilotlari",
+    "total_price": "Umumiy narx",
+    "paid_amount": "To'langan summa",
+    "change_given": "Qaytim berildi",
+    "change_amount": "Qaytim summasi"
+  },
+  "finance": {
+    "summary": "Moliyaviy xulosalar",
+    "total_profit": "Umumiy foyda",
+    "unreturned_income": "Qo'shimcha daromad",
+    "total": "Jami narx",
+    "profit": "Foyda"
+  },
+  "currency": {
+    "currency": "Valyuta",
+    "exchange_rate": "Kurs",
+    "change": "Valyuta almashinuvi"
+  },
+  "date": {
+    "created_at": "Yaratilgan sana",
+    "deleted": "O'chirilgan"
+  },
+  "check": {
+    "order_number": "BUYURTMA №",
+    "date": "Sana:",
+    "receipt_date": "Chek sanasi:",
+    "customer": "Mijoz:",
+    "phone": "Telefon:",
+    "payment_type": "To'lov turi:",
+    "image": "Rasm",
+    "product": "Mahsulot",
+    "quantity": "Soni",
+    "price": "Narxi",
+    "total": "Jami",
+    "total_price": "Umumiy narx:",
+    "paid_amount": "To'langan:",
+    "change_amount": "Qaytim:",
+    "profit": "Foyda:",
+    "thank_you_message": "Rahmat! Yana tashrif buyuring!",
+    "questions_contact": "Savollar uchun:",
+    "print": "Chop etish",
+    "no_image": "Rasm yo'q",
+    "per_unit": "/ dona"
+  }
+}

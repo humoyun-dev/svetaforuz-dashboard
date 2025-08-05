@@ -1,0 +1,139 @@
+{
+  "roles": {
+    "admin": "Boshliq",
+    "manager": "Menejer",
+    "seller": "Sotuvchi",
+    "deliverer": "Yetkazib beruvchi",
+    "cashier": "Kassir",
+    "stockman": "Omborchi",
+    "viewer": "Kuzatuvchi"
+  },
+  "button": {
+    "sort_by": "Saralash",
+    "filter": "Filtr",
+    "back": "Orqaga",
+    "search": "Qidirish"
+  },
+  "navigation": {
+    "analytics": "Tahlil",
+    "store": "Do‘kon",
+    "orders": "Buyurtmalar",
+    "products": "Mahsulotlar",
+    "transactions": "Tranzaksiyalar",
+    "expenses": "Xarajatlar",
+    "settings": "Sozlamalar",
+    "support": "Yordam",
+    "general": "Umumiy",
+    "user": "Foydalanuvchi",
+    "security": "Xavfsizlik",
+    "list": "Ro‘yxat",
+    "balance": "Balans",
+    "members": "A'zolar",
+    "imported": "Import qilingan",
+    "exported": "Eksport qilingan",
+    "payments": "To‘lovlar",
+    "e-commerce": "Elektron savdo",
+    "category": "Kategoriya"
+  },
+  "chooseShop": {
+    "stores": "Do‘konlar",
+    "addShop": "Do‘kon qo‘shish"
+  },
+  "profile": {
+    "account": "Profil",
+    "billing": "Hisob-kitob",
+    "notifications": "Bildirishnomalar",
+    "upgradeToPro": "Pro versiyaga o‘tish",
+    "switchProfile": "Profilni almashtirish",
+    "addNewProfile": "Yangi profil qo‘shish",
+    "logOut": "Chiqish",
+    "settings": "Sozlamalar"
+  },
+  "error": {
+    "failed_to_load_stores": "Do‘konlar yuklanmadi — qayta urinib ko‘ring"
+  },
+  "settings": {
+    "title": "Sozlamalar",
+    "account": "Hisob",
+    "appearance": "Tashqi ko‘rinish",
+    "devices": "Ulangan qurilmalar",
+    "dollar": "Valyuta kursi",
+    "language": {
+      "title": "Til va mintaqa",
+      "description": "Interfeys uchun afzal tilni tanlang",
+      "select": "Tilni tanlang"
+    }
+  },
+  "account": {
+    "avatar": "Foydalanuvchi rasmi",
+    "change_avatar": "Rasmni almashtirish",
+    "first_name": "Ism",
+    "last_name": "Familiya",
+    "email": "Elektron pochta",
+    "username": "Foydalanuvchi nomi",
+    "phone_number": "Telefon raqami",
+    "gender": "Jinsi",
+    "gender_male": "Erkak",
+    "gender_female": "Ayol",
+    "select_gender": "Jinsni tanlang",
+    "save": "Saqlash",
+    "saving": "Saqlanmoqda..."
+  },
+  "appearance": {
+    "title": "Tashqi ko‘rinish",
+    "description": "Interfeys qanday ko‘rinishini sozlang",
+    "theme": "Mavzu",
+    "light": "Yorug‘",
+    "light_desc": "Sof va yorqin interfeys",
+    "dark": "Qorong‘i",
+    "dark_desc": "Past yorug‘likda ko‘z uchun qulay",
+    "system": "Tizim",
+    "system_desc": "Qurilma sozlamalariga moslashadi",
+    "display_options": "Ko‘rinish sozlamalari",
+    "reduce_motion": "Harakatlarni kamaytirish",
+    "reduce_motion_desc": "Animatsiyalar va o‘tishlarni minimallashtirish",
+    "high_contrast": "Yuqori kontrast",
+    "high_contrast_desc": "Ko‘rish qulayligi uchun rang kontrastini oshirish"
+  },
+  "languages": {
+    "uz": {
+      "name": "O‘zbekcha"
+    },
+    "ru": {
+      "name": "Ruscha"
+    }
+  },
+  "devices": {
+    "title": "Ulangan qurilmalar",
+    "description": "Hisobingizga kirgan qurilmalarni boshqaring",
+    "loading": "Qurilmalar yuklanmoqda...",
+    "no_devices_title": "Qurilmalar topilmadi",
+    "no_devices_desc": "Ulangan qurilmalar mavjud emas",
+    "active_sessions": "Faol sessiyalar",
+    "last_login": "Oxirgi kirish vaqti",
+    "ip_location": "IP manzili",
+    "active": "Faol",
+    "inactive": "Faol emas",
+    "sign_out": "Chiqish",
+    "signout_success": "Qurilma tizimdan chiqarildi",
+    "signout_error": "Chiqish vaqtida xatolik yuz berdi",
+    "signout_fail": "Qurilmani tizimdan chiqarib bo‘lmadi",
+    "active_count": "{{active}}/{{total}} faol"
+  },
+  "dollar": {
+    "title": "Valyuta kursi",
+    "description": "Tizim uchun dollar kursini belgilang",
+    "update_button": "Yangilash",
+    "success": "Kurs muvaffaqiyatli yangilandi",
+    "error": "Kursni yangilashda xatolik yuz berdi"
+  },
+  "deleteModal": {
+    "title": "Siz bunga toʻliq ishonchingiz komilmi?",
+    "description": "Bu amalni bekor qilib boʻlmaydi. Bu sizning hisobingizni butunlay oʻchirib tashlaydi va barcha maʼlumotlaringizni serverlarimizdan olib tashlaydi.",
+    "cancel": "Bekor qilish",
+    "confirm": "Davom etish",
+    "success": "Muvaffaqiyatli oʻchirildi",
+    "error": "Xatolik yuz berdi. Iltimos, keyinroq yana urinib ko‘ring"
+  }
+
+}

@@ -1,0 +1,138 @@
+{
+  "product": {
+    "create": {
+      "discard": "Bekor qilish",
+      "save": "Mahsulotni saqlash",
+      "edit": "Tahrirlash"
+    },
+    "table": {
+      "image": "Rasm",
+      "product_name": "Mahsulot nomi",
+      "category": "Kategoriya",
+      "enter_price": "Kirim narxi",
+      "out_price": "Chiqim narxi",
+      "count": "Do'kondagi soni",
+      "warehouse_count": "Ombordagi soni",
+      "remainder": "Qolgan miqdor",
+      "edit": "Tahrirlash",
+      "duplicate": "Nusxa olish",
+      "delete": "Oʻchirish",
+      "no_products": "Mahsulotlar topilmadi"
+    },
+    "form": {
+      "status": "Status",
+      "visibility": "Ko‘rinish",
+      "online_store": "Onlayn do‘kon",
+      "images": "Rasmlar",
+      "images_uploaded": "{{count}} ta rasm yuklandi",
+      "saving": "Mahsulot saqlanmoqda...",
+      "success_create": "Mahsulot \"{{name}}\" muvaffaqiyatli yaratildi!",
+      "success_update": "Mahsulot \"{{name}}\" muvaffaqiyatli yangilandi!",
+      "error_create": "Mahsulotni yaratishda xatolik. Iltimos, qayta urinib ko‘ring.",
+      "error_validation": "Xatolik: propertylar ichida dublikat mavjud",
+      "description_images_uploaded": "{{count}} ta rasm yuklandi"
+    },
+    "status": {
+      "active": "Faol"
+    },
+    "basic": {
+      "title": "Mahsulot tafsilotlari",
+      "subtitle": "Mahsulotingiz haqida asosiy maʼlumotlarni kiriting.",
+      "form": {
+        "name": {
+          "label": "Sarlavha",
+          "placeholder": "Qisqa yengli futbolka"
+        },
+        "description": {
+          "label": "Tavsif",
+          "placeholder": "Mahsulotingizni batafsil tavsiflang. Uni nima maxsus qiladi? Qanday materiallardan tayyorlangan?",
+          "hint": "Xaridorlar bu maʼlumotni mahsulot sahifasida ko‘rishadi. Yaxshi tavsif SEO uchun foydali."
+        }
+      }
+    },
+    "media": {
+      "title": "Media",
+      "subtitle": "Mahsulot rasmlarini yuklang. Birinchi rasm asosiy sifatida tanlanadi.",
+      "dropzone": {
+        "title": "Rasm(lar)ni sudrab tashlang",
+        "subtitle": "Maksimal 10 ta rasm. PNG/JPG/GIF. Har biri 5MB gacha.",
+        "button": {
+          "default": "Fayllarni tanlang",
+          "uploading": "Yuklanmoqda..."
+        },
+        "uploading": "Yuklanmoqda..."
+      },
+      "uploaded": "Yuklangan rasmlar",
+      "badge": "Asosiy",
+      "setPrimary": "Asosiy rasm qilish",
+      "remove": "O'chirish",
+      "removeInfo": "Rasm o'chirildi",
+      "removeRemote": "Uzoqdagi rasm o'chirildi",
+      "deleteFail": "Rasmni o‘chirishda xatolik yuz berdi",
+      "prepareSuccess": "{{count}} ta rasm tayyorlandi",
+      "uploadSuccess": "Barcha rasm(lar) yuklandi",
+      "uploadFail": "Rasm(lar)ni yuklashda xatolik",
+      "someSkipped": "Baʼzi fayllar o‘tkazib yuborildi: {{errors}}",
+      "primarySet": "Asosiy rasm tanlandi"
+    },
+    "visibility": {
+      "title": "Onlayn ko‘rinish",
+      "subtitle": "Ushbu mahsulot onlayn do‘konda ko‘rinadimi-yo‘qmi, nazorat qiling.",
+      "label": "Do‘konda ko‘rsatish",
+      "description": "Mahsulotning onlayn do‘kondagi ko‘rinishini yoqing yoki o‘chiring.",
+      "visible": {
+        "status": "Mahsulot ko‘rinmoqda",
+        "description": "Mijozlar bu mahsulotni ko‘rishlari va sotib olishlari mumkin."
+      },
+      "hidden": {
+        "status": "Mahsulot yashirilgan",
+        "description": "Bu mahsulot onlayn do‘konda ko‘rinmaydi."
+      }
+    },
+    "price": {
+      "title": "Narxlash",
+      "subtitle": "Mahsulotingiz uchun narx va valyutani belgilang.",
+      "priceLabel": "Narx",
+      "currencyLabel": "Valyuta",
+      "currencyPlaceholder": "Valyutani tanlang",
+      "countTypeLabel": "O‘lchov birligi",
+      "countTypePlaceholder": "Birlikni tanlang"
+    },
+    "actions": {
+      "create_product": "Mahsulot qo‘shish"
+    },
+    "attributes": {
+      "title": "Mahsulot xususiyatlari",
+      "subtitle": "Mijozlarga mahsulotingizni topishga yordam berish uchun qo‘shimcha xususiyatlar kiriting.",
+      "attribute": "Xususiyat",
+      "name": "Nomi",
+      "value": "Qiymati",
+      "add": "Xususiyat qo‘shish",
+      "name_placeholder": "Masalan: Rangi",
+      "value_placeholder": "Masalan: Qizil",
+      "submit": "Yuborish"
+    },
+    "notifications": {
+      "property_added": "Xususiyat muvaffaqiyatli qo‘shildi",
+      "property_updated": "Xususiyat yangilandi",
+      "property_deleted": "Xususiyat o‘chirildi"
+    },
+    "place_holders": {
+      "search": "Qidiruv",
+      "category": "Kategoriya"
+    },
+    "errors": {
+      "duplicate_features": "Xususiyat nomlari takrorlanmasligi kerak. Har birini yagona qiling.",
+      "load_failed": "Yuklashda xatolik yuz berdi"
+    }
+  },
+  "place_holders": {
+    "search": "Qidiruv",
+    "select": "Tanlash"
+  },
+  "pagination": {
+    "next": "Next",
+    "previous": "Previous",
+    "page": "Page"
+  }
+}
