@@ -19,3 +19,14 @@ export interface PaginatedStoreType {
   count: number;
   results: StoreType[];
 }
+
+export interface StoreForm {
+  name: string;
+  description: string;
+  address: string;
+  phone_number?: string;
+  latitude?: string;
+  longitude?: string;
+  logo?: string;
+  banner?: string;
+}
