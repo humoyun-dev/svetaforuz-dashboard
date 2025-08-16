@@ -1,15 +1,8 @@
 "use client";
 
-import {
-  BadgeCheck,
-  Bell,
-  ChevronsUpDown,
-  CreditCard,
-  LogOut,
-  Settings2,
-  Sparkles,
-  User2,
-} from "lucide-react";
+import { useState, useEffect } from "react";
+
+import { Bell, ChevronsUpDown, LogOut, Settings2, User2 } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -32,12 +25,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import useFetch from "@/hooks/use-fetch";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "@/stores/user.store";
-import { useEffect } from "react";
 import { useOnlineStatus } from "@/hooks/use-online-status";
 import { UserType } from "@/types/user.type";
 import { useTranslation } from "react-i18next";
 import { clearAllCookies } from "@/lib/cookie";
 import { openSettingsModal, useSettingsStore } from "@/hooks/use-settings";
+
+import NotificationModal from "@/components/notifications/notification-modal";
+import { useNotificationStore } from "@/stores/notification.store";
 
 function UserAvatar({ user }: { user: UserType }) {
   const name = `${user.first_name} ${user.last_name}`;
@@ -61,9 +56,13 @@ export function NavUser() {
   const isOnline = useOnlineStatus();
   const { isMobile } = useSidebar();
   const { t } = useTranslation();
-  const { setOpen, open } = useSettingsStore();
+  const { setOpen } = useSettingsStore();
 
   const { user: storedUser, setUser } = useUserStore();
+
+  // 👇 Hooks must be before any conditional return
+  const [notifOpen, setNotifOpen] = useState(false);
+  const { unread } = useNotificationStore();
 
   const { data: fetchedUser } = useFetch<UserType>("accounts/profile/me/", {
     enabled: isOnline,
@@ -75,7 +74,7 @@ export function NavUser() {
     if (isOnline && fetchedUser) {
       setUser(fetchedUser);
     }
-  }, [isOnline, fetchedUser]);
+  }, [isOnline, fetchedUser, setUser]);
 
   if (!user) return null;
 
@@ -111,83 +110,85 @@ export function NavUser() {
   }
 
   return (
-    <SidebarMenu>
-      <SidebarMenuItem>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <SidebarMenuButton
-              size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-            >
-              <UserAvatar user={user} />
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{fullName}</span>
-                <span className="truncate text-xs">{user.email}</span>
-              </div>
-              <ChevronsUpDown className="ml-auto size-4" />
-            </SidebarMenuButton>
-          </DropdownMenuTrigger>
+    <>
+      {/* Keep the dialog mounted outside the dropdown so it doesn't unmount on menu close */}
+      <NotificationModal open={notifOpen} onOpenChange={setNotifOpen} />
 
-          <DropdownMenuContent
-            className="min-w-56 rounded-lg"
-            align="end"
-            side={isMobile ? "bottom" : "right"}
-            sideOffset={4}
-          >
-            <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <SidebarMenuButton
+                size="lg"
+                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              >
                 <UserAvatar user={user} />
-                <div className="grid flex-1 text-left leading-tight">
+                <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{fullName}</span>
                   <span className="truncate text-xs">{user.email}</span>
                 </div>
-              </div>
-            </DropdownMenuLabel>
+                <ChevronsUpDown className="ml-auto size-4" />
+              </SidebarMenuButton>
+            </DropdownMenuTrigger>
 
-            {/*<DropdownMenuSeparator />*/}
+            <DropdownMenuContent
+              className="min-w-56 rounded-lg"
+              align="end"
+              side={isMobile ? "bottom" : "right"}
+              sideOffset={4}
+            >
+              <DropdownMenuLabel className="p-0 font-normal">
+                <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                  <UserAvatar user={user} />
+                  <div className="grid flex-1 text-left leading-tight">
+                    <span className="truncate font-medium">{fullName}</span>
+                    <span className="truncate text-xs">{user.email}</span>
+                  </div>
+                </div>
+              </DropdownMenuLabel>
 
-            {/*<DropdownMenuGroup>*/}
-            {/*  <DropdownMenuItem>*/}
-            {/*    <Sparkles />*/}
-            {/*    {t("profile.upgradeToPro", "Pro versiyaga o‘tish")}*/}
-            {/*  </DropdownMenuItem>*/}
-            {/*</DropdownMenuGroup>*/}
+              <DropdownMenuSeparator />
 
-            <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem onClick={openSettings}>
+                  <Settings2 />
+                  {t("profile.settings", "Sozlamalar")}
+                </DropdownMenuItem>
 
-            <DropdownMenuGroup>
-              <DropdownMenuItem onClick={openSettings}>
-                <Settings2 />
-                {t("profile.settings", "Sozlamalar")}
+                {/* Notifications opener (badge shows unread count) */}
+                <DropdownMenuItem
+                  onSelect={(e) => {
+                    e.preventDefault();
+                    setNotifOpen(true);
+                  }}
+                >
+                  <div className="relative flex w-full items-center gap-2">
+                    <Bell />
+                    <span>{t("profile.notifications", "Bildirishnomalar")}</span>
+                    {unread > 0 && (
+                      <span className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] text-white">
+                        {unread}
+                      </span>
+                    )}
+                  </div>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+
+              <DropdownMenuSeparator />
+
+              <DropdownMenuItem onClick={handleChangeUser}>
+                <User2 />
+                {t("profile.switchProfile", "Foydalanuvchini almashtirish")}
               </DropdownMenuItem>
-              {/*<DropdownMenuItem>*/}
-              {/*  <BadgeCheck />*/}
-              {/*  {t("profile.account", "Profil")}*/}
-              {/*</DropdownMenuItem>*/}
-              {/*<DropdownMenuItem>*/}
-              {/*  <CreditCard />*/}
-              {/*  {t("profile.billing", "To‘lovlar")}*/}
-              {/*</DropdownMenuItem>*/}
-              <DropdownMenuItem>
-                <Bell />
-                {t("profile.notifications", "Bildirishnomalar")}
+
+              <DropdownMenuItem onClick={handleLogout}>
+                <LogOut />
+                {t("profile.logOut", "Chiqish")}
               </DropdownMenuItem>
-            </DropdownMenuGroup>
-
-            <DropdownMenuSeparator />
-
-            <DropdownMenuItem onClick={handleChangeUser}>
-              <User2 />
-              {t("profile.switchProfile", "Foydalanuvchini almashtirish")}
-            </DropdownMenuItem>
-
-            <DropdownMenuItem onClick={handleLogout}>
-              <LogOut />
-              {t("profile.logOut", "Chiqish")}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </SidebarMenuItem>
-    </SidebarMenu>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </SidebarMenuItem>
+      </SidebarMenu>
+    </>
   );
 }
