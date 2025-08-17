@@ -13,6 +13,7 @@ interface SearchableComboboxProps<T> {
   setValue: (value: string) => void;
   mapData: (item: T) => ComboboxOption;
   className?: string;
+  disabled?: boolean;
   title?: string;
 }
 
@@ -23,6 +24,7 @@ export function SearchableCombobox<T>({
   mapData,
   className,
   title = "Select",
+  disabled,
 }: SearchableComboboxProps<T>) {
   const [search, setSearch] = useState<string>("");
 
@@ -34,6 +36,7 @@ export function SearchableCombobox<T>({
 
   return (
     <Combobox
+      disabled={disabled}
       className={className}
       title={title}
       value={value}

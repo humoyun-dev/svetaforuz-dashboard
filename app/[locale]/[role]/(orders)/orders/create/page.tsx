@@ -67,7 +67,7 @@ const Page = () => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="p-4 border-b bg-white">
+      <div className="p-4 border-b ">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <ShoppingCart className="h-5 w-5 text-gray-600" />
@@ -95,7 +95,7 @@ const Page = () => {
         </div>
       </ScrollArea>
 
-      <div className="border-t bg-white p-4">
+      <div className="border-t  p-4">
         <Card className="gap-2">
           <CardHeader>
             <CardTitle className="text-base">{t("cart.summary")}</CardTitle>
@@ -187,7 +187,7 @@ const OrderItemCard = ({
     <Card className="group relative p-2 transition-all hover:shadow-md">
       <CardContent className="p-2">
         <div className="flex gap-4">
-          <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
+          <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg ">
             <img
               src={
                 product.images[0]?.image ||
@@ -217,7 +217,7 @@ const OrderItemCard = ({
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-6 w-6 p-0 text-gray-400 hover:text-primary hover:bg-red-50  transition-opacity"
+                className="h-6 w-6 p-0 text-gray-400 hover:text-primary   transition-opacity"
                 onClick={handleEdit}
                 disabled={isLoading}
               >
@@ -226,7 +226,7 @@ const OrderItemCard = ({
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-6 w-6 p-0 text-gray-400 hover:text-red-600 hover:bg-red-50  transition-opacity"
+                className="h-6 w-6 p-0 text-gray-400 hover:text-red-600   transition-opacity"
                 onClick={handleRemove}
                 disabled={isLoading}
               >
@@ -239,23 +239,23 @@ const OrderItemCard = ({
                 <span className="text-xs font-medium text-gray-600">
                   {t("quantity.label")}:
                 </span>
-                <div className="flex items-center rounded-md border border-gray-200">
+                <div className="flex items-center rounded-md border ">
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-6 w-6 p-0 rounded-r-none hover:bg-gray-100"
+                    className="h-6 w-6 p-0 rounded-r-none "
                     onClick={() => handleQuantityChange(quantity - 1)}
                     disabled={quantity <= 1 || isLoading}
                   >
                     <Minus className="h-3 w-3" />
                   </Button>
-                  <div className="flex h-6 w-8 items-center justify-center border-x border-gray-200 bg-gray-50 text-xs font-medium">
+                  <div className="flex h-6 w-8 items-center justify-center border-x   text-xs font-medium">
                     {quantity}
                   </div>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-6 w-6 p-0 rounded-l-none hover:bg-gray-100"
+                    className="h-6 w-6 p-0 rounded-l-none "
                     onClick={() => handleQuantityChange(quantity + 1)}
                     disabled={isLoading}
                   >
@@ -288,8 +288,8 @@ const OrderItemCard = ({
         </div>
 
         {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white/80 rounded-lg">
-            <div className="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-blue-600" />
+          <div className="absolute inset-0 flex items-center justify-center  rounded-lg">
+            <div className="h-4 w-4 animate-spin rounded-full border-2  border-t-blue-600" />
           </div>
         )}
       </CardContent>
@@ -303,7 +303,7 @@ const EmptyCart = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-      <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+      <div className="w-24 h-24  rounded-full flex items-center justify-center mb-4">
         <Package className="w-12 h-12 text-gray-400" />
       </div>
       <h3 className="text-lg font-semibold text-gray-900 mb-2">

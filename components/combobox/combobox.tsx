@@ -33,6 +33,7 @@ interface Props {
   setSearch: (value: string) => void;
   isLoading?: boolean;
   className?: string;
+  disabled?: boolean;
 }
 
 export function Combobox({
@@ -44,6 +45,7 @@ export function Combobox({
   setSearch,
   className,
   isLoading = false,
+  disabled = false,
 }: Props) {
   const [open, setOpen] = React.useState(false);
   const { t } = useTranslation();
@@ -60,6 +62,7 @@ export function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
+          disabled={disabled}
           className={`w-full justify-between ${className}`}
         >
           {value

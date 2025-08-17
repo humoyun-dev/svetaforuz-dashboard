@@ -134,5 +134,30 @@
     "next": "Next",
     "previous": "Previous",
     "page": "Page"
+  },
+  "modal": {
+    "title": "Mahsulotlar importi",
+    "actions": {
+      "import": "Import"
+    },
+    "cancel": "Yopish"
+  },
+  "form": {
+    "search_product": "Mahsulot qidirish",
+    "currency": "Valyuta",
+    "select_currency": "Valyutani tanlang",
+    "price": "Narx",
+    "warehouse": "Ombor",
+    "count": "Soni"
+  },
+  "toast": {
+    "success_import": "Mahsulot muvaffaqiyatli import qilindi"
+  },
+  "actions": {
+    "create": "Yaratish"
+  },
+  "currency": {
+    "USD": "USD",
+    "UZS": "UZS"
   }
 }

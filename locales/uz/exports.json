@@ -1,0 +1,16 @@
+{
+  "sales": {
+    "table": {
+      "image": "Rasm",
+      "product_image_alt": "{{name}} mahsulot rasmi",
+      "product": "Mahsulot",
+      "product_name": "Mahsulot nomi",
+      "unit_price": "Birlik narxi",
+      "count": "Soni",
+      "date": "Sana",
+      "total": "Jami",
+      "income": "Daromad",
+      "no_stocks": "Hozircha savdolar yo‘q"
+    }
+  }
+}

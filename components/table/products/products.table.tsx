@@ -10,6 +10,7 @@ import { useStore } from "@/stores/store.store";
 import { useCrud } from "@/hooks/use-crud";
 import { notify } from "@/lib/toast";
 import { useCurrencyStore } from "@/stores/currency.store";
+import { useImportStore } from "@/hooks/use-import-product";
 
 export default function ProductsTable({
   data,
@@ -20,6 +21,13 @@ export default function ProductsTable({
 }) {
   const { t } = useTranslation();
   const { usd, currency } = useCurrencyStore();
+  const {
+    setOpen,
+    open,
+    data: importData,
+    setData,
+    setDisabled,
+  } = useImportStore();
 
   const columns: TableColumn<ListProductType>[] = [
     {
@@ -102,6 +110,10 @@ export default function ProductsTable({
       onClick: (product) => console.log("Duplicate product:", product),
     },
     {
+      label: t("product.table.import"),
+      onClick: (product) => handleImportModal(product.id),
+    },
+    {
       label: t("product.table.delete"),
       onClick: (product) => handleDelete(product.id),
       variant: "destructive",
@@ -109,6 +121,15 @@ export default function ProductsTable({
   ];
 
   const { selectedShop } = useStore();
+
+  function handleImportModal(id: number) {
+    setOpen(true);
+    setData({
+      ...importData,
+      product: id,
+    });
+    setDisabled(true);
+  }
 
   async function handleDelete(id: number) {
     try {

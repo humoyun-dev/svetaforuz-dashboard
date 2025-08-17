@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import Modal from "@/components/modals/index";
 import { useImportStore } from "@/hooks/use-import-product";
 import { StockEntryFormType } from "@/types/systems.type";
@@ -25,16 +25,9 @@ import { useTranslation } from "react-i18next";
 
 const ImportProductModal = () => {
   const { t } = useTranslation();
-  const { setOpen, open } = useImportStore();
+  const { setOpen, open, data, setData, disabled, setDisabled } =
+    useImportStore();
   const { selectedShop } = useStore();
-
-  const [data, setData] = useState<StockEntryFormType>({
-    count: "",
-    unit_price: "",
-    currency: "USD",
-    is_warehouse: false,
-    product: 0,
-  });
 
   function handleChangeInput<K extends keyof StockEntryFormType>(
     key: K,
@@ -83,18 +76,31 @@ const ImportProductModal = () => {
     }
   }
 
+  function handleCancel() {
+    setOpen(false);
+    setData({
+      count: "",
+      unit_price: "",
+      currency: "USD",
+      is_warehouse: false,
+      product: 0,
+    });
+    setDisabled(false);
+  }
+
   return (
     <Modal
       className="md:p-6 overflow-hidden px-1 py-4 w-full max-h-full sm:max-w-[100%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[40%] 2xl:max-w-[30%] 3xl:max-w-[25%]"
       open={open}
       title={t("modal.title")}
-      setOpen={() => setOpen(false)}
+      setOpen={handleCancel}
       footer={<Button onClick={submitForm}>{t("modal.actions.import")}</Button>}
     >
       <>
         <SearchableCombobox<ListProductType>
           endpoint={categorySearchEndpoint}
           value={data.product}
+          disabled={disabled}
           setValue={(value) => handleChangeInput("product", Number(value))}
           className="w-full"
           title={t("form.search_product")}

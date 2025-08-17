@@ -2,25 +2,20 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import Header from "@/components/header";
-import { Button } from "@/components/ui/button";
-import { GitPullRequestCreateArrow } from "lucide-react";
 import useFetch from "@/hooks/use-fetch";
-import { PaginatedStockEntryType } from "@/types/systems.type";
 import { useStore } from "@/stores/store.store";
 import { Loading } from "@/components/loading/loading";
 import TablePagination from "@/components/table/pagination.table";
-import StockEntryTable from "@/components/table/systems/stockentry.table";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useImportStore } from "@/hooks/use-import-product";
-import { useTranslation } from "react-i18next"; // ⬅️ qo‘shildi
+import ImportProductModal from "@/components/modals/import-product.modal";
+import { PaginatedProductSalesType } from "@/types/systems.type";
+import SalesProductTable from "@/components/table/systems/sales-product.table";
 
 const Page = () => {
-  const { t } = useTranslation(); // ⬅️ qo‘shildi
   const { selectedShop } = useStore();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { setOpen } = useImportStore();
 
   const [page, setPage] = useState(() => {
     const param = searchParams.get("page");
@@ -38,7 +33,7 @@ const Page = () => {
     const params = new URLSearchParams();
     params.set("page", page.toString());
 
-    return `${selectedShop.id}/system/product-entries/?${params.toString()}`;
+    return `${selectedShop.id}/system/sales/?${params.toString()}`;
   }, [page, selectedShop?.id]);
 
   useEffect(() => {
@@ -48,24 +43,17 @@ const Page = () => {
   }, [page, pathname, queryParamsString, router]);
 
   const { safeData, isLoading, refetch } =
-    useFetch<PaginatedStockEntryType>(productsUrl);
+    useFetch<PaginatedProductSalesType>(productsUrl);
 
   return (
     <>
-      <Header
-        actions={
-          <Button onClick={() => setOpen(true)} size={"sm"}>
-            <GitPullRequestCreateArrow />
-            {t("actions.create")}
-          </Button>
-        }
-      />
+      <Header />
 
       {isLoading ? (
         <Loading className="h-[80vh]" />
       ) : (
         <div>
-          <StockEntryTable refetch={refetch} data={safeData.results} />
+          <SalesProductTable refetch={refetch} data={safeData.results} />
           <TablePagination
             count={safeData.count}
             setPage={setPage}
@@ -73,6 +61,7 @@ const Page = () => {
           />
         </div>
       )}
+      <ImportProductModal />
     </>
   );
 };
