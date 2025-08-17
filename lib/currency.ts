@@ -32,7 +32,7 @@ function convertCurrency({
 }
 
 export function formatCurrencyPure(params: CurrencyParams): string | undefined {
-  const converted = convertCurrency(params);
+  const converted = Number(convertCurrency(params));
 
   if (converted === undefined) return undefined;
 

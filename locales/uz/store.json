@@ -1,5 +1,51 @@
 {
+  "share": "Ulashish",
+  "establishedJan2024": "2024-yil yanvarda tashkil etilgan",
+  "storeNumber": "Do‘kon №{{id}}",
+  "tabs": {
+    "about": "Haqida",
+    "contact": "Aloqa",
+    "gallery": "Galereya"
+  },
+  "sections": {
+    "storeInformation": "Do‘kon ma’lumotlari",
+    "getInTouch": "Bog‘lanish",
+    "location": "Joylashuv",
+    "storeLogo": "Do‘kon logotipi",
+    "storeBanner": "Do‘kon banneri"
+  },
+  "fields": {
+    "description": "Tavsif",
+    "phone": "Telefon",
+    "address": "Manzil",
+    "name": "Nomi",
+    "latitude": "Kenglik (latitude)",
+    "longitude": "Uzunlik (longitude)"
+  },
+  "actions": {
+    "viewOnMaps": "Xaritada ko‘rish",
+    "copy": "Nusxa olish",
+    "useMyLocation": "Joylashuvimdan foydalanish",
+    "save": "Saqlash",
+    "saving": "Saqlanmoqda...",
+    "update": "Yangilash",
+    "updating": "Yangilanmoqda...",
+    "cancel": "Bekor qilish"
+  },
+  "states": {
+    "locationUnavailable": "Joylashuv mavjud emas"
+  },
+  "aria": {
+    "share": "Ulashish",
+    "storeTabs": "Do‘kon ichki bo‘limlari",
+    "storeLocation": "Do‘kon joylashuvi"
+  },
+  "alt": {
+    "logo": "{{name}} logotipi",
+    "banner": "{{name}} banneri"
+  },
   "store": {
+    "title": "Do'kon",
     "table": {
       "id": "ID raqami",
       "image": "Rasm",
@@ -49,5 +95,35 @@
       "no_banner": "Banner yuklanmagan",
       "default_background": "Standart gradient fon ishlatilmoqda"
     }
+  },
+  "placeholders": {
+    "name": "Masalan: Super Shop",
+    "phone": "Masalan: +998 90 123 45 67",
+    "address": "Masalan: Toshkent, Yunusobod...",
+    "description": "Qisqacha tavsif..."
+  },
+  "labels": {
+    "location": "Lokatsiya",
+    "logo": "Logo",
+    "banner": "Banner"
+  },
+  "help": {
+    "location": "Xarita orqali joylashuvni tanlang yoki yuqoridagi maydonlarga kiriting."
+  },
+  "errors": {
+    "geolocationUnavailable": "Brauzeringiz geolokatsiyani qo'llab-quvvatlamaydi",
+    "geolocationFailed": "Joylashuvni aniqlab bo'lmadi",
+    "invalidCoords": "Kiritilgan koordinatalarni tekshiring.",
+    "latitudeFormat": "Raqam kiritishingiz kerak (−90 ... 90)",
+    "longitudeFormat": "Raqam kiritishingiz kerak (−180 ... 180)",
+    "requestFailed": "So'rov bajarilmadi.",
+    "unknown": "Noma'lum xatolik yuz berdi."
+  },
+  "toasts": {
+    "creating": "Yaratilmoqda...",
+    "updating": "Yangilanmoqda...",
+    "created": "Do'kon yaratildi.",
+    "updated": "Do'kon ma'lumotlari yangilandi.",
+    "requestFailedRetry": "So'rov bajarilmadi. Qaytadan urinib ko'ring."
   }
 }

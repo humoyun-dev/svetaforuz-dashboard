@@ -7,6 +7,8 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import ConnectionStatus from "@/components/connection-status";
 import ConnectionSpeedWarning from "@/components/network-quality";
+import Script from "next/script";
+import StoreFormModal from "@/components/modals/store-form.modal";
 
 const sfProDisplay = localFont({
   variable: "--font-sf-pro", // This is the CSS variable used below
@@ -141,6 +143,7 @@ export default async function RootLayout({
   const { locale } = await params;
 
   const { resources } = await initTranslations(locale, i18nNamespaces);
+  const apiKey = process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY;
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -161,6 +164,7 @@ export default async function RootLayout({
               {/*<ConnectionStatus />*/}
               {children}
               <Toaster />
+              <StoreFormModal />
             </>
           </TranslationProvider>
         </ThemeProvider>

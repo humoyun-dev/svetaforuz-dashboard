@@ -27,8 +27,6 @@ const Page = () => {
     isLoading,
   } = useFetch<PaginatedOrdersType>(`${selectedShop?.id}/orders/orders/`);
 
-  console.log(data);
-
   return (
     <>
       <Header

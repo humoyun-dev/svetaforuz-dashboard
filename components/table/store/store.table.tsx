@@ -8,11 +8,13 @@ import { StoreType } from "@/types/store.type";
 import Image from "@/components/ui/image";
 import { Store } from "lucide-react";
 import { useDeleteStore } from "@/hooks/use-delete-store";
+import { useStoreForm } from "@/hooks/use-store-dorm";
 
 const StoreTable = ({ data }: { data: StoreType[] }) => {
   const { t } = useTranslation();
   const { currency } = useCurrencyStore();
   const { setOpen, setUrl } = useDeleteStore();
+  const { setOpen: setOpenStore, setId } = useStoreForm();
 
   const formatMoney = (value: number, rate: number) =>
     formatCurrencyPure({
@@ -69,11 +71,21 @@ const StoreTable = ({ data }: { data: StoreType[] }) => {
 
   const actions: TableAction<StoreType>[] = [
     {
+      label: t("store.edit"),
+      onClick: (order) => handleOpen(order.id),
+      variant: "default",
+    },
+    {
       label: t("store.table.delete"),
       onClick: (order) => handleDelete(order.id),
       variant: "destructive",
     },
   ];
+
+  function handleOpen(id: number) {
+    setOpenStore(true);
+    setId(String(id));
+  }
 
   function handleDelete(id: number) {
     setOpen(true);

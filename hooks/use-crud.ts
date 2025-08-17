@@ -5,6 +5,7 @@ interface RequestProps<T = any> {
   url: string;
   data?: T;
   ContentType?: "multipart/form-data" | "application/json";
+  signal?: AbortSignal;
 }
 
 interface ApiResponse<T> {
@@ -38,14 +39,15 @@ export const useCrud = {
     url,
     data,
     ContentType = "application/json",
+    signal,
   }: RequestProps): Promise<ApiResponse<T>> {
     const isFormData =
       typeof FormData !== "undefined" && data instanceof FormData;
-
     const headers = getAuthHeaders(isFormData ? undefined : ContentType);
 
     const response: AxiosResponse<T> = await apiClient.post(url, data, {
       headers,
+      signal,
     });
     return { status: response.status, data: response.data };
   },
@@ -54,21 +56,25 @@ export const useCrud = {
     url,
     data,
     ContentType = "application/json",
+    signal,
   }: RequestProps): Promise<ApiResponse<T>> {
     const isFormData =
       typeof FormData !== "undefined" && data instanceof FormData;
-
     const headers = getAuthHeaders(isFormData ? undefined : ContentType);
 
     const response: AxiosResponse<T> = await apiClient.patch(url, data, {
       headers,
+      signal,
     });
     return { status: response.status, data: response.data };
   },
 
-  async delete(url: string): Promise<ApiResponse<null>> {
+  async delete(url: string, signal?: AbortSignal): Promise<ApiResponse<null>> {
     const headers = getAuthHeaders();
-    const response: AxiosResponse = await apiClient.delete(url, { headers });
+    const response: AxiosResponse = await apiClient.delete(url, {
+      headers,
+      signal,
+    });
     return { status: response.status, data: null };
   },
 };

@@ -247,6 +247,7 @@ const OrderItemModal = () => {
                 onValueChange={(value, name, values) =>
                   handleChangeOrderItem("quantity", String(value))
                 }
+                allowDecimals={false}
                 name="quantity"
                 value={orderItem.quantity}
               />

@@ -10,6 +10,8 @@ interface StoreState {
   setSelectedShop: (shop: StoreType | null) => void;
   setShops: (shops: StoreType[]) => void;
 
+  updateShop: (item: StoreType) => void;
+
   toggleAddMode: (value?: boolean) => void;
   clearState: () => void;
   _hasHydrated: boolean;
@@ -22,6 +24,24 @@ export const useStore = create<StoreState>()(
         selectedShop: null,
         shops: [],
         addMode: false,
+
+        updateShop: (item) =>
+          set((state) => {
+            const idx = state.shops.findIndex((s) => s.id === item.id);
+            let shops: StoreType[];
+            if (idx === -1) {
+              shops = [...state.shops, item];
+            } else {
+              shops = state.shops.map((s) =>
+                s.id === item.id ? { ...s, ...item } : s,
+              );
+            }
+            const selectedShop =
+              state.selectedShop?.id === item.id
+                ? { ...state.selectedShop, ...item }
+                : state.selectedShop;
+            return { shops, selectedShop };
+          }),
 
         setSelectedShop: (shop) => set({ selectedShop: shop }),
         setShops: (shops) => set({ shops }),

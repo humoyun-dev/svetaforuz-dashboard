@@ -1,0 +1,52 @@
+{
+  "stock": {
+    "table": {
+      "image": "Rasm",
+      "product": "mahsulot",
+      "product_name": "Mahsulot nomi",
+      "unit_price": "Birlik narx",
+      "count": "Miqdor",
+      "date": "Sana",
+      "is_warehouse": "Joylashuv",
+      "in_warehouse": "Omborda",
+      "in_store": "Do‘konda",
+      "total": "Jami",
+      "delete": "O‘chirish",
+      "no_stocks": "Zahira yozuvlari topilmadi",
+      "product_image_alt": "{{name}} rasmi"
+    },
+    "messages": {
+      "delete_success": "Zahira yozuvi #{{id}} o‘chirildi",
+      "delete_error": "Zahira yozuvini #{{id}} o‘chirib bo‘lmadi"
+    }
+  },
+  "modal": {
+    "title": "Mahsulotlar importi",
+    "actions": {
+      "import": "Import"
+    },
+    "cancel": "Yopish"
+  },
+  "form": {
+    "search_product": "Mahsulot qidirish",
+    "currency": "Valyuta",
+    "select_currency": "Valyutani tanlang",
+    "price": "Narx",
+    "warehouse": "Ombor",
+    "count": "Soni"
+  },
+  "toast": {
+    "success_import": "Mahsulot muvaffaqiyatli import qilindi"
+  },
+  "place_holders": {
+    "search": "Qidiruv",
+    "select": "Tanlash"
+  },
+  "actions": {
+    "create": "Yaratish"
+  },
+  "currency": {
+    "USD": "USD",
+    "UZS": "UZS"
+  }
+}

@@ -134,6 +134,56 @@
     "confirm": "Davom etish",
     "success": "Muvaffaqiyatli oʻchirildi",
     "error": "Xatolik yuz berdi. Iltimos, keyinroq yana urinib ko‘ring"
+  },
+  "fields": {
+    "name": "Nomi",
+    "phone": "Telefon",
+    "address": "Manzil",
+    "latitude": "Kenglik (latitude)",
+    "longitude": "Uzunlik (longitude)",
+    "description": "Tavsif"
+  },
+  "placeholders": {
+    "name": "Masalan: Super Shop",
+    "phone": "Masalan: +998 90 123 45 67",
+    "address": "Masalan: Toshkent, Yunusobod...",
+    "description": "Qisqacha tavsif..."
+  },
+  "labels": {
+    "location": "Lokatsiya",
+    "logo": "Logo",
+    "banner": "Banner"
+  },
+  "help": {
+    "location": "Xarita orqali joylashuvni tanlang yoki yuqoridagi maydonlarga kiriting."
+  },
+  "actions": {
+    "useMyLocation": "Joylashuvimdan foydalanish",
+    "save": "Saqlash",
+    "saving": "Saqlanmoqda...",
+    "update": "Yangilash",
+    "updating": "Yangilanmoqda...",
+    "cancel": "Bekor qilish"
+  },
+  "titles": {
+    "edit": "Do'konni tahrirlash",
+    "create": "Yangi do'kon yaratish"
+  },
+  "errors": {
+    "fetchFailed": "Ma'lumotlarni yuklab bo'lmadi. Iltimos, qayta urunib ko'ring.",
+    "geolocationUnavailable": "Brauzeringiz geolokatsiyani qo'llab-quvvatlamaydi",
+    "geolocationFailed": "Joylashuvni aniqlab bo'lmadi",
+    "invalidCoords": "Kiritilgan koordinatalarni tekshiring.",
+    "latitudeFormat": "Raqam kiritishingiz kerak (−90 ... 90)",
+    "longitudeFormat": "Raqam kiritishingiz kerak (−180 ... 180)",
+    "requestFailed": "So'rov bajarilmadi.",
+    "unknown": "Noma'lum xatolik yuz berdi."
+  },
+  "toasts": {
+    "creating": "Yaratilmoqda...",
+    "updating": "Yangilanmoqda...",
+    "created": "Do'kon yaratildi.",
+    "updated": "Do'kon ma'lumotlari yangilandi.",
+    "requestFailedRetry": "So'rov bajarilmadi. Qaytadan urinib ko'ring."
   }
-
 }

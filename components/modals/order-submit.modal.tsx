@@ -32,6 +32,7 @@ import { useTranslation } from "react-i18next";
 import { useCrud } from "@/hooks/use-crud";
 import { useStore } from "@/stores/store.store";
 import { notify } from "@/lib/toast";
+import { logger } from "workbox-core/_private";
 
 const OrderSubmitModal = () => {
   const { submitMode, setSubmitMode, order, setOrder, orderItems, resetOrder } =
@@ -89,6 +90,7 @@ const OrderSubmitModal = () => {
         notify.error(t("order.create_error"));
       }
     } catch (e) {
+      logger.error(e);
       notify.error(t("order.create_error"));
     }
   }

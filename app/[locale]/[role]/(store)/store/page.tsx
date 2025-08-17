@@ -9,9 +9,11 @@ import { Loading } from "@/components/loading/loading";
 import TablePagination from "@/components/table/pagination.table";
 import StoreTable from "@/components/table/store/store.table";
 import { useSearchParams } from "next/navigation";
+import { useStoreForm } from "@/hooks/use-store-dorm";
 
 const Page = () => {
   const searchParams = useSearchParams();
+  const { setOpen } = useStoreForm();
 
   const [page, setPage] = useState(() => {
     const param = searchParams.get("page");
@@ -31,7 +33,7 @@ const Page = () => {
     <>
       <Header
         actions={
-          <Button variant="secondary" size="sm">
+          <Button onClick={() => setOpen(true)} variant="secondary" size="sm">
             Create
           </Button>
         }

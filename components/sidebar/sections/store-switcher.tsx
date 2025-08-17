@@ -29,6 +29,7 @@ import type { StoreType } from "@/types/store.type";
 import { useOnlineStatus } from "@/hooks/use-online-status";
 import { useUserStore } from "@/stores/user.store";
 import { useTranslation } from "react-i18next";
+import { useStoreForm } from "@/hooks/use-store-dorm";
 
 function StoreLogo({
   logo,
@@ -70,6 +71,8 @@ export function StoreSwitcher() {
   const { data, isLoading, isError } = useFetch<{ results: StoreType[] }>(
     isOnline ? "store/" : null,
   );
+
+  const { setOpen } = useStoreForm();
 
   const { shops, selectedShop, setShops, setSelectedShop } = useStore();
 
@@ -179,7 +182,10 @@ export function StoreSwitcher() {
             ))}
 
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="gap-2 p-2">
+            <DropdownMenuItem
+              onClick={() => setOpen(true)}
+              className="gap-2 p-2"
+            >
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
                 <Plus className="size-4" />
               </div>

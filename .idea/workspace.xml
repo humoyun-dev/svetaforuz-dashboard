@@ -5,9 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8309fd09-f4d8-4e5c-b94c-c9e2d8a25640" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(products)/products/(systems)/imports/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/[locale]/[role]/(products)/products/(systems)/imports/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/form/store/form.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/import-product.modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/modals/store-form.modal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/table/systems/stockentry.table.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ui/image.input.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-import-product.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/use-store-dorm.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/locales/uz/stocks.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/systems.type.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/[locale]/[role]/(store)/store/[id]/edit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/[locale]/[role]/(store)/store/[id]/edit/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/store.type.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/store.type.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/[locale]/[role]/(orders)/orders/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/[locale]/[role]/(orders)/orders/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/[locale]/[role]/(store)/store/[id]/edit/page.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/[locale]/[role]/(store)/store/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/[locale]/[role]/(store)/store/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/[locale]/[role]/(store)/store/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/[locale]/[role]/(store)/store/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/[locale]/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/[locale]/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/combobox/combobox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/combobox/combobox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/modals/order-item.modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/modals/order-item.modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/modals/order-submit.modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/modals/order-submit.modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/sidebar/sections/store-switcher.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/sidebar/sections/store-switcher.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/table/store/store.table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/table/store/store.table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/use-crud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/use-crud.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/use-settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/use-settings.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/currency.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/currency.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/uz/layout.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/uz/layout.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locales/uz/store.json" beforeDir="false" afterPath="$PROJECT_DIR$/locales/uz/store.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stores/store.store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/stores/store.store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,18 +58,20 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;v2dashboard&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mac/Projects/svetaforuz/new/public/images&quot;,
+    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/humoyundev/projects/svetaforuz/svetaforuz-dashboard&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
     &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/mac/Projects/svetaforuz/new/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/mac/Projects/svetaforuz/svetaforuz-dashboard/node_modules/typescript/lib&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/humoyundev/projects/svetaforuz/svetaforuz-dashboard/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/humoyundev/projects/svetaforuz/svetaforuz-dashboard/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -53,14 +84,17 @@
       <recent name="$PROJECT_DIR$/app/[locale]/auth" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/locales/uz" />
       <recent name="$PROJECT_DIR$/components/table/products" />
       <recent name="$PROJECT_DIR$/components" />
       <recent name="$PROJECT_DIR$/app/[locale]/[role]/(root)" />
       <recent name="$PROJECT_DIR$/components/sidebar/sections" />
-      <recent name="$PROJECT_DIR$/components/sidebar" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.dev">
+    <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
+      <method v="2" />
+    </configuration>
     <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -68,6 +102,7 @@
         <script value="dev" />
       </scripts>
       <node-interpreter value="project" />
+      <package-manager value="npm" />
       <envs />
       <method v="2" />
     </configuration>
@@ -80,7 +115,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.25659.40" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-WS-252.23892.411" />
       </set>
     </attachedChunks>
   </component>
@@ -112,6 +147,12 @@
       <workItem from="1754411011555" duration="277000" />
       <workItem from="1754411338285" duration="7742000" />
       <workItem from="1754473079676" duration="76000" />
+      <workItem from="1754586518685" duration="255000" />
+      <workItem from="1754586788684" duration="6566000" />
+      <workItem from="1754671883111" duration="18424000" />
+      <workItem from="1754981346270" duration="2638000" />
+      <workItem from="1754984004849" duration="16903000" />
+      <workItem from="1755266311012" duration="28879000" />
     </task>
     <servers />
   </component>
