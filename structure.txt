@@ -1,0 +1,198 @@
+﻿
+D:\Muhammad_py\projects\django\Odil aka\svetaforuz
+тФЬтФАтФА .gitignore
+тФЬтФАтФА .idea
+|  тФЬтФАтФА .gitignore
+|  тФЬтФАтФА modules.xml
+|  тФЬтФАтФА svetaforuz.iml
+|  тФЬтФАтФА vcs.xml
+|  тФФтФАтФА workspace.xml
+тФЬтФАтФА app
+|  тФЬтФАтФА api
+|  |  тФФтФАтФА device
+|  тФЬтФАтФА favicon.ico
+|  тФЬтФАтФА globals.css
+|  тФФтФАтФА [locale]
+|     тФЬтФАтФА (auth)
+|     тФЬтФАтФА layout.tsx
+|     тФЬтФАтФА page.tsx
+|     тФЬтФАтФА sellect
+|     тФФтФАтФА [role]
+тФЬтФАтФА checker
+|  тФФтФАтФА token.ts
+тФЬтФАтФА components
+|  тФЬтФАтФА barcode.tsx
+|  тФЬтФАтФА combobox
+|  |  тФЬтФАтФА combobox.tsx
+|  |  тФФтФАтФА search.combobox.tsx
+|  тФЬтФАтФА connection-status.tsx
+|  тФЬтФАтФА dynamic-breadcrumb.tsx
+|  тФЬтФАтФА form
+|  |  тФЬтФАтФА products
+|  |  тФФтФАтФА store
+|  тФЬтФАтФА header.tsx
+|  тФЬтФАтФА loading
+|  |  тФФтФАтФА loading.tsx
+|  тФЬтФАтФА logout.tsx
+|  тФЬтФАтФА modals
+|  |  тФЬтФАтФА delete-store.modal.tsx
+|  |  тФЬтФАтФА import-product.modal.tsx
+|  |  тФЬтФАтФА index.tsx
+|  |  тФЬтФАтФА order-item.modal.tsx
+|  |  тФЬтФАтФА order-submit.modal.tsx
+|  |  тФЬтФАтФА settings
+|  |  тФЬтФАтФА settings.modal.tsx
+|  |  тФФтФАтФА store-form.modal.tsx
+|  тФЬтФАтФА network-quality.tsx
+|  тФЬтФАтФА notifications
+|  |  тФФтФАтФА notification-modal.tsx
+|  тФЬтФАтФА order-print.tsx
+|  тФЬтФАтФА qr-code.tsx
+|  тФЬтФАтФА sidebar
+|  |  тФЬтФАтФА app-sidebar.tsx
+|  |  тФФтФАтФА sections
+|  тФЬтФАтФА table
+|  |  тФЬтФАтФА index.tsx
+|  |  тФЬтФАтФА orders
+|  |  тФЬтФАтФА pagination.table.tsx
+|  |  тФЬтФАтФА products
+|  |  тФЬтФАтФА store
+|  |  тФЬтФАтФА systems
+|  |  тФФтФАтФА transactions
+|  тФЬтФАтФА togglies
+|  |  тФФтФАтФА currency.togglie.tsx
+|  тФФтФАтФА ui
+|     тФЬтФАтФА accordion.tsx
+|     тФЬтФАтФА alert-dialog.tsx
+|     тФЬтФАтФА alert.tsx
+|     тФЬтФАтФА aspect-ratio.tsx
+|     тФЬтФАтФА avatar.tsx
+|     тФЬтФАтФА badge.tsx
+|     тФЬтФАтФА breadcrumb.tsx
+|     тФЬтФАтФА button.tsx
+|     тФЬтФАтФА card.tsx
+|     тФЬтФАтФА checkbox.tsx
+|     тФЬтФАтФА collapsible.tsx
+|     тФЬтФАтФА command.tsx
+|     тФЬтФАтФА dialog.tsx
+|     тФЬтФАтФА dropdown-menu.tsx
+|     тФЬтФАтФА form.tsx
+|     тФЬтФАтФА image.input.tsx
+|     тФЬтФАтФА image.tsx
+|     тФЬтФАтФА input.tsx
+|     тФЬтФАтФА label.tsx
+|     тФЬтФАтФА pagination.tsx
+|     тФЬтФАтФА phone-number.tsx
+|     тФЬтФАтФА popover.tsx
+|     тФЬтФАтФА price-input.tsx
+|     тФЬтФАтФА radio-group.tsx
+|     тФЬтФАтФА scroll-area.tsx
+|     тФЬтФАтФА select.tsx
+|     тФЬтФАтФА separator.tsx
+|     тФЬтФАтФА sheet.tsx
+|     тФЬтФАтФА sidebar.tsx
+|     тФЬтФАтФА skeleton.tsx
+|     тФЬтФАтФА sonner.tsx
+|     тФЬтФАтФА switch.tsx
+|     тФЬтФАтФА table.tsx
+|     тФЬтФАтФА tabs.tsx
+|     тФЬтФАтФА textarea.tsx
+|     тФФтФАтФА tooltip.tsx
+тФЬтФАтФА components.json
+тФЬтФАтФА hooks
+|  тФЬтФАтФА use-check-rate.ts
+|  тФЬтФАтФА use-crud.ts
+|  тФЬтФАтФА use-delete-store.ts
+|  тФЬтФАтФА use-fetch.ts
+|  тФЬтФАтФА use-guard.ts
+|  тФЬтФАтФА use-hydration.ts
+|  тФЬтФАтФА use-import-product.tsx
+|  тФЬтФАтФА use-mobile.ts
+|  тФЬтФАтФА use-network-quality.ts
+|  тФЬтФАтФА use-notifications.ts
+|  тФЬтФАтФА use-online-status.ts
+|  тФЬтФАтФА use-settings.ts
+|  тФФтФАтФА use-store-dorm.ts
+тФЬтФАтФА i18n.ts
+тФЬтФАтФА i18nConfig.ts
+тФЬтФАтФА lib
+|  тФЬтФАтФА constants.ts
+|  тФЬтФАтФА cookie.ts
+|  тФЬтФАтФА currency.ts
+|  тФЬтФАтФА device.ts
+|  тФЬтФАтФА fetcher.ts
+|  тФЬтФАтФА formData.ts
+|  тФЬтФАтФА http.ts
+|  тФЬтФАтФА jwt.ts
+|  тФЬтФАтФА notifications.ts
+|  тФЬтФАтФА sidebar.ts
+|  тФЬтФАтФА toast.ts
+|  тФЬтФАтФА utils.ts
+|  тФФтФАтФА validation.ts
+тФЬтФАтФА locales
+|  тФЬтФАтФА ru
+|  |  тФФтФАтФА layout.json
+|  тФФтФАтФА uz
+|     тФЬтФАтФА auth.json
+|     тФЬтФАтФА exports.json
+|     тФЬтФАтФА layout.json
+|     тФЬтФАтФА orders.json
+|     тФЬтФАтФА products.json
+|     тФЬтФАтФА root.json
+|     тФЬтФАтФА select.json
+|     тФЬтФАтФА stocks.json
+|     тФФтФАтФА store.json
+тФЬтФАтФА middleware.ts
+тФЬтФАтФА next-env.d.ts
+тФЬтФАтФА next.config.ts
+тФЬтФАтФА package-lock.json
+тФЬтФАтФА package.json
+тФЬтФАтФА postcss.config.mjs
+тФЬтФАтФА providers
+|  тФЬтФАтФА theme-provider.tsx
+|  тФФтФАтФА translate-provider.tsx
+тФЬтФАтФА public
+|  тФЬтФАтФА file.svg
+|  тФЬтФАтФА fonts
+|  |  тФЬтФАтФА SFProDisplay-BlackItalic.woff2
+|  |  тФЬтФАтФА SFProDisplay-Bold.woff2
+|  |  тФЬтФАтФА SFProDisplay-HeavyItalic.woff2
+|  |  тФЬтФАтФА SFProDisplay-LightItalic.woff2
+|  |  тФЬтФАтФА SFProDisplay-Medium.woff2
+|  |  тФЬтФАтФА SFProDisplay-Regular.woff2
+|  |  тФЬтФАтФА SFProDisplay-SemiboldItalic.woff2
+|  |  тФЬтФАтФА SFProDisplay-ThinItalic.woff2
+|  |  тФФтФАтФА SFProDisplay-UltralightItalic.woff2
+|  тФЬтФАтФА globe.svg
+|  тФЬтФАтФА images
+|  |  тФЬтФАтФА russia.png
+|  |  тФФтФАтФА samarqand.png
+|  тФЬтФАтФА next.svg
+|  тФЬтФАтФА ping.json
+|  тФЬтФАтФА vercel.svg
+|  тФФтФАтФА window.svg
+тФЬтФАтФА README.md
+тФЬтФАтФА stores
+|  тФЬтФАтФА currency.store.ts
+|  тФЬтФАтФА device.store.ts
+|  тФЬтФАтФА notification.store.ts
+|  тФЬтФАтФА order.store.ts
+|  тФЬтФАтФА store.store.ts
+|  тФФтФАтФА user.store.ts
+тФЬтФАтФА structure.txt
+тФЬтФАтФА tsconfig.json
+тФЬтФАтФА types
+|  тФЬтФАтФА orders.type.ts
+|  тФЬтФАтФА products.type.ts
+|  тФЬтФАтФА store.type.ts
+|  тФЬтФАтФА systems.type.ts
+|  тФЬтФАтФА transaction.type.ts
+|  тФФтФАтФА user.type.ts
+тФФтФАтФА yarn.lock
+
+directory: 1280 file: 4110
+
+ignored: directory (143)
+
+
+[2K[1G
