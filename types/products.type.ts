@@ -112,3 +112,7 @@ export interface ProductFormData {
   properties: PropertyFormData[];
   stock: StockEntryFormData[];
 }
+
+export interface CategoryFormType {
+  name: string;
+}

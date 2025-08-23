@@ -9,9 +9,13 @@ import TransactionsUserTable from "@/components/table/transactions/transactions.
 import { Loading } from "@/components/loading/loading";
 import TablePagination from "@/components/table/pagination.table";
 import { useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+import { notify } from "@/lib/toast";
 
 const Page = () => {
   const { selectedShop } = useStore();
+  const { t } = useTranslation();
 
   const searchParams = useSearchParams();
 
@@ -31,7 +35,7 @@ const Page = () => {
   const { data, refetch, isLoading } = useFetch<{
     results: TransactionUserType[];
     count: number;
-  }>(`${selectedShop?.id}/debt/documents/`);
+  }>(`${selectedShop?.id}/debt/users/`);
 
   useEffect(() => {
     if (data && !isLoading) {
@@ -41,7 +45,13 @@ const Page = () => {
 
   return (
     <>
-      <Header />
+      <Header
+        actions={
+          <Button onClick={() => notify.error("test")} size={`sm`}>
+            {t("loan_user.create")}
+          </Button>
+        }
+      />
 
       {isLoading && !data ? (
         <Loading className="h-[80vh]" />

@@ -72,7 +72,7 @@ const Page = () => {
 
   const categorySearchEndpoint = useMemo(
     () => (q: string) =>
-      `${selectedShop?.id}/search/categories/?query=${encodeURIComponent(q)}`,
+      `${selectedShop?.id}/search/category/?query=${encodeURIComponent(q)}`,
     [selectedShop?.id],
   );
 

@@ -1,9 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
@@ -25,11 +31,15 @@ import { useCrud } from "@/hooks/use-crud";
 import { createProductFormData } from "@/lib/formData";
 import { normalizeNumber } from "@/lib/utils";
 import { Loading } from "@/components/loading/loading";
-import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import BarcodeR from "@/components/barcode";
 import useFetch from "@/hooks/use-fetch";
-import { DetailProductType, ProductImageType } from "@/types/products.type";
+import { CategoryType, DetailProductType } from "@/types/products.type";
+import { SearchableCombobox } from "@/components/combobox/search.combobox";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Terminal } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useCategory } from "@/hooks/use-category";
 
 interface ProductCreateFormProps {
   onSubmit?: (data: ProductFormData) => Promise<void>;
@@ -41,8 +51,6 @@ interface ProductCreateFormProps {
 }
 
 export default function ProductCreateForm({
-  onSubmit,
-  isLoading = false,
   initialData,
   productId,
   refetch,
@@ -68,9 +76,9 @@ const UpdateProductFormData = ({
   refetch,
   isEdit = false,
 }: ProductCreateFormProps) => {
-  const router = useRouter();
-
   const { t } = useTranslation();
+
+  const { setOpen } = useCategory();
 
   const { selectedShop } = useStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -84,6 +92,7 @@ const UpdateProductFormData = ({
       description: initialData?.description || "",
       count_type: initialData?.count_type || "PCS",
       currency: initialData?.currency || "USD",
+      category: initialData?.category || "",
     },
   });
 
@@ -130,6 +139,12 @@ const UpdateProductFormData = ({
     }
   };
 
+  const categorySearchEndpoint = useMemo(
+    () => (q: string) =>
+      `${selectedShop?.id}/search/category/?query=${encodeURIComponent(q)}`,
+    [selectedShop?.id],
+  );
+
   if (isSubmitting) {
     return <Loading />;
   }
@@ -165,11 +180,61 @@ const UpdateProductFormData = ({
 
             <div className="space-y-8">
               <ProductInventorySection editForm={form} />
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t("product.form.category")}</CardTitle>
+                </CardHeader>
+                <CardContent className={`grid gap-2`}>
+                  <FormField
+                    control={form.control}
+                    name="category"
+                    render={({ field }) => {
+                      return (
+                        <FormItem className={`w-full`}>
+                          <FormControl>
+                            <SearchableCombobox<CategoryType>
+                              disabled={!isEdit}
+                              endpoint={categorySearchEndpoint}
+                              value={field.value}
+                              setValue={(value) =>
+                                form.setValue("category", value)
+                              }
+                              className="w-full"
+                              title={t("product.place_holders.category")}
+                              mapData={(item) => ({
+                                label: item.name,
+                                value: item.id.toString(),
+                              })}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      );
+                    }}
+                  />
+
+                  <Alert>
+                    <Terminal className="h-4 w-4" />
+                    <AlertTitle>{t("product.labels.heads_title")}</AlertTitle>
+                    <AlertDescription>
+                      {t("product.labels.heads_content")}
+                      <Button
+                        onClick={() => setOpen(true)}
+                        size={"sm"}
+                        variant={`link`}
+                        type={"button"}
+                      >
+                        {t("product.buttons.create")}
+                      </Button>
+                    </AlertDescription>
+                  </Alert>
+                </CardContent>
+              </Card>
 
               {data?.barcode && (
                 <Card>
                   <CardHeader>
-                    <CardTitle>Barcode</CardTitle>
+                    <CardTitle>{t("product.form.barcode")}</CardTitle>
                   </CardHeader>
                   <CardContent className={`flex items-center justify-center`}>
                     <BarcodeR value={data.barcode} />
@@ -179,7 +244,7 @@ const UpdateProductFormData = ({
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Product Status</CardTitle>
+                  <CardTitle>{t("product.form.product_status")}</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -217,6 +282,7 @@ const CreateProductForm = ({
 }: ProductCreateFormProps) => {
   const { selectedShop } = useStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { setOpen } = useCategory();
   const { t } = useTranslation();
 
   const form = useForm<ProductFormData>({
@@ -230,6 +296,7 @@ const CreateProductForm = ({
       currency: initialData?.currency || "USD",
       properties: initialData?.properties || [{ feature: "", value: "" }],
       images: initialData?.images || [],
+      category: initialData?.category || "",
       stock: initialData?.stock || [
         {
           quantity: "",
@@ -246,6 +313,12 @@ const CreateProductForm = ({
       form.reset(initialData);
     }
   }, [initialData, form]);
+
+  const categorySearchEndpoint = useMemo(
+    () => (q: string) =>
+      `${selectedShop?.id}/search/category/?query=${encodeURIComponent(q)}`,
+    [selectedShop?.id],
+  );
 
   const handleFormSubmit = async (data: ProductFormData) => {
     const features = data.properties
@@ -326,6 +399,57 @@ const CreateProductForm = ({
 
             <div className="space-y-8">
               <ProductInventorySection form={form} />
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>{t("product.form.category")}</CardTitle>
+                </CardHeader>
+                <CardContent className={`grid gap-2`}>
+                  <FormField
+                    control={form.control}
+                    name="category"
+                    render={({ field }) => {
+                      return (
+                        <FormItem className={`w-full`}>
+                          <FormControl>
+                            <SearchableCombobox<CategoryType>
+                              disabled={!isEdit}
+                              endpoint={categorySearchEndpoint}
+                              value={field.value}
+                              setValue={(value) =>
+                                form.setValue("category", value)
+                              }
+                              className="w-full"
+                              title={t("product.place_holders.category")}
+                              mapData={(item) => ({
+                                label: item.name,
+                                value: item.id.toString(),
+                              })}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      );
+                    }}
+                  />
+
+                  <Alert>
+                    <Terminal className="h-4 w-4" />
+                    <AlertTitle>{t("product.labels.heads_title")}</AlertTitle>
+                    <AlertDescription>
+                      {t("product.labels.heads_content")}
+                      <Button
+                        onClick={() => setOpen(true)}
+                        size={"sm"}
+                        variant={`link`}
+                        type={"button"}
+                      >
+                        {t("product.buttons.create")}
+                      </Button>
+                    </AlertDescription>
+                  </Alert>
+                </CardContent>
+              </Card>
 
               <Card>
                 <CardHeader>

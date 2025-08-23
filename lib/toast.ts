@@ -15,48 +15,57 @@ interface ToastOptions {
 }
 
 class NotificationManager {
-  private activeToastId: string | number | null = null;
+  private loadingToasts = new Map<string | number, boolean>();
 
-  private static readonly THEME_STYLES = {
-    success: {
+  private static readonly THEME_STYLES = Object.freeze({
+    success: Object.freeze({
       background: "hsl(var(--primary))",
       color: "hsl(var(--primary-foreground))",
       border: "1px solid hsl(var(--primary))",
-    },
-    error: {
+    }),
+    error: Object.freeze({
       background: "hsl(var(--destructive))",
       color: "hsl(var(--destructive-foreground))",
       border: "1px solid hsl(var(--destructive))",
-    },
-    warning: {
+    }),
+    warning: Object.freeze({
       background: "hsl(39 84% 56%)",
       color: "hsl(0 0% 100%)",
       border: "1px solid hsl(39 84% 56%)",
-    },
-    info: {
+    }),
+    info: Object.freeze({
       background: "hsl(var(--muted))",
       color: "hsl(var(--muted-foreground))",
       border: "1px solid hsl(var(--border))",
-    },
-    loading: {
+    }),
+    loading: Object.freeze({
       background: "hsl(var(--background))",
       color: "hsl(var(--foreground))",
       border: "1px solid hsl(var(--border))",
-    },
-  } as const;
+    }),
+  } as const);
+
+  private static readonly BASE_STYLE = Object.freeze({
+    borderRadius: "8px",
+    padding: "12px 16px",
+    fontSize: "14px",
+    fontWeight: "500",
+  });
 
   private getToastStyle(
     type: ToastType,
     customStyle?: React.CSSProperties,
   ): React.CSSProperties {
-    return {
-      ...NotificationManager.THEME_STYLES[type],
-      borderRadius: "8px",
-      padding: "12px 16px",
-      fontSize: "14px",
-      fontWeight: "500",
-      ...customStyle,
-    };
+    return customStyle
+      ? {
+          ...NotificationManager.THEME_STYLES[type],
+          ...NotificationManager.BASE_STYLE,
+          ...customStyle,
+        }
+      : {
+          ...NotificationManager.THEME_STYLES[type],
+          ...NotificationManager.BASE_STYLE,
+        };
   }
 
   /**
@@ -73,125 +82,133 @@ class NotificationManager {
       style: toastStyle,
     };
 
+    const toastId = toast[type](message, toastOptions);
+
     if (type === "loading") {
-      this.activeToastId = toast.loading(message, toastOptions);
-      return this.activeToastId;
+      this.loadingToasts.set(toastId, true);
     }
 
-    return toast[type](message, toastOptions);
+    return toastId;
   }
 
-  /**
-   * Update an existing loading toast
-   */
-  update(
+  updateById(
+    id: string | number,
     type: Exclude<ToastType, "loading">,
     message: string,
     options?: ToastOptions,
-  ): void {
-    if (!this.activeToastId) {
-      console.warn("No active loading toast to update");
-      return;
+  ): boolean {
+    if (!this.loadingToasts.has(id)) {
+      console.warn(`No loading toast found with ID: ${id}`);
+      return false;
     }
 
     const toastStyle = this.getToastStyle(type, options?.style);
 
     toast[type](message, {
       ...options,
-      id: this.activeToastId,
+      id,
       style: toastStyle,
     });
 
-    this.activeToastId = null;
+    this.loadingToasts.delete(id);
+    return true;
   }
 
   /**
-   * Dismiss a specific toast or all toasts
+   * Update the most recent loading toast (legacy method for backward compatibility)
    */
+  update(
+    type: Exclude<ToastType, "loading">,
+    message: string,
+    options?: ToastOptions,
+  ): boolean {
+    const loadingIds = Array.from(this.loadingToasts.keys());
+    if (loadingIds.length === 0) {
+      console.warn("No active loading toast to update");
+      return false;
+    }
+
+    const mostRecentId = loadingIds[loadingIds.length - 1];
+    return this.updateById(mostRecentId, type, message, options);
+  }
+
   dismiss(id?: string | number): void {
     if (id) {
       toast.dismiss(id);
+      this.loadingToasts.delete(id);
     } else {
       toast.dismiss();
-    }
-
-    if (id === this.activeToastId || !id) {
-      this.activeToastId = null;
+      this.loadingToasts.clear();
     }
   }
 
-  /**
-   * Convenience methods for common toast types
-   */
-  success(
+  success = (
     message: string,
     options?: Omit<ToastOptions, "id">,
-  ): string | number {
-    return this.show("success", message, options);
-  }
+  ): string | number => this.show("success", message, options);
 
-  error(message: string, options?: Omit<ToastOptions, "id">): string | number {
-    return this.show("error", message, options);
-  }
-
-  warning(
+  error = (
     message: string,
     options?: Omit<ToastOptions, "id">,
-  ): string | number {
-    return this.show("warning", message, options);
-  }
+  ): string | number => this.show("error", message, options);
 
-  info(message: string, options?: Omit<ToastOptions, "id">): string | number {
-    return this.show("info", message, options);
-  }
-
-  loading(
+  warning = (
     message: string,
     options?: Omit<ToastOptions, "id">,
-  ): string | number {
-    return this.show("loading", message, options);
-  }
+  ): string | number => this.show("warning", message, options);
+
+  info = (
+    message: string,
+    options?: Omit<ToastOptions, "id">,
+  ): string | number => this.show("info", message, options);
+
+  loading = (
+    message: string,
+    options?: Omit<ToastOptions, "id">,
+  ): string | number => this.show("loading", message, options);
 
   /**
    * Show a promise-based toast that updates based on promise state
    */
   promise<T>(
     promise: Promise<T>,
-    {
-      loading: loadingMessage,
-      success: successMessage,
-      error: errorMessage,
-    }: {
+    messages: {
       loading: string;
       success: string | ((data: T) => string);
       error: string | ((error: any) => string);
     },
     options?: ToastOptions,
   ): Promise<T> {
-    const loadingId = this.loading(loadingMessage, options);
+    const loadingId = this.loading(messages.loading, options);
 
     return promise
       .then((data) => {
         const message =
-          typeof successMessage === "function"
-            ? successMessage(data)
-            : successMessage;
-        this.update("success", message, options);
+          typeof messages.success === "function"
+            ? messages.success(data)
+            : messages.success;
+        this.updateById(loadingId, "success", message, options);
         return data;
       })
       .catch((error) => {
         const message =
-          typeof errorMessage === "function"
-            ? errorMessage(error)
-            : errorMessage;
-        this.update("error", message, options);
+          typeof messages.error === "function"
+            ? messages.error(error)
+            : messages.error;
+        this.updateById(loadingId, "error", message, options);
         throw error;
       });
+  }
+
+  hasLoadingToasts(): boolean {
+    return this.loadingToasts.size > 0;
+  }
+
+  getLoadingToastCount(): number {
+    return this.loadingToasts.size;
   }
 }
 
 export const notify = new NotificationManager();
-
 export { NotificationManager };
-
 export type { ToastType, ToastOptions };

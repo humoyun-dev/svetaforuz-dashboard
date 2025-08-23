@@ -1,0 +1,23 @@
+{
+  "loan_user": {
+    "table": {
+      "id": "ID",
+      "phone_number": "Telefon raqami",
+      "full_name": "To‘liq ism",
+      "accepted": "Qabul qilingan",
+      "transferred": "O‘tkazilgan",
+      "balance": "Qoldiq",
+      "delete": "O‘chirish",
+      "no_loans": "Hozircha qarzlar yo‘q"
+    },
+    "toast": {
+      "delete_success": "#{{id}}-buyurtma muvaffaqiyatli o‘chirildi",
+      "delete_error": "#{{id}}-buyurtmani o‘chirishda xatolik yuz berdi"
+    },
+    "a11y": {
+      "positive_amount": "Ijobiy summa",
+      "negative_amount": "Manfiy summa"
+    },
+    "create": "Yangi qarz foydalanuvchisini yaratish"
+  }
+}

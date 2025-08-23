@@ -19,6 +19,7 @@ export const productFormSchema = z.object({
       is_warehouse: z.boolean(),
     }),
   ),
+  category: z.string(),
 
   properties: z
     .array(
@@ -56,6 +57,7 @@ export const productEditSchema = z.object({
   currency: z.enum(["USD", "UZS"]),
   count_type: z.string().min(1),
   in_stock: z.boolean(),
+  category: z.string(),
 });
 
 export type ProductEditData = z.infer<typeof productEditSchema>;

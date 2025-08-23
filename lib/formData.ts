@@ -9,6 +9,7 @@ export function createProductFormData(data: ProductFormData): FormData {
   formData.append("count_type", data.count_type);
   formData.append("in_stock", String(data.in_stock));
   formData.append("currency", data.currency);
+  formData.append("category", data.category);
 
   data.stock.forEach((item, index) => {
     formData.append(`stock[${index}][quantity]`, String(item.quantity));
@@ -17,7 +18,7 @@ export function createProductFormData(data: ProductFormData): FormData {
     formData.append(`stock[${index}][is_warehouse]`, String(item.is_warehouse));
   });
 
-  data.properties.forEach((prop, index) => {
+  data.properties?.forEach((prop, index) => {
     formData.append(`properties[${index}][feature]`, prop.feature);
     formData.append(`properties[${index}][value]`, prop.value);
   });

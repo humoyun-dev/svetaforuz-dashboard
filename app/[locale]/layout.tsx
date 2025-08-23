@@ -4,11 +4,8 @@ import "@/app/globals.css";
 import initTranslations from "@/i18n";
 import TranslationProvider from "@/providers/translate-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
-import ConnectionStatus from "@/components/connection-status";
-import ConnectionSpeedWarning from "@/components/network-quality";
-import Script from "next/script";
 import StoreFormModal from "@/components/modals/store-form.modal";
+import { Toaster } from "sonner";
 
 const sfProDisplay = localFont({
   variable: "--font-sf-pro", // This is the CSS variable used below
@@ -163,7 +160,7 @@ export default async function RootLayout({
               {/*<ConnectionSpeedWarning />*/}
               {/*<ConnectionStatus />*/}
               {children}
-              <Toaster />
+              <Toaster theme={"system"} richColors={true} />
               <StoreFormModal />
             </>
           </TranslationProvider>

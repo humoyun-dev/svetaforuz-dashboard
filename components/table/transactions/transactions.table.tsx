@@ -18,17 +18,19 @@ const TransactionsUserTable = ({
   refetch: () => void;
 }) => {
   const { t } = useTranslation();
-  const { currency } = useCurrencyStore();
+  const { currency, usd } = useCurrencyStore();
   const { selectedShop } = useStore();
 
-  const formatMoney = (value: number, rate: number) =>
+  console.log(data);
+
+  const formatMoney = (value: number, rate?: number) =>
     formatCurrencyPure({
       number: value,
-      rate: rate,
+      rate: rate ?? usd,
       appCurrency: currency,
     });
 
-  const renderCurrencyBadge = (value: number, rate: number) => (
+  const renderCurrencyBadge = (value: number, rate?: number) => (
     <Badge
       variant="outline"
       className={`font-bold ${value > 0 ? "text-green-600" : "text-destructive"}`}
@@ -49,42 +51,28 @@ const TransactionsUserTable = ({
       render: (value) => <>{formatedPhoneNumber(value)}</>,
     },
     {
-      key: "created_at",
-      label: t("loan_user.table.date"),
-      render: formatedDate,
-    },
-    {
-      key: "total_price",
-      label: t("loan_user.table.total_price"),
-      render: (value, row) =>
-        formatMoney(Number(value), Number(row.exchange_rate)),
-    },
-    {
-      key: "total_profit",
-      label: t("loan_user.table.total_profit"),
-      render: (value, row) =>
-        renderCurrencyBadge(Number(value), Number(row.exchange_rate)),
-    },
-    {
-      key: "paid_amount",
-      label: t("loan_user.table.paid_amount"),
-      render: (value, row) =>
-        renderCurrencyBadge(Number(value), Number(row.exchange_rate)),
-    },
-    {
-      key: "change_amount",
-      label: t("loan_user.table.change_amount"),
-      render: (value, row) =>
-        formatMoney(Number(value), Number(row.exchange_rate)),
-    },
-    {
-      key: "unreturned_income",
-      label: t("loan_user.table.unreturned_income"),
+      key: "name",
+      label: t("loan_user.table.full_name"),
       render: (value, row) => (
-        <Badge variant={Number(value) > 0 ? "outline" : "destructive"}>
-          {formatMoney(Number(value), Number(row.exchange_rate))}
-        </Badge>
+        <p className={`capitalize`}>
+          {row.first_name} {row.last_name}
+        </p>
       ),
+    },
+    {
+      key: "accepted",
+      label: t("loan_user.table.accepted"),
+      render: (value, row) => formatMoney(Number(value)),
+    },
+    {
+      key: "transferred",
+      label: t("loan_user.table.transferred"),
+      render: (value, row) => renderCurrencyBadge(Number(value)),
+    },
+    {
+      key: "balance",
+      label: t("loan_user.table.balance"),
+      render: (value, row) => renderCurrencyBadge(Number(value)),
     },
   ];
 
@@ -99,7 +87,7 @@ const TransactionsUserTable = ({
   async function handleDelete(id: number) {
     try {
       const { status } = await useCrud.delete(
-        `${selectedShop?.id}/orders/orders/${id}/`,
+        `${selectedShop?.id}/debt/users/${id}/`,
       );
 
       if (status === 204) {
@@ -118,8 +106,8 @@ const TransactionsUserTable = ({
       edit={false}
       columns={columns}
       actions={actions}
-      url="orders/"
-      emptyMessage={t("loan_user.table.no_orders")}
+      url="transactions/"
+      emptyMessage={t("loan_user.table.no_loans")}
     />
   );
 };

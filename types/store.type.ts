@@ -30,3 +30,28 @@ export interface StoreForm {
   logo?: string;
   banner?: string;
 }
+
+export interface CashboxBalance {
+  id: number;
+  store_id: number;
+  store_name: string;
+  balance: string;
+}
+
+export interface CashboxDocuments {
+  id: number;
+  cashbox: number;
+  amount: string;
+  is_out: false;
+  direction: "out" | "into";
+  created_at: string;
+  note: string;
+  order: number;
+  manual_source: string;
+  exchange_rate: string;
+}
+
+export interface PaginatedCashboxDocuments {
+  count: number;
+  results: CashboxDocuments[];
+}

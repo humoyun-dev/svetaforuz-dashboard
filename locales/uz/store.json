@@ -1,4 +1,15 @@
 {
+  "cashbox": {
+    "table": {
+      "id": "ID",
+      "date": "Sana",
+      "amount": "Miqdor",
+      "direction": "Yo‘nalish",
+      "in": "Kirim",
+      "out": "Chiqim",
+      "no_documents": "Hujjatlar mavjud emas"
+    }
+  },
   "share": "Ulashish",
   "establishedJan2024": "2024-yil yanvarda tashkil etilgan",
   "storeNumber": "Do‘kon №{{id}}",
