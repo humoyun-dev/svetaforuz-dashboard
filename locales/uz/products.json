@@ -1,5 +1,21 @@
 {
-
+  "export": {
+    "table": {
+      "task_id": "Vazifa ID",
+      "created_at": "Yaratilgan vaqti",
+      "status": {
+        "name": "Holati",
+        "PENDING": "Kutilmoqda",
+        "FAILED": "Muvaffaqiyatsiz",
+        "PROCESSING": "Qayta ishlanmoqda",
+        "PROGRESS": "Jarayonda",
+        "SUCCESS": "Yakunlandi"
+      },
+      "completed_at": "Tugallangan vaqti",
+      "no_tasks": "Topshiriqlar topilmadi",
+      "download": "Yuklab olish"
+    }
+  },
   "category": {
     "modal": {
       "title": "Yangi kategoriya yaratish",
@@ -14,6 +30,10 @@
     }
   },
   "product": {
+    "messages": {
+      "task_created": "Vazifa muvaffaqiyatli yaratildi.",
+      "open": "Ochish"
+    },
     "create": {
       "discard": "Bekor qilish",
       "save": "Mahsulotni saqlash",
@@ -122,7 +142,8 @@
       "countTypePlaceholder": "Birlikni tanlang"
     },
     "actions": {
-      "create_product": "Mahsulot qo‘shish"
+      "create_product": "Mahsulot qo‘shish",
+      "export": "Excelga export qilish"
     },
     "attributes": {
       "title": "Mahsulot xususiyatlari",

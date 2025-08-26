@@ -23,30 +23,30 @@ export function getData({ type = "admin", t }: { type?: StaffType; t: any }) {
     {
       admin: {
         navMain: [
-          {
-            title: t("navigation.analytics"),
-            url: `${baseUrl}/analytics`,
-            icon: ChartArea,
-            items: [
-              { title: t("navigation.general"), url: `${baseUrl}/analytics` },
-              {
-                title: t("navigation.store"),
-                url: `${baseUrl}/analytics/store`,
-              },
-              {
-                title: t("navigation.members"),
-                url: `${baseUrl}/analytics/members`,
-              },
-              {
-                title: t("navigation.products"),
-                url: `${baseUrl}/analytics/products`,
-              },
-              {
-                title: t("navigation.category"),
-                url: `${baseUrl}/analytics/category`,
-              },
-            ],
-          },
+          // {
+          //   title: t("navigation.analytics"),
+          //   url: `${baseUrl}/analytics`,
+          //   icon: ChartArea,
+          //   items: [
+          //     { title: t("navigation.general"), url: `${baseUrl}/analytics` },
+          //     {
+          //       title: t("navigation.store"),
+          //       url: `${baseUrl}/analytics/store`,
+          //     },
+          //     {
+          //       title: t("navigation.members"),
+          //       url: `${baseUrl}/analytics/members`,
+          //     },
+          //     {
+          //       title: t("navigation.products"),
+          //       url: `${baseUrl}/analytics/products`,
+          //     },
+          //     {
+          //       title: t("navigation.category"),
+          //       url: `${baseUrl}/analytics/category`,
+          //     },
+          //   ],
+          // },
           {
             title: t("navigation.store"),
             url: `${baseUrl}/store`,
@@ -60,10 +60,6 @@ export function getData({ type = "admin", t }: { type?: StaffType; t: any }) {
               {
                 title: t("navigation.members"),
                 url: `${baseUrl}/store/members`,
-              },
-              {
-                title: t("navigation.settings"),
-                url: `${baseUrl}/store/settings`,
               },
             ],
           },
@@ -81,6 +77,10 @@ export function getData({ type = "admin", t }: { type?: StaffType; t: any }) {
               {
                 title: t("navigation.imported"),
                 url: `${baseUrl}/products/imports`,
+              },
+              {
+                title: t("navigation.sales"),
+                url: `${baseUrl}/products/sales`,
               },
               {
                 title: t("navigation.exported"),
@@ -179,11 +179,11 @@ export function getData({ type = "admin", t }: { type?: StaffType; t: any }) {
       },
       viewer: {
         navMain: [
-          {
-            title: t("navigation.analytics"),
-            url: `${baseUrl}/analytics`,
-            icon: ChartArea,
-          },
+          // {
+          //   title: t("navigation.analytics"),
+          //   url: `${baseUrl}/analytics`,
+          //   icon: ChartArea,
+          // },
         ],
         navSecondary: commonNavSecondary,
       },

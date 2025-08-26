@@ -15,6 +15,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { useTranslation } from "react-i18next";
 import { SearchableCombobox } from "@/components/combobox/search.combobox";
+import { useCrud } from "@/hooks/use-crud";
+import { notify } from "@/lib/toast";
 
 const Page = () => {
   const { t } = useTranslation("products");
@@ -76,15 +78,40 @@ const Page = () => {
     [selectedShop?.id],
   );
 
+  async function reqExportExcel() {
+    try {
+      const { status } = await useCrud.create({
+        url: `${selectedShop?.id}/products/export/create/`,
+        data: {},
+      });
+
+      if (status === 202) {
+        notify.success(`${t("product.messages.task_created")}`, {
+          action: {
+            label: t("product.messages.open"),
+            onClick: () => router.push(`/${role}/products/exports`),
+          },
+        });
+      }
+    } catch (error) {
+      console.error("error", error);
+    }
+  }
+
   return (
     <>
       <Header
         actions={
-          <Button variant="link" size="sm" asChild>
-            <Link href={`/${role}/products/create`}>
-              {t("product.actions.create_product")}
-            </Link>
-          </Button>
+          <>
+            <Button variant="link" size="sm" asChild>
+              <Link href={`/${role}/products/create`}>
+                {t("product.actions.create_product")}
+              </Link>
+            </Button>
+            <Button onClick={reqExportExcel} size={`sm`} variant={`secondary`}>
+              {t("product.actions.export")}
+            </Button>
+          </>
         }
       />
 

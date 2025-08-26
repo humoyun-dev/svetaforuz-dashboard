@@ -5,7 +5,7 @@
       "date": "Sana",
       "amount": "Miqdor",
       "direction": "Yo‘nalish",
-      "in": "Kirim",
+      "into": "Kirim",
       "out": "Chiqim",
       "no_documents": "Hujjatlar mavjud emas"
     }

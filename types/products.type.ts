@@ -116,3 +116,15 @@ export interface ProductFormData {
 export interface CategoryFormType {
   name: string;
 }
+
+export interface ExportProductsType {
+  task_id: string;
+  store_id: number;
+  status: "PENDING" | "FAILED" | "PROCESSING" | "PROGRESS" | "SUCCESS";
+  file_url: null | string;
+  error_message: null | string;
+  progress: number;
+  started_at: null | string;
+  completed_at: null | string;
+  created_at: string;
+}
