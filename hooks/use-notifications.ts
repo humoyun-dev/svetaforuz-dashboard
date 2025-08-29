@@ -22,14 +22,17 @@ export function useNotifications(open: boolean) {
           unreadCount().catch(() => 0),
         ]);
         if (!cancelled) {
-          setItems(items);
+          setItems(items as never[]);
           setUnread(count);
         }
-      } catch { /* ignore */ }
+      } catch {
+        /* ignore */
+      }
     })();
 
     // Build WS URL; append JWT so backend can auth the socket
-    const raw = process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:8000/ws/notifications/";
+    const raw =
+      process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:8000/ws/notifications/";
     const url = new URL(raw);
 
     const token = authCookies.getAccessToken();
@@ -52,7 +55,9 @@ export function useNotifications(open: boolean) {
 
     return () => {
       cancelled = true;
-      try { ws.close(1000, "dialog closed"); } catch {}
+      try {
+        ws.close(1000, "dialog closed");
+      } catch {}
     };
   }, [open, setItems, setUnread, addItem]);
 }
