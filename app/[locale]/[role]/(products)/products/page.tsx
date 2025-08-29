@@ -6,7 +6,11 @@ import { Button } from "@/components/ui/button";
 import useFetch from "@/hooks/use-fetch";
 import { useStore } from "@/stores/store.store";
 import { Loading } from "@/components/loading/loading";
-import { CategoryType, PaginatedProductType } from "@/types/products.type";
+import {
+  CategoryType,
+  ExportProductsType,
+  PaginatedProductType,
+} from "@/types/products.type";
 import ProductsTable from "@/components/table/products/products.table";
 import Link from "next/link";
 import { useUserStore } from "@/stores/user.store";
@@ -80,18 +84,21 @@ const Page = () => {
 
   async function reqExportExcel() {
     try {
-      const { status } = await useCrud.create({
+      const { status, data } = await useCrud.create<ExportProductsType>({
         url: `${selectedShop?.id}/products/export/create/`,
         data: {},
       });
 
       if (status === 202) {
-        notify.success(`${t("product.messages.task_created")}`, {
-          action: {
-            label: t("product.messages.open"),
-            onClick: () => router.push(`/${role}/products/exports`),
+        notify.success(
+          `${t("product.messages.task_created")} ${data.task_id}`,
+          {
+            action: {
+              label: t("product.messages.open"),
+              onClick: () => router.push(`/${role}/products/exports`),
+            },
           },
-        });
+        );
       }
     } catch (error) {
       console.error("error", error);
