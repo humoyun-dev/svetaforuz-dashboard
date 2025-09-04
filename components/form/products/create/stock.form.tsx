@@ -34,6 +34,7 @@ import { StockEntryFormData } from "@/types/products.type";
 import { Label } from "@/components/ui/label";
 import { notify } from "@/lib/toast";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslation } from "react-i18next";
 
 interface ProductStockSectionProps {
   form?: UseFormReturn<ProductFormData>;
@@ -48,6 +49,7 @@ export default function ProductStockSection({
   editForm,
   isEdit = false,
 }: ProductStockSectionProps) {
+  const { t } = useTranslation();
   const activeForm = (form ?? editForm) as CommonForm;
 
   const {
@@ -69,9 +71,7 @@ export default function ProductStockSection({
   };
 
   const handleRemoveStock = (index: number) => {
-    if (stockFields.length > 1) {
-      removeStock(index);
-    }
+    if (stockFields.length > 1) removeStock(index);
   };
 
   const handleCurrencyChange = (index: number, selectedCurrency: string) => {
@@ -84,9 +84,9 @@ export default function ProductStockSection({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Stock Tracking</CardTitle>
+        <CardTitle>{t("product.form.stockTracking")}</CardTitle>
         <p className="text-sm text-muted-foreground">
-          Track different batches of inventory with their purchase costs.
+          {t("product.form.stockTrackingDescription")}
         </p>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -101,7 +101,7 @@ export default function ProductStockSection({
                     <div className="flex items-center space-x-2">
                       <Package className="h-4 w-4 text-muted-foreground" />
                       <h3 className="text-sm font-medium">
-                        Stock Entry {index + 1}
+                        {t("product.form.stockEntry", { index: index + 1 })}
                       </h3>
                     </div>
                     {stockFields.length > 1 && (
@@ -123,17 +123,17 @@ export default function ProductStockSection({
                       name={`stock.${index}.quantity`}
                       render={({ field }) => (
                         <FormItem className={`col-span-2`}>
-                          <FormLabel>Quantity</FormLabel>
+                          <FormLabel>{t("product.form.quantity")}</FormLabel>
                           <FormControl>
                             <PriceInput
                               allowDecimals={false}
                               value={field.value}
-                              onValueChange={(value, name, values) => {
+                              onValueChange={(value) =>
                                 activeForm.setValue(
                                   `stock.${index}.quantity`,
                                   String(value),
-                                );
-                              }}
+                                )
+                              }
                             />
                           </FormControl>
                           <FormMessage />
@@ -146,16 +146,16 @@ export default function ProductStockSection({
                       name={`stock.${index}.unit_price`}
                       render={({ field }) => (
                         <FormItem className={`col-span-2`}>
-                          <FormLabel>Cost per Unit</FormLabel>
+                          <FormLabel>{t("product.form.costPerUnit")}</FormLabel>
                           <FormControl>
                             <PriceInput
                               value={field.value}
-                              onValueChange={(value, name, values) => {
+                              onValueChange={(value) =>
                                 activeForm.setValue(
                                   `stock.${index}.unit_price`,
                                   String(value),
-                                );
-                              }}
+                                )
+                              }
                             />
                           </FormControl>
                           <FormMessage />
@@ -168,7 +168,7 @@ export default function ProductStockSection({
                       name={`stock.${index}.currency`}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Currency</FormLabel>
+                          <FormLabel>{t("product.form.currency")}</FormLabel>
                           <Select
                             onValueChange={(value) =>
                               handleCurrencyChange(index, value)
@@ -177,7 +177,9 @@ export default function ProductStockSection({
                           >
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder="Select currency" />
+                                <SelectValue
+                                  placeholder={t("product.form.selectCurrency")}
+                                />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
@@ -192,12 +194,13 @@ export default function ProductStockSection({
                         </FormItem>
                       )}
                     />
+
                     <FormField
                       control={activeForm.control}
                       name={`stock.${index}.is_warehouse`}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Is Warehouse</FormLabel>
+                          <FormLabel>{t("product.form.isWarehouse")}</FormLabel>
                           <Switch
                             checked={field.value}
                             onCheckedChange={(e) => field.onChange(e)}
@@ -216,7 +219,7 @@ export default function ProductStockSection({
                 className="w-full"
               >
                 <Plus className="h-4 w-4 mr-2" />
-                Add Stock Entry
+                {t("product.form.addStockEntry")}
               </Button>
             </>
           )}
@@ -226,13 +229,13 @@ export default function ProductStockSection({
   );
 }
 
-const APIStockForm = ({
-  productID,
-  isEdit,
-}: {
+interface APIStockFormProps {
   productID: string;
   isEdit?: boolean;
-}) => {
+}
+
+export const APIStockForm = ({ productID, isEdit }: APIStockFormProps) => {
+  const { t } = useTranslation();
   const { selectedShop } = useStore();
   const { create } = useCrud;
   const [loading, setLoading] = useState(false);
@@ -258,12 +261,7 @@ const APIStockForm = ({
   const handleAddRow = () => {
     setMockData([
       ...mockData,
-      {
-        quantity: "",
-        unit_price: "",
-        currency: "USD",
-        is_warehouse: false,
-      },
+      { quantity: "", unit_price: "", currency: "USD", is_warehouse: false },
     ]);
   };
 
@@ -275,10 +273,10 @@ const APIStockForm = ({
     try {
       const { status } = await create({
         url: `${selectedShop?.id}/products/products/${productID}/stock-add/`,
-        data: data,
+        data,
       });
       if (status == 201) {
-        notify.success("Stock added successfully");
+        notify.success(t("stockAdded"));
         refetch();
         const updated = [...mockData];
         updated.splice(index, 1);
@@ -323,32 +321,33 @@ const APIStockForm = ({
 
   return (
     <>
-      {stocks.length > 0 &&
-        stocks.map((stock, index) => (
-          <StockCardAPI
-            isEdit={isEdit}
-            refetch={refetch}
-            key={index}
-            stock={stock}
-            index={index}
-          />
-        ))}
+      {stocks.map((stock, index) => (
+        <StockCardAPI
+          key={index}
+          stock={stock}
+          index={index}
+          refetch={refetch}
+          isEdit={isEdit}
+        />
+      ))}
 
       {mockData.map((item, index) => (
         <div key={index} className="rounded-lg border p-4 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Package className="h-4 w-4 text-muted-foreground" />
-              <h3 className="text-sm font-medium">Stock Entry {index + 1}</h3>
+              <h3 className="text-sm font-medium">
+                {t("product.form.stockEntry", { index: index + 1 })}
+              </h3>
             </div>
-            <div className={`flex items-center gap-1`}>
+            <div className="flex items-center gap-1">
               <Button
                 onClick={() => handleCreate(index)}
                 type="button"
                 size="sm"
                 variant="secondary"
               >
-                Submit
+                {t("product.form.submit")}
               </Button>
               <Button
                 type="button"
@@ -361,51 +360,42 @@ const APIStockForm = ({
               </Button>
             </div>
           </div>
-          <div className={`grid grid-cols-6 gap-4`}>
-            <div className={`col-span-2`}>
-              <Label htmlFor={"quantity"} className="mb-2">
-                Quantity
-              </Label>
+
+          <div className="grid grid-cols-6 gap-4">
+            <div className="col-span-2">
+              <Label className="mb-2">{t("product.form.quantity")}</Label>
               <PriceInput
                 allowDecimals={false}
                 value={item.quantity}
-                name="quantity"
-                onValueChange={(value, name, values) => {
-                  handleMockChange(index, "quantity", String(value));
-                }}
+                onValueChange={(v) =>
+                  handleMockChange(index, "quantity", String(v))
+                }
                 disabled={loading}
               />
             </div>
-            <div className={`col-span-2`}>
-              <Label htmlFor={"unit_price"} className="mb-2">
-                Cost Per Unit
-              </Label>
+            <div className="col-span-2">
+              <Label className="mb-2">{t("product.form.costPerUnit")}</Label>
               <PriceInput
                 value={item.unit_price}
-                name="unit_price"
-                onValueChange={(value, name, values) => {
-                  handleMockChange(index, "unit_price", String(value));
-                }}
+                onValueChange={(v) =>
+                  handleMockChange(index, "unit_price", String(v))
+                }
                 disabled={loading}
               />
             </div>
             <div>
-              <Label className={`mb-2`} htmlFor={`currency`}>
-                Currency
-              </Label>
+              <Label className="mb-2">{t("product.form.currency")}</Label>
               <Select
-                disabled={loading}
-                name={`currency`}
-                onValueChange={(value: "USD" | "UZS") =>
-                  handleMockChange(index, "currency", String(value))
+                name="currency"
+                onValueChange={(v: "USD" | "UZS") =>
+                  handleMockChange(index, "currency", v)
                 }
                 defaultValue={item.currency || "USD"}
+                disabled={loading}
               >
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select currency" />
-                  </SelectTrigger>
-                </FormControl>
+                <SelectTrigger>
+                  <SelectValue placeholder={t("product.form.selectCurrency")} />
+                </SelectTrigger>
                 <SelectContent>
                   {CURRENCIES.map((curr) => (
                     <SelectItem key={curr.value} value={curr.value}>
@@ -416,15 +406,11 @@ const APIStockForm = ({
               </Select>
             </div>
             <div>
-              <Label className={`mb-3`} htmlFor={`is_warehouse`}>
-                Is Warehouse
-              </Label>
+              <Label className="mb-3">{t("product.form.isWarehouse")}</Label>
               <Switch
-                name="is_warehouse"
-                className={``}
                 checked={item.is_warehouse}
-                onCheckedChange={(e) =>
-                  handleMockChange(index, "is_warehouse", e)
+                onCheckedChange={(v) =>
+                  handleMockChange(index, "is_warehouse", v)
                 }
                 disabled={loading}
               />
@@ -441,13 +427,13 @@ const APIStockForm = ({
         disabled={!isEdit}
       >
         <Plus className="h-4 w-4 mr-2" />
-        Add Stock Entry
+        {t("product.form.addStockEntry")}
       </Button>
     </>
   );
 };
 
-const StockCardAPI = ({
+export const StockCardAPI = ({
   stock,
   index,
   refetch,
@@ -458,6 +444,7 @@ const StockCardAPI = ({
   refetch: () => void;
   isEdit?: boolean;
 }) => {
+  const { t } = useTranslation();
   const { update, delete: remove } = useCrud;
   const { selectedShop } = useStore();
 
@@ -479,15 +466,13 @@ const StockCardAPI = ({
       exchange_rate: data.exchange_rate,
       is_warehouse: data.is_warehouse,
     };
-
     try {
       const { status } = await update({
         url: `${selectedShop?.id}/products/stock/${stock.id}/`,
         data: payload,
       });
-
       if (status === 200) {
-        notify.info("Stock updated", { duration: 2000 });
+        notify.info(t("product.form.stockUpdated"), { duration: 2000 });
         refetch();
       }
     } catch (e) {
@@ -500,9 +485,8 @@ const StockCardAPI = ({
       const { status } = await remove(
         `${selectedShop?.id}/products/stock/${stock.id}/`,
       );
-
       if (status === 204) {
-        notify.info("Stock deleted", { duration: 2000 });
+        notify.info(t("product.form.stockDeleted"), { duration: 2000 });
         refetch();
       }
     } catch (e) {
@@ -511,105 +495,84 @@ const StockCardAPI = ({
   };
 
   return (
-    <>
-      <div className="rounded-lg border p-4 space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Package className="h-4 w-4 text-muted-foreground" />
-            <h3 className="text-sm font-medium">Stock Entry {index + 1}</h3>
-          </div>
-          <div className={`flex items-center gap-1`}>
-            {isEdit && (
-              <>
-                <Button
-                  onClick={handleUpdate}
-                  type="button"
-                  size="sm"
-                  variant="secondary"
-                >
-                  Submit
-                </Button>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 w-8 p-0"
-                  onClick={handleDelete}
-                >
-                  <Trash2 className="h-4 w-4 text-destructive" />
-                </Button>
-              </>
-            )}
-          </div>
+    <div className="rounded-lg border p-4 space-y-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <Package className="h-4 w-4 text-muted-foreground" />
+          <h3 className="text-sm font-medium">
+            {t("product.form.stockEntry", { index: index + 1 })}
+          </h3>
         </div>
-        <div className={`grid grid-cols-6 gap-4`}>
-          <div className={`col-span-2`}>
-            <Label htmlFor={"quantity"} className="mb-2">
-              Quantity
-            </Label>
-            <PriceInput
-              allowDecimals={false}
-              value={data.quantity}
-              name="quantity"
-              onValueChange={(value, name, values) => {
-                setData({ ...data, quantity: String(value) });
-              }}
-              disabled={!isEdit}
-            />
-          </div>
-          <div className={`col-span-2`}>
-            <Label htmlFor={"unit_price"} className="mb-2">
-              Cost Per Unit
-            </Label>
-            <PriceInput
-              value={data.unit_price}
-              name="unit_price"
-              onValueChange={(value, name, values) => {
-                setData({ ...data, unit_price: String(value) });
-              }}
-              disabled={!isEdit}
-            />
-          </div>
-          <div>
-            <Label className={`mb-2`} htmlFor={`currency`}>
-              Currency
-            </Label>
-            <Select
-              disabled={!isEdit}
-              name={`currency`}
-              onValueChange={(value: "USD" | "UZS") =>
-                setData({ ...data, currency: value })
-              }
-              defaultValue={data.currency || "USD"}
+        {isEdit && (
+          <div className="flex items-center gap-1">
+            <Button
+              onClick={handleUpdate}
+              type="button"
+              size="sm"
+              variant="secondary"
             >
-              <FormControl>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select currency" />
-                </SelectTrigger>
-              </FormControl>
-              <SelectContent>
-                {CURRENCIES.map((curr) => (
-                  <SelectItem key={curr.value} value={curr.value}>
-                    {curr.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              {t("product.form.submit")}
+            </Button>
+            <Button
+              onClick={handleDelete}
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="h-8 w-8 p-0"
+            >
+              <Trash2 className="h-4 w-4 text-destructive" />
+            </Button>
           </div>
-          <div>
-            <Label className={`mb-3`} htmlFor={`is_warehouse`}>
-              Is Warehouse
-            </Label>
-            <Switch
-              name="is_warehouse"
-              className={``}
-              checked={data.is_warehouse}
-              onCheckedChange={(e) => setData({ ...data, is_warehouse: e })}
-              disabled={!isEdit}
-            />
-          </div>
+        )}
+      </div>
+      <div className="grid grid-cols-6 gap-4">
+        <div className="col-span-2">
+          <Label className="mb-2">{t("product.form.quantity")}</Label>
+          <PriceInput
+            allowDecimals={false}
+            value={data.quantity}
+            onValueChange={(v) => setData({ ...data, quantity: String(v) })}
+            disabled={!isEdit}
+          />
+        </div>
+        <div className="col-span-2">
+          <Label className="mb-2">{t("product.form.costPerUnit")}</Label>
+          <PriceInput
+            value={data.unit_price}
+            onValueChange={(v) => setData({ ...data, unit_price: String(v) })}
+            disabled={!isEdit}
+          />
+        </div>
+        <div>
+          <Label className="mb-2">{t("product.form.currency")}</Label>
+          <Select
+            disabled={!isEdit}
+            onValueChange={(v: "USD" | "UZS") =>
+              setData({ ...data, currency: v })
+            }
+            defaultValue={data.currency || "USD"}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder={t("product.form.selectCurrency")} />
+            </SelectTrigger>
+            <SelectContent>
+              {CURRENCIES.map((curr) => (
+                <SelectItem key={curr.value} value={curr.value}>
+                  {curr.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <Label className="mb-3">{t("product.form.isWarehouse")}</Label>
+          <Switch
+            checked={data.is_warehouse}
+            onCheckedChange={(v) => setData({ ...data, is_warehouse: v })}
+            disabled={!isEdit}
+          />
         </div>
       </div>
-    </>
+    </div>
   );
 };

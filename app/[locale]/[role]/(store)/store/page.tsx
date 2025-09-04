@@ -9,7 +9,7 @@ import { Loading } from "@/components/loading/loading";
 import TablePagination from "@/components/table/pagination.table";
 import StoreTable from "@/components/table/store/store.table";
 import { useSearchParams } from "next/navigation";
-import { useStoreForm } from "@/hooks/use-store-dorm";
+import { useStoreForm } from "@/hooks/use-store-form";
 
 const Page = () => {
   const searchParams = useSearchParams();

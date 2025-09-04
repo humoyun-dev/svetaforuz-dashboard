@@ -8,7 +8,7 @@ import { StoreType } from "@/types/store.type";
 import Image from "@/components/ui/image";
 import { Store } from "lucide-react";
 import { useDeleteStore } from "@/hooks/use-delete-store";
-import { useStoreForm } from "@/hooks/use-store-dorm";
+import { useStoreForm } from "@/hooks/use-store-form";
 
 const StoreTable = ({ data }: { data: StoreType[] }) => {
   const { t } = useTranslation();

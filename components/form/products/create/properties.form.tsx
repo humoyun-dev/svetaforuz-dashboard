@@ -399,7 +399,7 @@ const PropertyCard = ({
   return (
     <div className="grid grid-cols-5 items-center gap-4 rounded-lg border p-4 shadow-sm bg-white">
       <div className="col-span-2">
-        <Label className={`mb-2`}>Feature</Label>
+        <Label className={`mb-2`}>{t("product.attributes.name")}</Label>
         <Input
           value={data.feature}
           onChange={(e) => setData({ ...data, feature: e.target.value })}
@@ -408,7 +408,7 @@ const PropertyCard = ({
       </div>
 
       <div className="col-span-2 text-right">
-        <Label className={`mb-2`}>Value</Label>
+        <Label className={`mb-2`}>{t("product.attributes.value")}</Label>
         <Input
           value={data.value}
           onChange={(e) => setData({ ...data, value: e.target.value })}
@@ -425,7 +425,7 @@ const PropertyCard = ({
               size="sm"
               variant="secondary"
             >
-              Submit
+              {t("product.attributes.submit")}
             </Button>
             <Button
               onClick={handleDelete}

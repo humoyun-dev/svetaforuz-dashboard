@@ -66,7 +66,20 @@
       "success_update": "Mahsulot \"{{name}}\" muvaffaqiyatli yangilandi!",
       "error_create": "Mahsulotni yaratishda xatolik. Iltimos, qayta urinib ko‘ring.",
       "error_validation": "Xatolik: propertylar ichida dublikat mavjud",
-      "description_images_uploaded": "{{count}} ta rasm yuklandi"
+      "description_images_uploaded": "{{count}} ta rasm yuklandi",
+      "stockTracking": "Ombor hisoboti",
+      "stockTrackingDescription": "Har xil partiyalardagi mahsulotlarni ularning xarid narxlari bilan kuzatib boring.",
+      "stockEntry": "Ombor yozuvi {{index}}",
+      "quantity": "Miqdor",
+      "costPerUnit": "Bir dona narxi",
+      "currency": "Valyuta",
+      "isWarehouse": "Omborda",
+      "addStockEntry": "Yangi ombor yozuvini qo'shish",
+      "submit": "Yuborish",
+      "stockAdded": "Ombor muvaffaqiyatli qo'shildi",
+      "stockUpdated": "Ombor yangilandi",
+      "stockDeleted": "Ombor o'chirildi",
+      "selectCurrency": "Valyutani tanlang"
     },
     "status": {
       "active": "Faol"

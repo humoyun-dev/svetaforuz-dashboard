@@ -1,4 +1,23 @@
 {
+  "method": {
+    "transfer": "O‘tkazma",
+    "accept": "Qabul qilish"
+  },
+  "debt": {
+    "cash_document": "Qarz uchun to‘lov hujjat",
+    "cash_document_created": "To‘lov hujjat yaratildi"
+  },
+  "product": {
+    "price": {
+      "label": "Narx",
+      "currency": "Valyuta",
+      "currencyPlaceholder": "Valyutani tanlang"
+    }
+  },
+  "common": {
+    "create": "Yaratish",
+    "error": "Xatolik yuz berdi. Iltimos, keyinroq qayta urinib ko‘ring."
+  },
   "loan_user": {
     "table": {
       "id": "ID",
@@ -19,5 +38,57 @@
       "negative_amount": "Manfiy summa"
     },
     "create": "Yangi qarz foydalanuvchisini yaratish"
+  },
+  "form": {
+    "user": {
+      "create": "Foydalanuvchi yaratish"
+    },
+    "fields": {
+      "phone_number": "Telefon raqami",
+      "first_name": "Ism",
+      "last_name": "Familiya"
+    },
+    "placeholders": {
+      "phone_number": "Telefon raqamingizni kiriting",
+      "first_name": "Ismingizni kiriting",
+      "last_name": "Familiyangizni kiriting"
+    },
+    "actions": {
+      "save": "Saqlash"
+    }
+  },
+  "modal": {
+    "cancel": "Yopish"
+  },
+  "messages": {
+    "user_created_success": "Foydalanuvchi muvaffaqiyatli yaratildi!",
+    "user_created_error": "Foydalanuvchi yaratishda xatolik yuz berdi",
+    "user_deleted_success": "#{{id}} foydalanuvchi muvaffaqiyatli o'chirildi",
+    "user_deleted_error": "#{{id}} foydalanuvchini o‘chirishda xatolik yuz berdi"
+  },
+  "document": {
+    "table": {
+      "id": "ID",
+      "phone_number": "Telefon raqami",
+      "date": "Sana",
+      "product_amount": "Mahsulot summasi",
+      "cash_amount": "Naqd summasi",
+      "total_amount": "Umumiy summa",
+      "income": "Daromad",
+      "method": {
+        "name": "Usul",
+        "transfer": "O‘tkazma",
+        "accept": "Qabul qilish"
+      },
+      "delete": "O‘chirish",
+      "no_documents": "Hujjatlar topilmadi"
+    },
+    "messages": {
+      "deleted_success": "#{{id}} hujjat muvaffaqiyatli o‘chirildi",
+      "deleted_error": "#{{id}} hujjatni o‘chirishda xatolik yuz berdi"
+    },
+    "create_button": "Hujjat yaratish",
+    "with_cash": "Pul bilan",
+    "with_product": "Mahsulot bilan"
   }
 }

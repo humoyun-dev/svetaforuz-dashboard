@@ -52,7 +52,7 @@ const Modal: React.FC<ModalProps> = ({
   const { t } = useTranslation();
 
   return (
-    <Dialog modal={true} open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={setOpen}>
       {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
       <DialogContent
         className={cn(className, "rounded-2xl")}

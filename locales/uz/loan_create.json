@@ -1,0 +1,110 @@
+{
+  "product": {
+    "table": {
+      "title": "Buyurtma hujatingizga {{product}} mahsuloti qo'shilsinmi?",
+      "description": "Iltimos, miqdorni va har qanday maxsus ko'rsatmalarni kiriting.",
+      "image": "Rasm",
+      "product": "Mahsulot nomi",
+      "product_name": "Mahsulot nomi",
+      "category": "Kategoriya",
+      "enter_price": "Kirim narxi",
+      "out_price": "Chiqim narxi",
+      "count": "Do'kondagi soni",
+      "warehouse_count": "Ombordagi soni",
+      "remainder": "Qolgan miqdor",
+      "edit": "Tahrirlash",
+      "add": "Qo'shish",
+      "delete": "Oʻchirish",
+      "no_products": "Mahsulotlar topilmadi",
+      "quantity": "Miqdor",
+      "amount": "Summa",
+      "income": "Daromad",
+      "price": "Narxi",
+      "unit_price": "Sotilgan narxi",
+      "currency": "Valyuta",
+      "quantity_short": "Miqdor",
+      "total": "Jami"
+    },
+    "modal": {
+      "save": "Saqlash"
+    },
+    "outOfStock": "Omborda yo'q",
+    "each": "dona narxi",
+    "sku": "SKU"
+  },
+  "search_placeholder": "Qidirish ...",
+  "loading_orders": "Hujjat yuklanmoqda...",
+  "orders_table_title": "Hujjat ro'yxati",
+  "no_orders": "Hujjat topilmadi",
+  "pagination_prev": "Oldingi",
+  "pagination_next": "Keyingi",
+  "page": "Sahifa",
+  "of": "dan",
+  "search": {
+    "placeholder": "Mahsulot qidiring...",
+    "clear": "Qidiruvni tozalash",
+    "searching": "Qidirilmoqda...",
+    "results": "\"{{search}}\" bo'yicha {{count}} ta natija topildi",
+    "notFoundTitle": "Mahsulot topilmadi",
+    "notFoundDescription": "\"{{search}}\" so'roviga mos mahsulot topilmadi. Qidiruv so'zlarini o'zgartirib ko'ring.",
+    "noProductsTitle": "Mahsulotlar mavjud emas",
+    "noProductsDescription": "Bu do'konda hali mahsulotlar mavjud emas. Yangi mahsulot qo'shing.",
+    "addProduct": "Mahsulot qo'shish"
+  },
+  "finance": {
+    "summary": "Moliyaviy xulosalar",
+    "total_profit": "Umumiy foyda",
+    "unreturned_income": "Qo'shimcha daromad",
+    "total": "Jami narx",
+    "profit": "Foyda"
+  },
+  "currency": {
+    "currency": "Valyuta",
+    "exchange_rate": "Kurs",
+    "change": "Valyuta almashinuvi"
+  },
+  "date": {
+    "created_at": "Yaratilgan sana",
+    "deleted": "O'chirilgan"
+  },
+  "modal": {
+    "cancel": "Bekor qilish"
+  },
+  "cart": {
+    "title": "Savat",
+    "items": "ta mahsulot",
+    "item": "ta mahsulot",
+    "proceedToCheckout": "Qarz hujjatini rasmiylashtirish",
+    "income": "Daromad",
+    "total": "Jami",
+    "empty": {
+      "title": "Savat bo'sh",
+      "description": "Buyurtmani boshlash uchun katalogdan mahsulotlar qo'shing.",
+      "button": "Savatni tozalash"
+    },
+    "summary": "Qarz hujjati haqida"
+  },
+  "quantity": {
+    "label": "Miqdor"
+  },
+  "buttons": {
+    "edit": "Tahrirlash",
+    "remove": "O'chirish"
+  },
+  "debt": {
+    "create_success": "Qarz hujjati muvaffaqiyatli yaratildi.",
+    "create_error": "Qarz hujjati yaratishda xatolik. Qayta urinib ko‘ring."
+  },
+  "submit": {
+    "title": "Tasdiqlash",
+    "description": "Qarz yozuvini yuborishdan oldin tafsilotlarni tekshiring.",
+    "confirm_button": "Yuborish",
+    "debt_details": "Qarz tafsilotlari",
+    "payment_summary_income": "Daromad",
+    "payment_summary_total": "Jami"
+  },
+  "method": {
+    "transfer": "O‘tkazma",
+    "accept": "Qabul qilish"
+  }
+}

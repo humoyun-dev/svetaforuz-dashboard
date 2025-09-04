@@ -60,7 +60,7 @@ const PrintableOrder = ({ order, t }: PrintableOrderProps) => {
           </div>
         </div>
         <div className="ml-4">
-          <CodeQR value={url} size={70} />
+          <CodeQR logo={selectedShop?.logo} value={url} size={70} />
         </div>
       </div>
 

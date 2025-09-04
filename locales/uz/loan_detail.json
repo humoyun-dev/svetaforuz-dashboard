@@ -1,0 +1,42 @@
+{
+  "common": {
+    "loading": "Yuklanmoqda..."
+  },
+  "transaction": {
+    "customer_info": "Mijoz ma'lumotlari",
+    "customer_name": "Mijoz ismi",
+    "phone_number": "Telefon raqami",
+    "info": "Tranzaksiya ma'lumotlari",
+    "date": "Tranzaksiya sanasi",
+    "exchange_rate": "Valyuta kursi",
+    "products": "Mahsulotlar",
+    "product": "Mahsulot",
+    "quantity": "Miqdori",
+    "financial_summary": "Moliyaviy hisobot",
+    "cash_amount": "Naqd to'lov",
+    "product_amount": "Mahsulot summasi",
+    "income": "Daromad",
+    "total_amount": "Umumiy summa",
+    "details": "Tranzaksiya tafsilotlari"
+  },
+  "check": {
+    "document_number": "Hujjat №",
+    "date": "Sana",
+    "receipt_date": "Qabul qilingan sana",
+    "customer": "Mijoz",
+    "phone": "Telefon raqam",
+    "image": "Rasm",
+    "product": "Mahsulot",
+    "quantity": "Miqdor",
+    "price": "Narx",
+    "total": "Jami",
+    "per_unit": "bir dona uchun",
+    "no_image": "Rasm yo‘q",
+    "total_price": "Umumiy summa",
+    "paid_amount": "To‘langan summa",
+    "change_amount": "Qaytim",
+    "thank_you_message": "Xizmatimizdan foydalanganingiz uchun rahmat!",
+    "questions_contact": "Savollar bo‘lsa, biz bilan bog‘laning:",
+    "print": "Chop etish"
+  }
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { GenericTable, TableAction, TableColumn } from "@/components/table";
-import { formatedDate, formatedPhoneNumber } from "@/lib/utils";
+import { formatedPhoneNumber } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { useCrud } from "@/hooks/use-crud";
 import { useStore } from "@/stores/store.store";
@@ -20,8 +20,6 @@ const TransactionsUserTable = ({
   const { t } = useTranslation();
   const { currency, usd } = useCurrencyStore();
   const { selectedShop } = useStore();
-
-  console.log(data);
 
   const formatMoney = (value: number, rate?: number) =>
     formatCurrencyPure({
@@ -87,15 +85,15 @@ const TransactionsUserTable = ({
   async function handleDelete(id: number) {
     try {
       const { status } = await useCrud.delete(
-        `${selectedShop?.id}/debt/users/${id}/`,
+        `${selectedShop?.id}/debt/debtors/${id}/`,
       );
 
       if (status === 204) {
-        notify.success(`Successfully deleted #${id} order`);
+        notify.success(t("messages.user_deleted_success", { id }));
         refetch();
       }
     } catch (error) {
-      notify.error(`Unsuccessfully deleted #${id} order`);
+      notify.error(t("messages.user_deleted_error", { id }));
       console.error(error);
     }
   }
@@ -106,7 +104,7 @@ const TransactionsUserTable = ({
       edit={false}
       columns={columns}
       actions={actions}
-      url="transactions/"
+      url="transactions/user/"
       emptyMessage={t("loan_user.table.no_loans")}
     />
   );

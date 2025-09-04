@@ -112,7 +112,7 @@ D:\Muhammad_py\projects\django\Odil aka\svetaforuz
 |  тФЬтФАтФА use-notifications.ts
 |  тФЬтФАтФА use-online-status.ts
 |  тФЬтФАтФА use-settings.ts
-|  тФФтФАтФА use-store-dorm.ts
+|  тФФтФАтФА use-store-form.ts
 тФЬтФАтФА i18n.ts
 тФЬтФАтФА i18nConfig.ts
 тФЬтФАтФА lib

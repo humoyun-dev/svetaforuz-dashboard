@@ -1,6 +1,4 @@
 "use client";
-import { useOrder } from "@/stores/order.store";
-import type { OrderItemsFormType } from "@/types/orders.type";
 import { formatCurrencyPure } from "@/lib/currency";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,43 +15,45 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useTranslation } from "react-i18next";
+import { useDebtStore } from "@/stores/debt.store";
+import { TransactionDocumentProductForm } from "@/types/transaction.type";
 
 const Page = () => {
   const {
-    orderItems,
-    removeOrderItem,
-    updateOrderItem,
+    debtItems,
+    removeDebtItem,
+    updateDebtItem,
     setIndex,
     setAddMode,
-    setOrderItem,
+    setDebtItem,
     setSubmitMode,
-    resetOrder,
-  } = useOrder();
+    resetDebt,
+  } = useDebtStore();
   const { currency, usd } = useCurrencyStore();
   const { t } = useTranslation();
 
   const handleQuantityChange = (index: number, newQuantity: number) => {
-    const item = orderItems[index];
+    const item = debtItems[index];
     if (item) {
-      updateOrderItem(index, { ...item, quantity: newQuantity.toString() });
+      updateDebtItem(index, { ...item, quantity: newQuantity.toString() });
     }
   };
 
   const handleRemoveItem = (index: number) => {
-    removeOrderItem(index);
+    removeDebtItem(index);
   };
 
   const handleEdit = (index: number) => {
     setIndex(index);
     setAddMode(true);
-    setOrderItem(orderItems[index]);
+    setDebtItem(debtItems[index]);
   };
 
-  const total = orderItems.reduce((sum, item) => {
+  const total = debtItems.reduce((sum, item) => {
     return sum + Number(item.price) * Number(item.quantity);
   }, 0);
 
-  const income = orderItems.reduce((sum, item) => {
+  const income = debtItems.reduce((sum, item) => {
     return (
       sum +
       (Number(item.price) - Number(item.product_data.enter_price)) *
@@ -61,7 +61,7 @@ const Page = () => {
     );
   }, 0);
 
-  if (orderItems.length === 0) {
+  if (debtItems.length === 0) {
     return <EmptyCart />;
   }
 
@@ -74,17 +74,17 @@ const Page = () => {
             <h2 className="text-lg font-semibold">{t("cart.title")}</h2>
           </div>
           <Badge variant="secondary" className="text-sm">
-            {orderItems.length}{" "}
-            {t(orderItems.length === 1 ? "cart.item" : "cart.items")}
+            {debtItems.length}{" "}
+            {t(debtItems.length === 1 ? "cart.item" : "cart.items")}
           </Badge>
         </div>
       </div>
 
       <ScrollArea className="h-[67vh] p-4">
         <div className="space-y-3">
-          {orderItems.map((item, index) => (
-            <OrderItemCard
-              key={`${item.product_id}-${index}`}
+          {debtItems.map((item, index) => (
+            <DebtItemCard
+              key={`${item.product}-${index}`}
               item={item}
               index={index}
               onQuantityChange={handleQuantityChange}
@@ -135,7 +135,7 @@ const Page = () => {
               {t("cart.proceedToCheckout")}
             </Button>
 
-            <Button className={`w-full`} onClick={resetOrder} variant="outline">
+            <Button className={`w-full`} onClick={resetDebt} variant="outline">
               {t("cart.empty.button")}
             </Button>
           </CardContent>
@@ -147,8 +147,8 @@ const Page = () => {
 
 export default Page;
 
-interface OrderItemCardProps {
-  item: OrderItemsFormType;
+interface DebtItemCardProps {
+  item: TransactionDocumentProductForm;
   index: number;
   onQuantityChange: (index: number, newQuantity: number) => void;
   onRemove: (index: number) => void;
@@ -156,14 +156,14 @@ interface OrderItemCardProps {
   onEdit: (index: number) => void;
 }
 
-const OrderItemCard = ({
+const DebtItemCard = ({
   item,
   index,
   onQuantityChange,
   onRemove,
   onEdit,
   isLoading = false,
-}: OrderItemCardProps) => {
+}: DebtItemCardProps) => {
   const { currency, usd } = useCurrencyStore();
   const product = item.product_data;
   const totalPrice = Number(item.price) * Number(item.quantity);
@@ -299,7 +299,7 @@ const OrderItemCard = ({
 
 const EmptyCart = () => {
   const { t } = useTranslation();
-  const { resetOrder } = useOrder();
+  const { resetDebt } = useDebtStore();
 
   return (
     <div className="flex flex-col items-center justify-center h-full p-8 text-center">
@@ -312,7 +312,7 @@ const EmptyCart = () => {
       <p className="text-gray-500 mb-6 max-w-sm">
         {t("cart.empty.description")}
       </p>
-      <Button onClick={resetOrder} variant="outline">
+      <Button onClick={resetDebt} variant="outline">
         {t("cart.empty.button")}
       </Button>
     </div>

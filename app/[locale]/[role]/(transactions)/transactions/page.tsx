@@ -11,11 +11,14 @@ import TablePagination from "@/components/table/pagination.table";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import { notify } from "@/lib/toast";
+import { useDebtForm } from "@/hooks/use-debt";
+import StoreFormModal from "@/components/modals/debt/debt-form.modal";
 
 const Page = () => {
   const { selectedShop } = useStore();
   const { t } = useTranslation();
+
+  const { setOpen, setRefetch } = useDebtForm();
 
   const searchParams = useSearchParams();
 
@@ -35,7 +38,7 @@ const Page = () => {
   const { data, refetch, isLoading } = useFetch<{
     results: TransactionUserType[];
     count: number;
-  }>(`${selectedShop?.id}/debt/users/`);
+  }>(`${selectedShop?.id}/debt/debtors/`);
 
   useEffect(() => {
     if (data && !isLoading) {
@@ -43,11 +46,16 @@ const Page = () => {
     }
   }, [data, isLoading]);
 
+  function handleAdd() {
+    setOpen(true);
+    setRefetch(refetch);
+  }
+
   return (
     <>
       <Header
         actions={
-          <Button onClick={() => notify.error("test")} size={`sm`}>
+          <Button onClick={handleAdd} size={`sm`}>
             {t("loan_user.create")}
           </Button>
         }
@@ -66,6 +74,8 @@ const Page = () => {
           />
         </div>
       )}
+
+      <StoreFormModal />
     </>
   );
 };

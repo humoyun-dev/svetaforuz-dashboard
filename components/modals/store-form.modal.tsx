@@ -2,7 +2,7 @@
 
 import React from "react";
 import Modal from "@/components/modals/index";
-import { useStoreForm } from "@/hooks/use-store-dorm";
+import { useStoreForm } from "@/hooks/use-store-form";
 import StoreForm from "@/components/form/store/form";
 import useFetch from "@/hooks/use-fetch";
 import type { StoreType } from "@/types/store.type";

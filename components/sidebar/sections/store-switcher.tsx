@@ -29,7 +29,7 @@ import type { StoreType } from "@/types/store.type";
 import { useOnlineStatus } from "@/hooks/use-online-status";
 import { useUserStore } from "@/stores/user.store";
 import { useTranslation } from "react-i18next";
-import { useStoreForm } from "@/hooks/use-store-dorm";
+import { useStoreForm } from "@/hooks/use-store-form";
 
 function StoreLogo({
   logo,

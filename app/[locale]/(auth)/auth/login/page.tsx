@@ -44,7 +44,7 @@ export default function LoginPage() {
   const [form, setForm] = useState<FormData>({
     phone_number: "",
     password: "",
-    rememberMe: false,
+    rememberMe: true,
   });
 
   const { device } = useDeviceStore();
