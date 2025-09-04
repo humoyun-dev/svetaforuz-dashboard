@@ -6,6 +6,9 @@ import TranslationProvider from "@/providers/translate-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import StoreFormModal from "@/components/modals/store-form.modal";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/next";
+import ConnectionSpeedWarning from "@/components/network-quality";
+import ConnectionStatus from "@/components/connection-status";
 
 const sfProDisplay = localFont({
   variable: "--font-sf-pro", // This is the CSS variable used below
@@ -157,14 +160,15 @@ export default async function RootLayout({
             namespaces={i18nNamespaces}
           >
             <>
-              {/*<ConnectionSpeedWarning />*/}
-              {/*<ConnectionStatus />*/}
+              <ConnectionSpeedWarning />
+              <ConnectionStatus />
               {children}
               <Toaster theme={"system"} richColors={true} />
               <StoreFormModal />
             </>
           </TranslationProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
