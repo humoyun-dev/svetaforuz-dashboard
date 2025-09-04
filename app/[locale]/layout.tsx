@@ -9,6 +9,7 @@ import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/next";
 import ConnectionSpeedWarning from "@/components/network-quality";
 import ConnectionStatus from "@/components/connection-status";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const sfProDisplay = localFont({
   variable: "--font-sf-pro", // This is the CSS variable used below
@@ -169,6 +170,7 @@ export default async function RootLayout({
           </TranslationProvider>
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
