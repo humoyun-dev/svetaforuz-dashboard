@@ -30,6 +30,7 @@ const DebtSubmitModal = () => {
     useDebtStore();
   const { id } = useParams<{ id: string }>();
   const { usd, currency } = useCurrencyStore();
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const { t } = useTranslation();
 
@@ -57,14 +58,12 @@ const DebtSubmitModal = () => {
     const payload = {
       ...debt,
       products: debtItems,
-      owner: id,
     };
 
     try {
       const { status } = await useCrud.create({
         url: `${selectedShop?.id}/debt/debtors/${id}/documents/`,
         data: payload,
-        ContentType: "application/json",
       });
 
       if (status === 201) {
@@ -76,6 +75,7 @@ const DebtSubmitModal = () => {
       }
     } catch (e) {
       logger.error(e);
+      console.log(e);
       notify.error(t("debt.create_error"));
     }
   }

@@ -1,4 +1,6 @@
-import React, { useMemo, useState } from "react";
+"use client";
+
+import { useMemo, useState } from "react";
 import useFetch from "@/hooks/use-fetch";
 import { Combobox } from "@/components/combobox/combobox";
 
@@ -24,7 +26,7 @@ export function SearchableCombobox<T>({
   mapData,
   className,
   title = "Select",
-  disabled,
+  disabled = false,
 }: SearchableComboboxProps<T>) {
   const [search, setSearch] = useState<string>("");
 

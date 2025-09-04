@@ -71,7 +71,7 @@ export function Combobox({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="md:w-96 p-0">
+      <PopoverContent className="md:w-96 z-[9999] p-0">
         <Command>
           <div
             className="flex items-center border-b px-3"
@@ -97,9 +97,10 @@ export function Combobox({
                   <CommandEmpty>No {title} found.</CommandEmpty>
                 ) : (
                   <CommandGroup>
-                    {data.map((item) => (
+                    {data.map((item, index) => (
                       <CommandItem
-                        key={item.value}
+                        className={`cursor-pointer`}
+                        key={index}
                         value={item.value}
                         onSelect={handleSelect}
                       >

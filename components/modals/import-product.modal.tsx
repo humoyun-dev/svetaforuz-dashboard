@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import Modal from "@/components/modals/index";
 import { useImportStore } from "@/hooks/use-import-product";
-import { StockEntryFormType } from "@/types/systems.type";
+import type { StockEntryFormType } from "@/types/systems.type";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Currency, ListProductType } from "@/types/products.type";
+import type { Currency, ListProductType } from "@/types/products.type";
 import PriceInput from "@/components/ui/price-input";
 import { SearchableCombobox } from "@/components/combobox/search.combobox";
 import { useStore } from "@/stores/store.store";
@@ -25,15 +25,21 @@ import { useTranslation } from "react-i18next";
 
 const ImportProductModal = () => {
   const { t } = useTranslation();
-  const { setOpen, open, data, setData, disabled, setDisabled } =
-    useImportStore();
+  const {
+    setOpen,
+    open,
+    data,
+    setData,
+    disabled = false,
+    setDisabled,
+  } = useImportStore();
   const { selectedShop } = useStore();
 
   function handleChangeInput<K extends keyof StockEntryFormType>(
     key: K,
     value: StockEntryFormType[K],
   ) {
-    if (!data) return;
+    console.log(value);
 
     setData({
       ...data,
@@ -100,12 +106,11 @@ const ImportProductModal = () => {
         <SearchableCombobox<ListProductType>
           endpoint={categorySearchEndpoint}
           value={data.product}
-          disabled={disabled}
           setValue={(value) => handleChangeInput("product", Number(value))}
           className="w-full"
-          title={t("form.search_product")}
+          title={t("product.place_holders.category")}
           mapData={(item) => ({
-            label: `${item.name} - ${item.count}`,
+            label: item.name,
             value: item.id.toString(),
           })}
         />

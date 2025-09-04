@@ -62,7 +62,6 @@ export interface TransactionDocumentForm {
   method: TransactionMethod;
   currency: Currency;
   cash_amount: string;
-  owner: number;
 }
 
 export interface TransactionDocumentProductForm {

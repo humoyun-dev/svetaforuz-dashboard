@@ -23,7 +23,7 @@ import { useCrud } from "@/hooks/use-crud";
 import { useStore } from "@/stores/store.store";
 
 const DebtDocumentCashFormModal = () => {
-  const { setDOpen, dOpen } = useDebtForm();
+  const { setDOpen, dOpen, refetch } = useDebtForm();
   const { id } = useParams<{ id: string }>();
   const { selectedShop } = useStore();
   const { t } = useTranslation();
@@ -32,7 +32,6 @@ const DebtDocumentCashFormModal = () => {
     cash_amount: "",
     currency: "USD",
     method: "transfer",
-    owner: Number(id),
     products: [],
   };
 
@@ -57,6 +56,9 @@ const DebtDocumentCashFormModal = () => {
   function handleCancel() {
     setDOpen(false);
     setForm(initialForm);
+    if (refetch) {
+      refetch();
+    }
   }
 
   return (

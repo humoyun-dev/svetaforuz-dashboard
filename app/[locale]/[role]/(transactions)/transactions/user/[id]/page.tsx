@@ -36,7 +36,7 @@ const Page = () => {
     count: 1,
   });
 
-  const { setDOpen } = useDebtForm();
+  const { setDOpen, setRefetch } = useDebtForm();
 
   const searchParams = useSearchParams();
 
@@ -71,6 +71,11 @@ const Page = () => {
 
   const { t } = useTranslation();
 
+  function handleAdd() {
+    setDOpen(true);
+    setRefetch(refetch);
+  }
+
   return (
     <>
       <Header
@@ -80,7 +85,7 @@ const Page = () => {
               <Button size="sm">{t("document.create_button")}</Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem onClick={() => setDOpen(true)}>
+              <DropdownMenuItem onClick={handleAdd}>
                 {t("document.with_cash")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
