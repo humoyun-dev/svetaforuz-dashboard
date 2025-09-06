@@ -26,8 +26,15 @@ import { useParams } from "next/navigation";
 import MethodForm from "@/components/form/debt/method.form";
 
 const DebtSubmitModal = () => {
-  const { submitMode, setSubmitMode, debt, setDebt, debtItems, resetDebt } =
-    useDebtStore();
+  const {
+    submitMode,
+    setSubmitMode,
+    debt,
+    setDebt,
+    debtItems,
+    resetDebt,
+    setSearch,
+  } = useDebtStore();
   const { id } = useParams<{ id: string }>();
   const { usd, currency } = useCurrencyStore();
   const [loading, setLoading] = useState(false);
@@ -60,6 +67,8 @@ const DebtSubmitModal = () => {
       products: debtItems,
     };
 
+    setSearch("");
+
     try {
       const { status } = await useCrud.create({
         url: `${selectedShop?.id}/debt/debtors/${id}/documents/`,
@@ -70,6 +79,9 @@ const DebtSubmitModal = () => {
         notify.success(t("debt.create_success"));
         resetDebt();
         setErrors({});
+        setTimeout(() => {
+          useDebtStore.getState().searchRef?.current?.focus();
+        }, 50);
       } else {
         notify.error(t("debt.create_error"));
       }

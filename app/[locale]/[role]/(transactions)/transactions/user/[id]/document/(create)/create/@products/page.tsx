@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useState, useCallback, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -32,13 +32,12 @@ const useDebounce = (value: string, delay: number) => {
 };
 
 const Page = () => {
-  const [search, setSearch] = useState<string>("");
   const [products, setProducts] = useState<PaginatedProductType>({
     count: 0,
     results: [],
   });
   const searchParams = useSearchParams();
-  const { debtItems } = useDebtStore();
+  const { debtItems, search, setSearch, setSearchRef } = useDebtStore();
   const { t } = useTranslation();
 
   const debouncedSearch = useDebounce(search, 300);
@@ -72,6 +71,12 @@ const Page = () => {
     setPage(1);
   }, []);
 
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setSearchRef(searchInputRef);
+  }, [setSearchRef]);
+
   const cartItemsCount = debtItems.length;
   const hasResults = products.results.length > 0;
   const hasSearch = debouncedSearch.length > 0;
@@ -87,6 +92,7 @@ const Page = () => {
               className="pl-9 pr-10"
               value={search}
               autoFocus={true}
+              ref={searchInputRef}
               type="text"
               onChange={(e) => setSearch(e.target.value)}
             />

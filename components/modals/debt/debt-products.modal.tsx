@@ -40,6 +40,7 @@ const DebtItemModal = () => {
     addDebtItem,
     index,
     updateDebtItem,
+    setSearch,
   } = useDebtStore();
   const { usd } = useCurrencyStore();
   const { role } = useUserStore();
@@ -80,6 +81,10 @@ const DebtItemModal = () => {
       addDebtItem(item);
       setAddMode(false);
     }
+    setSearch("");
+    setTimeout(() => {
+      useDebtStore.getState().searchRef?.current?.focus();
+    }, 50);
   }
 
   if (!debtItem) return null;

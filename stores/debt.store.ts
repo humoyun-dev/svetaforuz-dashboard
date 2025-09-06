@@ -4,6 +4,7 @@ import {
   TransactionDocumentForm,
   TransactionDocumentProductForm,
 } from "@/types/transaction.type";
+import { RefObject } from "react";
 
 interface State {
   addMode: boolean;
@@ -23,6 +24,11 @@ interface State {
   setDebt: (debt: TransactionDocumentForm) => void;
   setIndex: (index: number) => void;
   setSubmitMode: (value: boolean) => void;
+
+  searchRef: RefObject<HTMLInputElement> | null;
+  setSearchRef: (r: RefObject<HTMLInputElement>) => void;
+  search: string;
+  setSearch: (search: string) => void;
 
   resetDebt: () => void;
 
@@ -45,6 +51,11 @@ export const useDebtStore = create<State>()(
         },
         _hasHydrated: false,
         index: null,
+
+        search: "",
+        setSearch: (value: string) => set({ search: value }),
+        searchRef: null,
+        setSearchRef: (r) => set({ searchRef: r }),
 
         setAddMode: (value) => set({ addMode: value }),
         setDebtItem: (item) => set({ debtItem: item }),
