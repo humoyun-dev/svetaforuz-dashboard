@@ -43,6 +43,7 @@ const Page = () => {
     removeOrderItem(index);
   };
 
+  console.log(orderItems);
   const handleEdit = (index: number) => {
     setIndex(index);
     setAddMode(true);
@@ -50,13 +51,26 @@ const Page = () => {
   };
 
   const total = orderItems.reduce((sum, item) => {
-    return sum + Number(item.price) * Number(item.quantity);
+    return (
+      sum +
+      Number(
+        typeof item.price === "string"
+          ? item.price.replace(/,/g, ".")
+          : item.price,
+      ) *
+        Number(item.quantity)
+    );
   }, 0);
 
   const income = orderItems.reduce((sum, item) => {
     return (
       sum +
-      (Number(item.price) - Number(item.product_data.enter_price)) *
+      (Number(
+        typeof item.price === "string"
+          ? item.price.replace(/,/g, ".")
+          : item.price,
+      ) -
+        Number(item.product_data.enter_price)) *
         Number(item.quantity)
     );
   }, 0);
@@ -172,7 +186,12 @@ const OrderItemCard = ({
 }: OrderItemCardProps) => {
   const { currency, usd } = useCurrencyStore();
   const product = item.product_data;
-  const totalPrice = Number(item.price) * Number(item.quantity);
+  const totalPrice =
+    Number(
+      typeof item.price === "string"
+        ? item.price.replace(/,/g, ".")
+        : item.price,
+    ) * Number(item.quantity);
   const quantity = Number(item.quantity);
   const { t } = useTranslation();
 
@@ -274,7 +293,11 @@ const OrderItemCard = ({
                 <div className="text-xs text-gray-500">
                   {formatCurrencyPure({
                     currency: item.currency,
-                    number: Number(item.price),
+                    number: Number(
+                      typeof item.price === "string"
+                        ? item.price.replace(/,/g, ".")
+                        : item.price,
+                    ),
                     appCurrency: currency,
                     rate: usd,
                   })}{" "}

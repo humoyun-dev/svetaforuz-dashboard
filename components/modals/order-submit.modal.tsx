@@ -217,12 +217,24 @@ const ChangeGivenPayment = ({
   }
 
   const total = orderItems.reduce((sum, item) => {
-    return sum + Number(item.price) * Number(item.quantity);
+    return (
+      sum +
+      Number(
+        typeof item.price === "string"
+          ? item.price.replace(/,/g, ".")
+          : item.price,
+      ) *
+        Number(item.quantity)
+    );
   }, 0);
 
   const change =
     unFormatCurrencyPure({
-      number: Number(order.paid_amount),
+      number: Number(
+        typeof order.paid_amount === "string"
+          ? order.paid_amount.replace(/,/g, ".")
+          : order.paid_amount,
+      ),
       currency: order.currency,
       appCurrency: currency,
       rate: usd,
@@ -390,18 +402,34 @@ const Totals = () => {
   const { usd, currency } = useCurrencyStore();
 
   const total = orderItems.reduce((sum, item) => {
-    return sum + Number(item.price) * Number(item.quantity);
+    return (
+      sum +
+      Number(
+        typeof item.price === "string"
+          ? item.price.replace(/,/g, ".")
+          : item.price,
+      ) *
+        Number(item.quantity)
+    );
   }, 0);
 
   const payment =
     unFormatCurrencyPure({
-      number: Number(order.paid_amount),
+      number: Number(
+        typeof order.paid_amount === "string"
+          ? order.paid_amount.replace(/,/g, ".")
+          : order.paid_amount,
+      ),
       currency: order.currency,
       appCurrency: currency,
       rate: usd,
     }) -
     unFormatCurrencyPure({
-      number: Number(order.change_amount),
+      number: Number(
+        typeof order.change_amount === "string"
+          ? order.change_amount.replace(/,/g, ".")
+          : order.change_amount,
+      ),
       currency: order.currency_change,
       appCurrency: currency,
       rate: usd,
@@ -430,7 +458,11 @@ const Totals = () => {
           <span>{t("submit.payment_summary_payment")}</span>
           <span>
             {formatCurrencyPure({
-              number: Number(order.paid_amount),
+              number: Number(
+                typeof order.paid_amount === "string"
+                  ? order.paid_amount.replace(/,/g, ".")
+                  : order.paid_amount,
+              ),
               currency: order.currency,
               appCurrency: currency,
               rate: usd,
@@ -442,7 +474,11 @@ const Totals = () => {
           <span>{t("submit.payment_summary_change")}</span>
           <span>
             {formatCurrencyPure({
-              number: Number(order.change_amount),
+              number: Number(
+                typeof order.change_amount === "string"
+                  ? order.change_amount.replace(/,/g, ".")
+                  : order.change_amount,
+              ),
               currency: order.currency_change,
               appCurrency: currency,
               rate: usd,

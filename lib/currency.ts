@@ -5,56 +5,59 @@ interface CurrencyParams {
   appCurrency?: string;
 }
 
-function convertCurrency({
+export function convertCurrency({
   number,
   currency = "USD",
   rate,
   appCurrency = "UZS",
 }: CurrencyParams): number {
-  const normalized = String(number).replace(/\s/g, "").replace(/,/g, ".");
+  // Handle string input with potential comma as decimal separator
+  let amount: number;
+  if (typeof number === "string") {
+    // Replace comma with dot for decimal parsing, remove thousands separators
+    const cleaned = number.replace(/,/g, ".").replace(/\s/g, "");
+    amount = parseFloat(cleaned);
+  } else {
+    amount = number;
+  }
 
-  const amount = Number(normalized);
+  if (isNaN(amount)) return 0;
 
   const source = currency.toUpperCase();
-  const target = appCurrency.toUpperCase();
+  const target = (appCurrency || "UZS").toUpperCase();
 
   if (source === target) return amount;
-
-  if (source === "USD" && target === "UZS") {
-    return amount * rate;
-  }
-
-  if (source === "UZS" && target === "USD") {
-    return amount / rate;
-  }
+  if (source === "USD" && target === "UZS") return amount * rate;
+  if (source === "UZS" && target === "USD") return amount / rate;
 
   return amount;
 }
-
-export function formatCurrencyPure(params: CurrencyParams): string | undefined {
-  const converted = Number(convertCurrency(params));
-
-  if (converted === undefined) return undefined;
-
+export function formatCurrencyPure(params: CurrencyParams): string {
+  const converted = convertCurrency(params);
   const currencyCode = (params.appCurrency || "UZS").toUpperCase();
+  const isUSD = currencyCode === "USD";
 
-  try {
-    const formatted = new Intl.NumberFormat("ru-RU", {
-      style: "decimal",
-      minimumFractionDigits: currencyCode === "USD" ? 2 : 0,
-      maximumFractionDigits: currencyCode === "USD" ? 2 : 0,
-    }).format(converted);
+  // For USD: use custom formatting with spaces and dots
+  if (isUSD) {
+    const parts = converted.toFixed(2).split(".");
+    const wholeNumber = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return `$${wholeNumber}.${parts[1]}`;
+  }
 
-    if (currencyCode === "UZS") {
+  // For UZS and others: use Russian locale formatting
+  const formatted = new Intl.NumberFormat("ru-RU", {
+    style: "decimal",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(converted);
+
+  switch (currencyCode) {
+    case "UZS":
       return `${formatted} so'm`;
-    } else if (currencyCode === "USD") {
+    case "USD":
       return `$${formatted}`;
-    } else {
+    default:
       return `${formatted} ${currencyCode}`;
-    }
-  } catch (e) {
-    console.warn(`Invalid currency format for: ${currencyCode}`, e);
-    return undefined;
   }
 }
 
