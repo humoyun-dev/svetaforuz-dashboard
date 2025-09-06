@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useMemo, useState, useCallback, useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Search, Filter } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -33,13 +33,12 @@ const useDebounce = (value: string, delay: number) => {
 };
 
 const Page = () => {
-  const [search, setSearch] = useState<string>("");
+  const { orderItems, search, setSearch, setSearchRef, searchRef } = useOrder();
   const [products, setProducts] = useState<PaginatedProductType>({
     count: 0,
     results: [],
   });
   const searchParams = useSearchParams();
-  const { orderItems } = useOrder();
   const { t } = useTranslation();
 
   const debouncedSearch = useDebounce(search, 300);
@@ -73,13 +72,19 @@ const Page = () => {
     setPage(1);
   }, []);
 
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setSearchRef(searchInputRef);
+  }, [setSearchRef]);
+
   const cartItemsCount = orderItems.length;
   const hasResults = products.results.length > 0;
   const hasSearch = debouncedSearch.length > 0;
 
   return (
     <div className="flex bg-background flex-col h-full">
-      <div className="flex flex-col gap-4 pb-4 ">
+      <div className="flex  sticky top-0 pt-4 z-50 bg-background flex-col gap-4 pb-4 ">
         <div className="flex gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -89,6 +94,7 @@ const Page = () => {
               value={search}
               autoFocus={true}
               type="text"
+              ref={searchInputRef}
               onChange={(e) => setSearch(e.target.value)}
             />
             {search && (

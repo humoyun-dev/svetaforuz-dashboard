@@ -35,8 +35,15 @@ import { notify } from "@/lib/toast";
 import { logger } from "workbox-core/_private";
 
 const OrderSubmitModal = () => {
-  const { submitMode, setSubmitMode, order, setOrder, orderItems, resetOrder } =
-    useOrder();
+  const {
+    submitMode,
+    setSubmitMode,
+    order,
+    setOrder,
+    orderItems,
+    resetOrder,
+    setSearch,
+  } = useOrder();
   const { usd, currency } = useCurrencyStore();
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const { t } = useTranslation();
@@ -85,6 +92,10 @@ const OrderSubmitModal = () => {
       if (status === 201) {
         notify.success(t("order.create_success"));
         resetOrder();
+        setSearch("");
+        setTimeout(() => {
+          useOrder.getState().searchRef?.current?.focus();
+        }, 50);
         setErrors({});
       } else {
         notify.error(t("order.create_error"));

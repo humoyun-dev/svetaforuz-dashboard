@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import type { OrderFormType, OrderItemsFormType } from "@/types/orders.type";
+import { RefObject } from "react";
 
 interface OrderState {
   addMode: boolean;
@@ -10,6 +11,9 @@ interface OrderState {
   order: OrderFormType;
   index: number | null;
   _hasHydrated: boolean;
+  search: string;
+
+  setSearch: (search: string) => void;
 
   setAddMode: (value: boolean) => void;
   setOrderItem: (item: OrderItemsFormType | null) => void;
@@ -21,6 +25,8 @@ interface OrderState {
   setIndex: (index: number) => void;
   setSubmitMode: (value: boolean) => void;
 
+  searchRef: RefObject<HTMLInputElement> | null;
+  setSearchRef: (r: RefObject<HTMLInputElement>) => void;
   resetOrder: () => void;
 
   setHydrated: (value: boolean) => void;
@@ -33,6 +39,8 @@ export const useOrder = create<OrderState>()(
         addMode: false,
         submitMode: false,
         orderItem: null,
+        search: "",
+        setSearch: (value: string) => set({ search: value }),
         orderItems: [],
         order: {
           phone_number: "",
@@ -45,6 +53,9 @@ export const useOrder = create<OrderState>()(
           change_amount: "",
           currency_change: "USD",
         },
+
+        searchRef: null,
+        setSearchRef: (r) => set({ searchRef: r }),
         _hasHydrated: false,
         index: null,
 

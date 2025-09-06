@@ -40,6 +40,7 @@ const OrderItemModal = () => {
     addOrderItem,
     index,
     updateOrderItem,
+    setSearch,
   } = useOrder();
   const { usd } = useCurrencyStore();
   const { role } = useUserStore();
@@ -80,6 +81,10 @@ const OrderItemModal = () => {
       addOrderItem(item);
       setAddMode(false);
     }
+    setSearch("");
+    setTimeout(() => {
+      useOrder.getState().searchRef?.current?.focus();
+    }, 50);
   }
 
   if (!orderItem) return null;

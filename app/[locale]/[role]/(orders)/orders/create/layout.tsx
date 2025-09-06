@@ -15,7 +15,7 @@ const Layout = ({ children, products }: Props) => {
       <Header actions={<Button variant="link" size="sm" asChild></Button>} />
 
       <div className="flex flex-1 overflow-hidden">
-        <div className="flex-1  border-r">
+        <div className="flex-1 overflow-auto border-r">
           <div className="h-full p-4">{products}</div>
         </div>
 

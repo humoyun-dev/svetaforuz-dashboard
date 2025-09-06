@@ -67,21 +67,26 @@ const Page = () => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="p-4 border-b ">
+      <div className="p-2 sm:p-3 border-b">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <ShoppingCart className="h-5 w-5 text-gray-600" />
-            <h2 className="text-lg font-semibold">{t("cart.title")}</h2>
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <ShoppingCart className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gray-600" />
+            <h2 className="text-sm sm:text-base font-semibold">
+              {t("cart.title")}
+            </h2>
           </div>
-          <Badge variant="secondary" className="text-sm">
+          <Badge
+            variant="secondary"
+            className="text-xs px-1.5 sm:px-2 py-0.5 sm:py-1"
+          >
             {orderItems.length}{" "}
             {t(orderItems.length === 1 ? "cart.item" : "cart.items")}
           </Badge>
         </div>
       </div>
 
-      <ScrollArea className="h-[67vh] p-4">
-        <div className="space-y-3">
+      <ScrollArea className="flex-1 overflow-auto p-2 sm:p-3">
+        <div className="space-y-1.5 sm:space-y-2">
           {orderItems.map((item, index) => (
             <OrderItemCard
               key={`${item.product_id}-${index}`}
@@ -95,51 +100,52 @@ const Page = () => {
         </div>
       </ScrollArea>
 
-      <div className="border-t  p-4">
-        <Card className="gap-2">
-          <CardHeader>
-            <CardTitle className="text-base">{t("cart.summary")}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-600">{t("cart.income")}</span>
-              <span className="font-medium">
-                {formatCurrencyPure({
-                  currency: "USD",
-                  number: income,
-                  appCurrency: currency,
-                  rate: usd,
-                })}
-              </span>
-            </div>
-            <Separator />
-            <div className="flex justify-between text-lg font-bold">
-              <span>{t("cart.total")}</span>
-              <span>
-                {formatCurrencyPure({
-                  currency: "USD",
-                  number: total,
-                  appCurrency: currency,
-                  rate: usd,
-                })}
-              </span>
-            </div>
+      <div className="border-t p-2 sm:p-3">
+        <div className="space-y-1.5 sm:space-y-2">
+          <div className="flex justify-between text-xs sm:text-sm">
+            <span className="text-gray-600">{t("cart.income")}</span>
+            <span className="font-medium">
+              {formatCurrencyPure({
+                currency: "USD",
+                number: income,
+                appCurrency: currency,
+                rate: usd,
+              })}
+            </span>
+          </div>
+          <Separator />
+          <div className="flex justify-between text-sm sm:text-base font-bold">
+            <span>{t("cart.total")}</span>
+            <span>
+              {formatCurrencyPure({
+                currency: "USD",
+                number: total,
+                appCurrency: currency,
+                rate: usd,
+              })}
+            </span>
+          </div>
+          <div className="flex gap-1.5 sm:gap-2 mt-2 sm:mt-3">
             <Button
               onClick={() => {
                 setAddMode(false);
                 setSubmitMode(true);
               }}
-              className="w-full mt-4"
-              size="lg"
+              className="flex-1 text-xs sm:text-sm"
+              size="sm"
             >
               {t("cart.proceedToCheckout")}
             </Button>
-
-            <Button className={`w-full`} onClick={resetOrder} variant="outline">
+            <Button
+              onClick={resetOrder}
+              variant="outline"
+              size="sm"
+              className="px-2 sm:px-3 bg-transparent text-xs sm:text-sm"
+            >
               {t("cart.empty.button")}
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );
