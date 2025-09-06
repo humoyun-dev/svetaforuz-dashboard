@@ -83,7 +83,7 @@ const Page = () => {
 
   return (
     <div className="flex bg-background flex-col h-full">
-      <div className="flex flex-col gap-4 pb-4 ">
+      <div className="flex sticky top-0 pt-4 z-[1] flex-col gap-4 pb-4 ">
         <div className="flex gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />

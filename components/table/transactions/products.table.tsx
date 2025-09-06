@@ -113,6 +113,7 @@ export default function ProductsTable({
       <GenericTable
         data={data}
         columns={columns}
+        rowAction={addDebtItem}
         actions={actions}
         emptyMessage={t("product.table.no_products")}
       />

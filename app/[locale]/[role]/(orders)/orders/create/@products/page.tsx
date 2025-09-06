@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState, useCallback, useRef } from "react";
 import { Input } from "@/components/ui/input";
-import { Search, Filter } from "lucide-react";
+import { Search } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useFetch from "@/hooks/use-fetch";
 import { useStore } from "@/stores/store.store";
@@ -12,7 +12,6 @@ import TablePagination from "@/components/table/pagination.table";
 import ProductsTable from "@/components/table/orders/products.table";
 import { Loading } from "@/components/loading/loading";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { useOrder } from "@/stores/order.store";
 import { useTranslation } from "react-i18next";
 
@@ -84,7 +83,7 @@ const Page = () => {
 
   return (
     <div className="flex bg-background flex-col h-full">
-      <div className="flex  sticky top-0 pt-4 z-50 bg-background flex-col gap-4 pb-4 ">
+      <div className="flex sticky z-[1] top-0 pt-2 bg-background flex-col gap-2 pb-2">
         <div className="flex gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -108,18 +107,10 @@ const Page = () => {
               </Button>
             )}
           </div>
-          {/*<Button*/}
-          {/*  variant="outline"*/}
-          {/*  size="sm"*/}
-          {/*  className="flex items-center gap-2 bg-transparent"*/}
-          {/*>*/}
-          {/*  <Filter className="h-4 w-4" />*/}
-          {/*  Filters*/}
-          {/*</Button>*/}
         </div>
 
         {hasSearch && (
-          <div className="flex items-center justify-between text-sm text-gray-600">
+          <div className="flex items-center justify-between text-xs text-gray-600">
             <span>
               {isLoading
                 ? t("search.searching")
@@ -150,10 +141,10 @@ const Page = () => {
         {!isLoading && !hasResults && !hasSearch && <EmptyProducts />}
 
         {!isLoading && hasResults && (
-          <ScrollArea className="h-full">
-            <div className="p-2">
+          <ScrollArea className="overflow-auto h-full">
+            <div className="p-1">
               <ProductsTable data={products.results} />
-              <div className="mt-6">
+              <div className="mt-3">
                 <TablePagination
                   count={products.count}
                   setPage={setPage}
@@ -180,17 +171,17 @@ const EmptySearchResults = ({
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-      <div className="w-16 h-16  rounded-full flex items-center justify-center mb-4">
-        <Search className="w-8 h-8 text-gray-400" />
+    <div className="flex flex-col items-center justify-center h-full p-4 text-center">
+      <div className="w-12 h-12 rounded-full flex items-center justify-center mb-3">
+        <Search className="w-6 h-6 text-gray-400" />
       </div>
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+      <h3 className="text-base font-semibold text-gray-900 mb-2">
         {t("search.notFoundTitle")}
       </h3>
-      <p className="text-gray-500 mb-4 max-w-sm">
+      <p className="text-sm text-gray-500 mb-3 max-w-sm">
         {t("search.notFoundDescription", { search })}
       </p>
-      <Button variant="outline" onClick={onClear}>
+      <Button variant="outline" size="sm" onClick={onClear}>
         {t("search.clear")}
       </Button>
     </div>
@@ -201,17 +192,19 @@ const EmptyProducts = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-      <div className="w-16 h-16  rounded-full flex items-center justify-center mb-4">
-        <Search className="w-8 h-8 text-gray-400" />
+    <div className="flex flex-col items-center justify-center h-full p-4 text-center">
+      <div className="w-12 h-12 rounded-full flex items-center justify-center mb-3">
+        <Search className="w-6 h-6 text-gray-400" />
       </div>
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+      <h3 className="text-base font-semibold text-gray-900 mb-2">
         {t("search.noProductsTitle")}
       </h3>
-      <p className="text-gray-500 mb-4 max-w-sm">
+      <p className="text-sm text-gray-500 mb-3 max-w-sm">
         {t("search.noProductsDescription")}
       </p>
-      <Button variant="outline">{t("search.addProduct")}</Button>
+      <Button variant="outline" size="sm">
+        {t("search.addProduct")}
+      </Button>
     </div>
   );
 };

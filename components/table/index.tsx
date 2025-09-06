@@ -41,6 +41,7 @@ interface GenericTableProps<T> {
   emptyMessage?: string;
   className?: string;
   url?: string;
+  rowAction?: (row: T) => void;
 }
 
 export function GenericTable<T extends Record<string, any>>({
@@ -52,6 +53,7 @@ export function GenericTable<T extends Record<string, any>>({
   className = "",
   url,
   edit = true,
+  rowAction,
 }: GenericTableProps<T>) {
   const router = useRouter();
 
@@ -64,10 +66,15 @@ export function GenericTable<T extends Record<string, any>>({
     return column.render ? column.render(value, row) : value;
   };
 
-  const handleRowClick = (rowId: number | string) => {
-    if (!url) return;
-    const path = `${url}${rowId}${edit ? "/edit" : ""}`;
-    router.push(path);
+  const handleRowClick = (row: T) => {
+    if (url) {
+      const path = `${url}${row.id}${edit ? "/edit" : ""}`;
+      router.push(path);
+    }
+
+    if (rowAction) {
+      rowAction(row);
+    }
   };
 
   if (loading) {
@@ -92,7 +99,7 @@ export function GenericTable<T extends Record<string, any>>({
               </TableHead>
             ))}
             {actions && actions.length > 0 && (
-              <TableHead className="w-[50px]" />
+              <TableHead className="lg:w-[50px]" />
             )}
           </TableRow>
         </TableHeader>
@@ -109,8 +116,8 @@ export function GenericTable<T extends Record<string, any>>({
           ) : (
             data.map((row, index) => (
               <TableRow
-                onClick={() => handleRowClick(row.id)}
-                className={url ? "cursor-pointer" : ""}
+                onClick={() => handleRowClick(row)}
+                className={url || rowAction ? "cursor-pointer" : ""}
                 key={index}
               >
                 {columns.map((column) => (

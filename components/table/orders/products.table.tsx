@@ -111,9 +111,11 @@ export default function ProductsTable({
   return (
     <>
       <GenericTable
+        className={`overflow-auto`}
         data={data}
         columns={columns}
         actions={actions}
+        rowAction={addOrderItem}
         emptyMessage={t("product.table.no_products")}
       />
     </>
