@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/select";
 import { Currency } from "@/types/products.type";
 import PriceInput from "@/components/ui/price-input";
-import { checkRole } from "@/lib/utils";
+import { checkRole, normalizeNumber } from "@/lib/utils";
 import { useUserStore } from "@/stores/user.store";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
@@ -79,7 +79,10 @@ const OrderSubmitModal = () => {
 
     const payload = {
       ...order,
-      items: orderItems,
+      items: orderItems.map((item) => ({
+        ...item,
+        price: normalizeNumber(item.price),
+      })),
     };
 
     try {

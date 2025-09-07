@@ -56,7 +56,7 @@ describe("formatCurrencyPure", () => {
   it("should format USD with 2 decimals", () => {
     expect(
       formatCurrencyPure({
-        number: 1234.56,
+        number: "1234,56",
         currency: "USD",
         rate: 12000,
         appCurrency: "USD",
