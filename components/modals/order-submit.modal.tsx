@@ -79,6 +79,8 @@ const OrderSubmitModal = () => {
 
     const payload = {
       ...order,
+      paid_amount: normalizeNumber(order.paid_amount),
+      change_amount: normalizeNumber(order.change_amount),
       items: orderItems.map((item) => ({
         ...item,
         price: normalizeNumber(item.price),
