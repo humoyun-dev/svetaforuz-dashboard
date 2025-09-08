@@ -12,7 +12,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatCurrencyPure, unFormatCurrencyPure } from "@/lib/currency";
 
-import { checkRole } from "@/lib/utils";
+import { checkRole, normalizeNumber } from "@/lib/utils";
 import { useUserStore } from "@/stores/user.store";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
@@ -64,7 +64,10 @@ const DebtSubmitModal = () => {
 
     const payload = {
       ...debt,
-      products: debtItems,
+      products: debtItems.map((item) => ({
+        ...item,
+        price: normalizeNumber(item.price),
+      })),,
     };
 
     setSearch("");
