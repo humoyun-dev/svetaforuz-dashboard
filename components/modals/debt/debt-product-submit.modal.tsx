@@ -67,7 +67,7 @@ const DebtSubmitModal = () => {
       products: debtItems.map((item) => ({
         ...item,
         price: normalizeNumber(item.price),
-      })),,
+      })),
     };
 
     setSearch("");
