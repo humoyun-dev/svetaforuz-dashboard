@@ -59,9 +59,9 @@ export default function ProductPricingSection({
                   <FormControl>
                     <PriceInput
                       disabled={!isEdit}
-                      value={field.value}
-                      onValueChange={(value, name, values) => {
-                        activeForm.setValue("out_price", String(values?.value));
+                      value={field.value ?? ""}
+                      onValueChange={(value) => {
+                        activeForm.setValue("out_price", value ?? "");
                       }}
                     />
                   </FormControl>
