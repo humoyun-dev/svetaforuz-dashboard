@@ -1,5 +1,5 @@
 "use client";
-import { formatCurrencyPure } from "@/lib/currency";
+import { formatCurrencyPure, unFormatCurrencyPure } from "@/lib/currency";
 import { Button } from "@/components/ui/button";
 import {
   Minus,
@@ -50,16 +50,32 @@ const Page = () => {
   };
 
   const total = debtItems.reduce((sum, item) => {
-    return sum + Number(item.price) * Number(item.quantity);
-  }, 0);
-
-  const income = debtItems.reduce((sum, item) => {
     return (
       sum +
-      (Number(item.price) - Number(item.product_data.enter_price)) *
+      unFormatCurrencyPure({
+        number: Number(item.price),
+        currency: item.currency,
+        appCurrency: currency,
+        rate: usd,
+      }) *
         Number(item.quantity)
     );
   }, 0);
+
+  const total_enter_price = debtItems.reduce((sum, item) => {
+    return (
+      sum +
+      unFormatCurrencyPure({
+        number: Number(item.product_data.enter_price),
+        currency: item.product_data.currency,
+        appCurrency: currency,
+        rate: usd,
+      }) *
+        Number(item.quantity)
+    );
+  }, 0);
+
+  const income = total - total_enter_price;
 
   if (debtItems.length === 0) {
     return <EmptyCart />;
@@ -106,7 +122,7 @@ const Page = () => {
             <span className="text-gray-600">{t("cart.income")}</span>
             <span className="font-medium">
               {formatCurrencyPure({
-                currency: "USD",
+                currency: currency,
                 number: income,
                 appCurrency: currency,
                 rate: usd,
@@ -118,7 +134,7 @@ const Page = () => {
             <span>{t("cart.total")}</span>
             <span>
               {formatCurrencyPure({
-                currency: "USD",
+                currency: currency,
                 number: total,
                 appCurrency: currency,
                 rate: usd,

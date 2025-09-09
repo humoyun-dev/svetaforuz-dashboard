@@ -226,32 +226,23 @@ const ChangeGivenPayment = ({
   const total = orderItems.reduce((sum, item) => {
     return (
       sum +
-      Number(
-        typeof item.price === "string"
-          ? item.price.replace(/,/g, ".")
-          : item.price,
-      ) *
+      unFormatCurrencyPure({
+        number: Number(item.price),
+        currency: item.currency,
+        appCurrency: currency,
+        rate: usd,
+      }) *
         Number(item.quantity)
     );
   }, 0);
 
   const change =
     unFormatCurrencyPure({
-      number: Number(
-        typeof order.paid_amount === "string"
-          ? order.paid_amount.replace(/,/g, ".")
-          : order.paid_amount,
-      ),
+      number: order.paid_amount,
       currency: order.currency,
       appCurrency: currency,
       rate: usd,
-    }) -
-    unFormatCurrencyPure({
-      number: Number(total),
-      currency: "USD",
-      appCurrency: currency,
-      rate: usd,
-    });
+    }) - total;
 
   useEffect(() => {
     if (change > 0) {
@@ -290,7 +281,7 @@ const ChangeGivenPayment = ({
             {t("submit.payment_amount_label")} (
             {formatCurrencyPure({
               number: total,
-              currency: "USD",
+              currency: currency,
               appCurrency: order.currency,
               rate: usd,
             })}
@@ -408,39 +399,32 @@ const Totals = () => {
   const { order, orderItems } = useOrder();
   const { usd, currency } = useCurrencyStore();
 
-  const total = orderItems.reduce((sum, item) => {
-    return (
-      sum +
-      Number(
-        typeof item.price === "string"
-          ? item.price.replace(/,/g, ".")
-          : item.price,
-      ) *
-        Number(item.quantity)
-    );
-  }, 0);
-
   const payment =
     unFormatCurrencyPure({
-      number: Number(
-        typeof order.paid_amount === "string"
-          ? order.paid_amount.replace(/,/g, ".")
-          : order.paid_amount,
-      ),
+      number: order.paid_amount,
       currency: order.currency,
       appCurrency: currency,
       rate: usd,
     }) -
     unFormatCurrencyPure({
-      number: Number(
-        typeof order.change_amount === "string"
-          ? order.change_amount.replace(/,/g, ".")
-          : order.change_amount,
-      ),
+      number: order.change_amount,
       currency: order.currency_change,
       appCurrency: currency,
       rate: usd,
     });
+
+  const total = orderItems.reduce((sum, item) => {
+    return (
+      sum +
+      unFormatCurrencyPure({
+        number: Number(item.price),
+        currency: item.currency,
+        appCurrency: currency,
+        rate: usd,
+      }) *
+        Number(item.quantity)
+    );
+  }, 0);
 
   const total_enter_price = orderItems.reduce((sum, item) => {
     return (
@@ -455,7 +439,8 @@ const Totals = () => {
     );
   }, 0);
 
-  const income = payment - total_enter_price;
+  const income = total - total_enter_price;
+
   const { t } = useTranslation();
 
   return (
@@ -465,11 +450,7 @@ const Totals = () => {
           <span>{t("submit.payment_summary_payment")}</span>
           <span>
             {formatCurrencyPure({
-              number: Number(
-                typeof order.paid_amount === "string"
-                  ? order.paid_amount.replace(/,/g, ".")
-                  : order.paid_amount,
-              ),
+              number: order.paid_amount,
               currency: order.currency,
               appCurrency: currency,
               rate: usd,
@@ -481,11 +462,7 @@ const Totals = () => {
           <span>{t("submit.payment_summary_change")}</span>
           <span>
             {formatCurrencyPure({
-              number: Number(
-                typeof order.change_amount === "string"
-                  ? order.change_amount.replace(/,/g, ".")
-                  : order.change_amount,
-              ),
+              number: order.change_amount,
               currency: order.currency_change,
               appCurrency: currency,
               rate: usd,
@@ -514,7 +491,7 @@ const Totals = () => {
           <span>
             {formatCurrencyPure({
               number: total,
-              currency: "USD",
+              currency: currency,
               appCurrency: currency,
               rate: usd,
             })}

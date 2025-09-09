@@ -16,8 +16,6 @@ const PriceInput: React.FC<PriceInputProps> = ({
   value,
   ...rest
 }) => {
-  console.log(value);
-
   return (
     <CurrencyInput
       decimalsLimit={decimalsLimit}

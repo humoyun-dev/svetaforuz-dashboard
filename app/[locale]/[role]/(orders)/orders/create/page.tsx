@@ -1,7 +1,7 @@
 "use client";
 import { useOrder } from "@/stores/order.store";
 import type { OrderItemsFormType } from "@/types/orders.type";
-import { formatCurrencyPure } from "@/lib/currency";
+import { formatCurrencyPure, unFormatCurrencyPure } from "@/lib/currency";
 import { Button } from "@/components/ui/button";
 import {
   Minus,
@@ -43,7 +43,6 @@ const Page = () => {
     removeOrderItem(index);
   };
 
-  console.log(orderItems);
   const handleEdit = (index: number) => {
     setIndex(index);
     setAddMode(true);
@@ -53,27 +52,30 @@ const Page = () => {
   const total = orderItems.reduce((sum, item) => {
     return (
       sum +
-      Number(
-        typeof item.price === "string"
-          ? item.price.replace(/,/g, ".")
-          : item.price,
-      ) *
+      unFormatCurrencyPure({
+        number: Number(item.price),
+        currency: item.currency,
+        appCurrency: currency,
+        rate: usd,
+      }) *
         Number(item.quantity)
     );
   }, 0);
 
-  const income = orderItems.reduce((sum, item) => {
+  const total_enter_price = orderItems.reduce((sum, item) => {
     return (
       sum +
-      (Number(
-        typeof item.price === "string"
-          ? item.price.replace(/,/g, ".")
-          : item.price,
-      ) -
-        Number(item.product_data.enter_price)) *
+      unFormatCurrencyPure({
+        number: Number(item.product_data.enter_price),
+        currency: item.product_data.currency,
+        appCurrency: currency,
+        rate: usd,
+      }) *
         Number(item.quantity)
     );
   }, 0);
+
+  const income = total - total_enter_price;
 
   if (orderItems.length === 0) {
     return <EmptyCart />;
@@ -120,7 +122,7 @@ const Page = () => {
             <span className="text-gray-600">{t("cart.income")}</span>
             <span className="font-medium">
               {formatCurrencyPure({
-                currency: "USD",
+                currency: currency,
                 number: income,
                 appCurrency: currency,
                 rate: usd,
@@ -132,7 +134,7 @@ const Page = () => {
             <span>{t("cart.total")}</span>
             <span>
               {formatCurrencyPure({
-                currency: "USD",
+                currency: currency,
                 number: total,
                 appCurrency: currency,
                 rate: usd,

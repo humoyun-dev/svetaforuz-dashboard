@@ -167,7 +167,16 @@ const Totals = () => {
   const { usd, currency } = useCurrencyStore();
 
   const total = debtItems.reduce((sum, item) => {
-    return sum + Number(item.price) * Number(item.quantity);
+    return (
+      sum +
+      unFormatCurrencyPure({
+        number: Number(item.price),
+        currency: item.currency,
+        appCurrency: currency,
+        rate: usd,
+      }) *
+        Number(item.quantity)
+    );
   }, 0);
 
   const total_enter_price = debtItems.reduce((sum, item) => {
@@ -211,7 +220,7 @@ const Totals = () => {
           <span>
             {formatCurrencyPure({
               number: total,
-              currency: "USD",
+              currency: currency,
               appCurrency: currency,
               rate: usd,
             })}
