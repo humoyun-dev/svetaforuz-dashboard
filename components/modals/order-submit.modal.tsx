@@ -113,7 +113,7 @@ const OrderSubmitModal = () => {
 
   return (
     <Modal
-      className={`md:p-6 overflow-hidden px-1 py-4 w-full max-h-full sm:max-w-[100%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[40%] 2xl:max-w-[30%] 3xl:max-w-[25%]`}
+      className={`md:p-6 overflow-hidden md:h-[80vh] px-1 py-4 w-full max-h-full sm:max-w-[100%] md:max-w-[60%] lg:max-w-[50%] xl:max-w-[40%] 2xl:max-w-[30%] 3xl:max-w-[25%]`}
       open={submitMode}
       setOpen={() => {
         setSubmitMode(false);
@@ -124,77 +124,79 @@ const OrderSubmitModal = () => {
         <Button onClick={handleSubmit}>{t("submit.confirm_button")}</Button>
       }
     >
-      <div className={`space-y-4`}>
-        <div className={`border p-4 rounded-lg space-y-4`}>
-          <CustomerUserCard errors={errors} />
-          <div className="grid grid-cols-2 gap-4">
-            <div
-              onClick={() => handleChangeOrder("payment_type", "cash")}
-              className={`border cursor-pointer rounded-lg hover:bg-primary transition-all duration-150 hover:text-primary-foreground p-4 flex flex-col items-center space-y-2 ${
-                order.payment_type === "cash"
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary"
-              }`}
-            >
-              <Banknote />
-              {t("submit.cash_payment")}
-            </div>
-            <div
-              onClick={() => handleChangeOrder("payment_type", "card")}
-              className={`border cursor-pointer rounded-lg hover:bg-primary transition-all duration-150 hover:text-primary-foreground p-4 flex flex-col items-center space-y-2 ${
-                order.payment_type === "card"
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary"
-              }`}
-            >
-              <CreditCard />
-              {t("submit.card_payment")}
+      <ScrollArea className={`md:h-[55vh] overflow-auto pr-5`}>
+        <div className={`space-y-4 `}>
+          <div className={`border p-4 rounded-lg space-y-4`}>
+            <CustomerUserCard errors={errors} />
+            <div className="grid grid-cols-2 gap-4">
+              <div
+                onClick={() => handleChangeOrder("payment_type", "cash")}
+                className={`border cursor-pointer rounded-lg hover:bg-primary transition-all duration-150 hover:text-primary-foreground p-4 flex flex-col items-center space-y-2 ${
+                  order.payment_type === "cash"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary"
+                }`}
+              >
+                <Banknote />
+                {t("submit.cash_payment")}
+              </div>
+              <div
+                onClick={() => handleChangeOrder("payment_type", "card")}
+                className={`border cursor-pointer rounded-lg hover:bg-primary transition-all duration-150 hover:text-primary-foreground p-4 flex flex-col items-center space-y-2 ${
+                  order.payment_type === "card"
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary"
+                }`}
+              >
+                <CreditCard />
+                {t("submit.card_payment")}
+              </div>
             </div>
           </div>
-        </div>
 
-        <ChangeGivenPayment errors={errors} />
+          <ChangeGivenPayment errors={errors} />
 
-        <div className="border rounded-lg px-4">
-          <Accordion type="single" collapsible>
-            <AccordionItem className="border-none" value="item-1">
-              <AccordionTrigger>{t("submit.order_details")}</AccordionTrigger>
-              <AccordionContent>
-                <ScrollArea className="space-y-2 h-[20vh] flex-1 ">
-                  {orderItems.map((item, index) => (
-                    <div
-                      key={index}
-                      className="grid grid-cols-3 border-b justify-between"
-                    >
-                      <span className="font-bold">
-                        {item.product_data.name}
-                      </span>
-                      <span className={`text-center`}>
-                        {item.quantity} x{" "}
-                        {formatCurrencyPure({
-                          currency: item.currency,
-                          number: Number(item.price),
-                          appCurrency: currency,
-                          rate: usd,
-                        })}
-                      </span>
-                      <span className={`text-end`}>
-                        {formatCurrencyPure({
-                          currency: item.currency,
-                          number: Number(item.price) * Number(item.quantity),
-                          appCurrency: currency,
-                          rate: usd,
-                        })}
-                      </span>
-                    </div>
-                  ))}
-                </ScrollArea>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <div className="border rounded-lg px-4">
+            <Accordion type="single" collapsible>
+              <AccordionItem className="border-none" value="item-1">
+                <AccordionTrigger>{t("submit.order_details")}</AccordionTrigger>
+                <AccordionContent>
+                  <ScrollArea className="space-y-2 h-[20vh] flex-1 ">
+                    {orderItems.map((item, index) => (
+                      <div
+                        key={index}
+                        className="grid grid-cols-3 border-b justify-between"
+                      >
+                        <span className="font-bold">
+                          {item.product_data.name}
+                        </span>
+                        <span className={`text-center`}>
+                          {item.quantity} x{" "}
+                          {formatCurrencyPure({
+                            currency: item.currency,
+                            number: Number(item.price),
+                            appCurrency: currency,
+                            rate: usd,
+                          })}
+                        </span>
+                        <span className={`text-end`}>
+                          {formatCurrencyPure({
+                            currency: item.currency,
+                            number: Number(item.price) * Number(item.quantity),
+                            appCurrency: currency,
+                            rate: usd,
+                          })}
+                        </span>
+                      </div>
+                    ))}
+                  </ScrollArea>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+          <Totals />
         </div>
-        <Totals />
-      </div>
+      </ScrollArea>
     </Modal>
   );
 };

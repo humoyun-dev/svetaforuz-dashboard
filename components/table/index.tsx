@@ -23,6 +23,7 @@ export interface TableColumn<T> {
   label: string;
   render?: (value: any, row: T) => React.ReactNode;
   className?: string;
+  hideOn?: "sm" | "md" | "lg" | "xl";
 }
 
 export interface TableAction<T> {
@@ -71,7 +72,6 @@ export function GenericTable<T extends Record<string, any>>({
       const path = `${url}${row.id}${edit ? "/edit" : ""}`;
       router.push(path);
     }
-
     if (rowAction) {
       rowAction(row);
     }
@@ -86,18 +86,30 @@ export function GenericTable<T extends Record<string, any>>({
   }
 
   return (
-    <div className={`rounded-md border ${className}`}>
-      <Table>
+    <div className={`rounded-md border overflow-x-auto ${className}`}>
+      <Table className="min-w-[600px] w-full">
         <TableHeader>
           <TableRow>
-            {columns.map((column) => (
-              <TableHead
-                key={column.key as string}
-                className={column.className}
-              >
-                {column.label}
-              </TableHead>
-            ))}
+            {columns.map((column) => {
+              const hiddenClass =
+                column.hideOn === "sm"
+                  ? "hidden sm:table-cell"
+                  : column.hideOn === "md"
+                    ? "hidden md:table-cell"
+                    : column.hideOn === "lg"
+                      ? "hidden lg:table-cell"
+                      : column.hideOn === "xl"
+                        ? "hidden xl:table-cell"
+                        : "";
+              return (
+                <TableHead
+                  key={column.key as string}
+                  className={`${column.className || ""} ${hiddenClass}`}
+                >
+                  {column.label}
+                </TableHead>
+              );
+            })}
             {actions && actions.length > 0 && (
               <TableHead className="lg:w-[50px]" />
             )}
@@ -120,14 +132,26 @@ export function GenericTable<T extends Record<string, any>>({
                 className={url || rowAction ? "cursor-pointer" : ""}
                 key={index}
               >
-                {columns.map((column) => (
-                  <TableCell
-                    key={column.key as string}
-                    className={column.className}
-                  >
-                    {renderCell(column, row)}
-                  </TableCell>
-                ))}
+                {columns.map((column) => {
+                  const hiddenClass =
+                    column.hideOn === "sm"
+                      ? "hidden sm:table-cell"
+                      : column.hideOn === "md"
+                        ? "hidden md:table-cell"
+                        : column.hideOn === "lg"
+                          ? "hidden lg:table-cell"
+                          : column.hideOn === "xl"
+                            ? "hidden xl:table-cell"
+                            : "";
+                  return (
+                    <TableCell
+                      key={column.key as string}
+                      className={`${column.className || ""} ${hiddenClass}`}
+                    >
+                      {renderCell(column, row)}
+                    </TableCell>
+                  );
+                })}
                 {actions && actions.length > 0 && (
                   <TableCell>
                     {actions.length > 1 ? (

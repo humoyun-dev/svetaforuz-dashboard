@@ -105,7 +105,7 @@ const DebtItemModal = () => {
         <>
           <Button
             disabled={
-              Number(debtItem.quantity) >=
+              Number(debtItem.quantity) >
               debtItem.product_data.count +
                 debtItem.product_data.warehouse_count
             }

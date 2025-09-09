@@ -108,51 +108,53 @@ const DebtSubmitModal = () => {
         <Button onClick={handleSubmit}>{t("submit.confirm_button")}</Button>
       }
     >
-      <div className={`space-y-4`}>
-        <MethodForm
-          value={debt.method}
-          setValue={(e) => handleChangeDebt("method", e)}
-        />
-        <div className="border rounded-lg px-4">
-          <Accordion type="single" collapsible>
-            <AccordionItem className="bdebt-none" value="item-1">
-              <AccordionTrigger>{t("submit.debt_details")}</AccordionTrigger>
-              <AccordionContent>
-                <ScrollArea className="space-y-2 h-[20vh] flex-1 ">
-                  {debtItems.map((item, index) => (
-                    <div
-                      key={index}
-                      className="grid grid-cols-3 bdebt-b justify-between"
-                    >
-                      <span className="font-bold">
-                        {item.product_data.name}
-                      </span>
-                      <span className={`text-center`}>
-                        {item.quantity} x{" "}
-                        {formatCurrencyPure({
-                          currency: item.currency,
-                          number: Number(item.price),
-                          appCurrency: currency,
-                          rate: usd,
-                        })}
-                      </span>
-                      <span className={`text-end`}>
-                        {formatCurrencyPure({
-                          currency: item.currency,
-                          number: Number(item.price) * Number(item.quantity),
-                          appCurrency: currency,
-                          rate: usd,
-                        })}
-                      </span>
-                    </div>
-                  ))}
-                </ScrollArea>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+      <ScrollArea className={`md:h-[55vh] overflow-auto pr-5`}>
+        <div className={`space-y-4`}>
+          <MethodForm
+            value={debt.method}
+            setValue={(e) => handleChangeDebt("method", e)}
+          />
+          <div className="border rounded-lg px-4">
+            <Accordion type="single" collapsible>
+              <AccordionItem className="bdebt-none" value="item-1">
+                <AccordionTrigger>{t("submit.debt_details")}</AccordionTrigger>
+                <AccordionContent>
+                  <ScrollArea className="space-y-2 h-[20vh] flex-1 ">
+                    {debtItems.map((item, index) => (
+                      <div
+                        key={index}
+                        className="grid grid-cols-3 bdebt-b justify-between"
+                      >
+                        <span className="font-bold">
+                          {item.product_data.name}
+                        </span>
+                        <span className={`text-center`}>
+                          {item.quantity} x{" "}
+                          {formatCurrencyPure({
+                            currency: item.currency,
+                            number: Number(item.price),
+                            appCurrency: currency,
+                            rate: usd,
+                          })}
+                        </span>
+                        <span className={`text-end`}>
+                          {formatCurrencyPure({
+                            currency: item.currency,
+                            number: Number(item.price) * Number(item.quantity),
+                            appCurrency: currency,
+                            rate: usd,
+                          })}
+                        </span>
+                      </div>
+                    ))}
+                  </ScrollArea>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+          <Totals />
         </div>
-        <Totals />
-      </div>
+      </ScrollArea>
     </Modal>
   );
 };

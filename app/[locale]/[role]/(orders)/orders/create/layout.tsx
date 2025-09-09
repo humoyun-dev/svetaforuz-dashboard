@@ -11,17 +11,21 @@ interface Props {
 
 const Layout = ({ children, products }: Props) => {
   return (
-    <div className="h-screen flex flex-col ">
+    <div className="h-screen flex flex-col">
       <Header actions={<Button variant="link" size="sm" asChild></Button>} />
 
-      <div className="flex flex-1 overflow-hidden">
-        <div className="flex-1 overflow-auto border-r">
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr_400px] xl:grid-cols-[1fr_500px] overflow-hidden">
+        <div className="overflow-auto border-r">
           <div className="h-full p-4">{products}</div>
         </div>
 
-        <div className="w-[400px] xl:w-[500px] hidden lg:flex lg:flex-col shadow-lg">
+        <div className="hidden lg:flex lg:flex-col shadow-lg overflow-auto">
           {children}
         </div>
+      </div>
+
+      <div className="lg:hidden border-t shadow-inner max-h-[40vh] overflow-auto">
+        {children}
       </div>
 
       <OrderItemModal />

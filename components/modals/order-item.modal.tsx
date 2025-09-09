@@ -105,7 +105,7 @@ const OrderItemModal = () => {
         <>
           <Button
             disabled={
-              Number(orderItem.quantity) >=
+              Number(orderItem.quantity) >
               orderItem.product_data.count +
                 orderItem.product_data.warehouse_count
             }
