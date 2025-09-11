@@ -21,6 +21,7 @@ import MethodForm from "@/components/form/debt/method.form";
 import { notify } from "@/lib/toast";
 import { useCrud } from "@/hooks/use-crud";
 import { useStore } from "@/stores/store.store";
+import { normalizeNumber } from "@/lib/utils";
 
 const DebtDocumentCashFormModal = () => {
   const { setDOpen, dOpen, refetch } = useDebtForm();
@@ -38,10 +39,15 @@ const DebtDocumentCashFormModal = () => {
   const [form, setForm] = useState<TransactionDocumentForm>(initialForm);
 
   async function handleSubmit() {
+    const payload = {
+      ...form,
+      cash_amount: normalizeNumber(form.cash_amount),
+    };
+
     try {
       const { status } = await useCrud.create({
         url: `${selectedShop?.id}/debt/debtors/${id}/documents/`,
-        data: form,
+        data: payload,
       });
 
       if (status === 201) {
