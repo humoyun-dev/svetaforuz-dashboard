@@ -25,7 +25,7 @@ export interface TransactionUserFormType {
 
 export interface TransactionDocumentType {
   id: number;
-  products: TransactionDocumentProductType[];
+
   is_deleted: true;
   deleted_at: string;
   is_mirror: true;
@@ -45,6 +45,10 @@ export interface TransactionDocumentType {
   owner: number;
 }
 
+export interface TransactionDocumentDetailType extends TransactionDocumentType {
+  products: TransactionDocumentProductType[];
+}
+
 export interface TransactionDocumentProductType {
   id: number;
   quantity: number;
@@ -54,7 +58,7 @@ export interface TransactionDocumentProductType {
   exchange_rate: string;
   income: string;
   document: number;
-  product: number;
+  product: ListProductType;
 }
 
 export interface TransactionDocumentForm {

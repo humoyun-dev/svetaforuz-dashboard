@@ -17,13 +17,16 @@
     "product_amount": "Mahsulot summasi",
     "income": "Daromad",
     "total_amount": "Umumiy summa",
-    "details": "Tranzaksiya tafsilotlari"
+    "details": "Tranzaksiya tafsilotlari",
+    "transfer": "O‘tkazma",
+    "accept": "Qabul qilingan"
   },
   "check": {
     "document_number": "Hujjat №",
     "date": "Sana",
     "receipt_date": "Qabul qilingan sana",
     "customer": "Mijoz",
+    "payment_type": "To‘lov turi",
     "phone": "Telefon raqam",
     "image": "Rasm",
     "product": "Mahsulot",

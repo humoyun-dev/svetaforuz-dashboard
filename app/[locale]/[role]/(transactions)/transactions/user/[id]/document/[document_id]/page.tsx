@@ -2,7 +2,7 @@
 import Header from "@/components/header";
 import { useParams } from "next/navigation";
 import useFetch from "@/hooks/use-fetch";
-import type { TransactionDocumentType } from "@/types/transaction.type";
+import { TransactionDocumentDetailType } from "@/types/transaction.type";
 import { useStore } from "@/stores/store.store";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,21 +16,24 @@ import {
   DollarSignIcon,
   ShoppingCartIcon,
   TrendingUpIcon,
+  Box,
 } from "lucide-react";
 import { useCurrencyStore } from "@/stores/currency.store";
 import { formatCurrencyPure } from "@/lib/currency";
 import { formatedDate, formatedPhoneNumber } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 import { Loading } from "@/components/loading/loading";
+import Image from "next/image";
 import DebtDocumentPrint from "@/components/debt-print";
 
 const Page = () => {
   const { selectedShop } = useStore();
   const { document_id, id } = useParams<{ document_id: string; id: string }>();
 
-  const { data: transaction, isLoading } = useFetch<TransactionDocumentType>(
-    `${selectedShop?.id}/debt/debtors/${id}/documents/${document_id}/`,
-  );
+  const { data: transaction, isLoading } =
+    useFetch<TransactionDocumentDetailType>(
+      `${selectedShop?.id}/debt/debtors/${id}/documents/${document_id}/`,
+    );
 
   const { t } = useTranslation();
 
@@ -58,7 +61,7 @@ export default Page;
 const TransactionDocumentDetails = ({
   transaction,
 }: {
-  transaction: TransactionDocumentType;
+  transaction: TransactionDocumentDetailType;
 }) => {
   const { usd, currency: appCurrency } = useCurrencyStore();
   const { t } = useTranslation();
@@ -97,13 +100,30 @@ const TransactionDocumentDetails = ({
                       className="flex items-center justify-between p-5 border rounded-xl hover:bg-muted/50 transition-colors"
                     >
                       <div className="flex items-center gap-4 flex-1">
-                        <div className="flex items-center justify-center w-10 h-10 bg-primary/10 rounded-lg text-primary font-semibold">
-                          {index + 1}
+                        <div className="relative w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden bg-muted">
+                          {product.product.images.length > 0 ? (
+                            <Image
+                              src={product.product.images[0].thumbnail}
+                              alt={product.product.name}
+                              fill
+                              className="object-cover"
+                              sizes="48px"
+                            />
+                          ) : (
+                            <Box />
+                          )}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="font-semibold text-lg">
-                            {t("transaction.product")} #{product.product}
-                          </p>
+                          <div>
+                            <p className="font-medium text-xl leading-tight">
+                              {product.product.name}
+                            </p>
+                            {product.product.barcode && (
+                              <p className="text-xs text-muted-foreground font-mono">
+                                {product.product.barcode}
+                              </p>
+                            )}
+                          </div>
                           <div className="flex items-center gap-4 mt-1 text-sm text-muted-foreground">
                             <span>
                               {t("transaction.quantity")}:{" "}
