@@ -241,20 +241,28 @@ export default function TransactionPrint({ document, locale = "uz" }: Props) {
         margin: 10mm;
       }
       @media print {
-        body {
-          color: black !important;
-          background: white !important;
+        table {
+          page-break-after: auto;
         }
-        * {
-          color: black !important;
-          background: white !important;
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
+        tr {
+          page-break-inside: auto; /* default qilsin */
+          page-break-after: auto;
         }
-        table, tr, img {
-          page-break-inside: avoid;
+        td {
+          page-break-inside: auto;
+          page-break-after: auto;
+        }
+        thead {
+          display: table-header-group; /* har sahifada header chiqadi */
+        }
+        tfoot {
+          display: table-footer-group; /* footer ham chiqishi mumkin */
+        }
+        img {
+          page-break-inside: avoid; /* faqat rasmlar bo‘linmasin */
         }
       }
+
     `,
     onBeforePrint: waitForImages,
   });
