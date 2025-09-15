@@ -161,7 +161,7 @@ export default async function RootLayout({
             namespaces={i18nNamespaces}
           >
             <>
-              <ConnectionSpeedWarning />
+              {/*<ConnectionSpeedWarning />*/}
               <ConnectionStatus />
               {children}
               <Toaster theme={"system"} richColors={true} />

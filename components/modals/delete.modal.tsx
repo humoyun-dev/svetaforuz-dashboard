@@ -15,17 +15,22 @@ import {
 import { useCrud } from "@/hooks/use-crud";
 import { notify } from "@/lib/toast";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 
-const DeleteStoreModal = () => {
+const DeleteModal = () => {
   const { t } = useTranslation();
-  const { setOpen, open, url, setUrl } = useDeleteStore();
+  const { setOpen, open, url, setUrl, refetch, setRefetch } = useDeleteStore();
 
   async function handleDelete() {
     try {
       const { status } = await useCrud.delete(url);
-      if (status === 200) {
+
+      if (status >= 200 && status < 300) {
         setOpen(false);
         setUrl("");
+        if (refetch) {
+          refetch();
+        }
         notify.success(t("deleteModal.success"));
       }
     } catch (error) {
@@ -36,6 +41,7 @@ const DeleteStoreModal = () => {
   function handleCancel() {
     setOpen(false);
     setUrl("");
+    setRefetch(undefined);
   }
 
   return (
@@ -51,7 +57,10 @@ const DeleteStoreModal = () => {
           <AlertDialogCancel onClick={handleCancel}>
             {t("deleteModal.cancel")}
           </AlertDialogCancel>
-          <AlertDialogAction onClick={handleDelete}>
+          <AlertDialogAction
+            className={`bg-destructive/80 text-white hover:bg-destructive`}
+            onClick={handleDelete}
+          >
             {t("deleteModal.confirm")}
           </AlertDialogAction>
         </AlertDialogFooter>
@@ -60,4 +69,4 @@ const DeleteStoreModal = () => {
   );
 };
 
-export default DeleteStoreModal;
+export default DeleteModal;

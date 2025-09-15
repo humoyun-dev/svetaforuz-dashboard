@@ -128,7 +128,16 @@ export function GenericTable<T extends Record<string, any>>({
           ) : (
             data.map((row, index) => (
               <TableRow
-                onClick={() => handleRowClick(row)}
+                onClick={(e) => {
+                  if (
+                    (e.target as HTMLElement).closest(
+                      "[data-radix-popper-content-wrapper], [data-radix-dropdown-menu-trigger]",
+                    )
+                  ) {
+                    return;
+                  }
+                  handleRowClick(row);
+                }}
                 className={url || rowAction ? "cursor-pointer" : ""}
                 key={index}
               >
@@ -175,9 +184,16 @@ export function GenericTable<T extends Record<string, any>>({
                           {actions.map((action, actionIndex) => (
                             <DropdownMenuItem
                               key={actionIndex}
+                              // onSelect={(e) => {
+                              //   e.preventDefault();
+                              //   e.stopPropagation();
+                              //   action.onClick(row);
+                              // }}
                               onClick={(e) => {
                                 e.stopPropagation();
-                                action.onClick(row);
+                                setTimeout(() => {
+                                  action.onClick(row);
+                                }, 0);
                               }}
                               disabled={action.isDisabled?.(row)}
                               className={

@@ -60,7 +60,7 @@ export function NavUser() {
 
   const { user: storedUser, setUser } = useUserStore();
 
-  // 👇 Hooks must be before any conditional return
+  const [openMenu, setOpenMenu] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const { unread } = useNotificationStore();
 
@@ -116,7 +116,7 @@ export function NavUser() {
 
       <SidebarMenu>
         <SidebarMenuItem>
-          <DropdownMenu>
+          <DropdownMenu open={openMenu} onOpenChange={setOpenMenu}>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton
                 size="lg"
@@ -150,7 +150,13 @@ export function NavUser() {
               <DropdownMenuSeparator />
 
               <DropdownMenuGroup>
-                <DropdownMenuItem onClick={openSettings}>
+                <DropdownMenuItem
+                  onSelect={(e) => {
+                    e.preventDefault();
+                    setOpenMenu(false); // dropdown yopiladi
+                    openSettings(); // dialog ochiladi
+                  }}
+                >
                   <Settings2 />
                   {t("profile.settings", "Sozlamalar")}
                 </DropdownMenuItem>
@@ -164,7 +170,9 @@ export function NavUser() {
                 >
                   <div className="relative flex w-full items-center gap-2">
                     <Bell />
-                    <span>{t("profile.notifications", "Bildirishnomalar")}</span>
+                    <span>
+                      {t("profile.notifications", "Bildirishnomalar")}
+                    </span>
                     {unread > 0 && (
                       <span className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] text-white">
                         {unread}
@@ -176,12 +184,12 @@ export function NavUser() {
 
               <DropdownMenuSeparator />
 
-              <DropdownMenuItem onClick={handleChangeUser}>
+              <DropdownMenuItem onSelect={handleChangeUser}>
                 <User2 />
                 {t("profile.switchProfile", "Foydalanuvchini almashtirish")}
               </DropdownMenuItem>
 
-              <DropdownMenuItem onClick={handleLogout}>
+              <DropdownMenuItem onSelect={handleLogout}>
                 <LogOut />
                 {t("profile.logOut", "Chiqish")}
               </DropdownMenuItem>

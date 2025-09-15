@@ -83,7 +83,8 @@ const Page = () => {
 
   return (
     <div className="flex bg-background flex-col h-full">
-      <div className="flex sticky z-[1] top-0 pt-2 bg-background flex-col gap-2 pb-2">
+      {/*<div className="flex sticky z-[1] top-0 pt-2 bg-background flex-col gap-2 pb-2">*/}
+      <div className="flex sticky z-[1] top-0 pt-2 bg-background flex-col gap-2 pb-2 border-b">
         <div className="flex gap-2">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />

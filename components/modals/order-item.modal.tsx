@@ -41,6 +41,8 @@ const OrderItemModal = () => {
     index,
     updateOrderItem,
     setSearch,
+    setSearchRef,
+    searchRef,
   } = useOrder();
   const { usd } = useCurrencyStore();
   const { role } = useUserStore();
@@ -81,9 +83,10 @@ const OrderItemModal = () => {
       addOrderItem(item);
       setAddMode(false);
     }
+
     setSearch("");
     setTimeout(() => {
-      useOrder.getState().searchRef?.current?.focus();
+      searchRef?.current?.focus();
     }, 50);
   }
 
@@ -94,6 +97,9 @@ const OrderItemModal = () => {
       className={`md:p-6 overflow-hidden px-1 py-4 min-w-[60%]`}
       open={addMode}
       setOpen={() => {
+        setTimeout(() => {
+          searchRef?.current?.focus();
+        }, 50);
         setAddMode(false);
         setOrderItem(null);
       }}

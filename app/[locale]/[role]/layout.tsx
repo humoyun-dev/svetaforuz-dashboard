@@ -7,7 +7,7 @@ import { Loading } from "@/components/loading/loading";
 import { useUserRateCheck } from "@/hooks/use-check-rate";
 import { getCookie } from "@/lib/cookie";
 import SettingsModal from "@/components/modals/settings.modal";
-import DeleteStoreModal from "@/components/modals/delete-store.modal";
+import DeleteModal from "@/components/modals/delete.modal";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   useGuard();
@@ -34,7 +34,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </SidebarProvider>
       )}
       <SettingsModal />
-      <DeleteStoreModal />
+
+      <DeleteModal />
     </>
   );
 };

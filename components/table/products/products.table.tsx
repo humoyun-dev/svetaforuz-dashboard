@@ -11,6 +11,7 @@ import { useCrud } from "@/hooks/use-crud";
 import { notify } from "@/lib/toast";
 import { useCurrencyStore } from "@/stores/currency.store";
 import { useImportStore } from "@/hooks/use-import-product";
+import { useDeleteStore } from "@/hooks/use-delete-store";
 
 export default function ProductsTable({
   data,
@@ -28,6 +29,7 @@ export default function ProductsTable({
     setData,
     setDisabled,
   } = useImportStore();
+  const { openModal, setRefetch } = useDeleteStore();
 
   const columns: TableColumn<ListProductType>[] = [
     {
@@ -132,19 +134,8 @@ export default function ProductsTable({
   }
 
   async function handleDelete(id: number) {
-    try {
-      const { status } = await useCrud.delete(
-        `${selectedShop?.id}/products/products/${id}/`,
-      );
-
-      if (status == 204) {
-        notify.success(`Successfully deleted #${id} order`);
-        refetch();
-      }
-    } catch (error) {
-      notify.error(`Unsuccessfully deleted #${id} order`);
-      console.error(error);
-    }
+    openModal(`${selectedShop?.id}/products/products/${id}/`, true);
+    setRefetch(refetch);
   }
 
   return (

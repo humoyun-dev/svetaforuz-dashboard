@@ -9,6 +9,7 @@ import { useStore } from "@/stores/store.store";
 import { notify } from "@/lib/toast";
 import { useCurrencyStore } from "@/stores/currency.store";
 import { formatCurrencyPure } from "@/lib/currency";
+import { useDeleteStore } from "@/hooks/use-delete-store";
 
 const OrdersTable = ({
   data,
@@ -96,20 +97,11 @@ const OrdersTable = ({
     },
   ];
 
-  async function handleDelete(id: number) {
-    try {
-      const { status } = await useCrud.delete(
-        `${selectedShop?.id}/orders/orders/${id}/`,
-      );
+  const { openModal, setRefetch } = useDeleteStore();
 
-      if (status === 204) {
-        notify.success(`Successfully deleted #${id} order`);
-        refetch();
-      }
-    } catch (error) {
-      notify.error(`Unsuccessfully deleted #${id} order`);
-      console.error(error);
-    }
+  async function handleDelete(id: number) {
+    openModal(`${selectedShop?.id}/orders/orders/${id}/`, true);
+    setRefetch(refetch);
   }
 
   return (

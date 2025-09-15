@@ -132,7 +132,7 @@
     "title": "Siz bunga toʻliq ishonchingiz komilmi?",
     "description": "Bu amalni bekor qilib boʻlmaydi. Bu sizning hisobingizni butunlay oʻchirib tashlaydi va barcha maʼlumotlaringizni serverlarimizdan olib tashlaydi.",
     "cancel": "Bekor qilish",
-    "confirm": "Davom etish",
+    "confirm": "O'chirish",
     "success": "Muvaffaqiyatli oʻchirildi",
     "error": "Xatolik yuz berdi. Iltimos, keyinroq yana urinib ko‘ring"
   },

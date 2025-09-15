@@ -17,7 +17,7 @@ export default function ProductsTable({
 }) {
   const { t } = useTranslation();
   const { usd, currency } = useCurrencyStore();
-  const { setOrderItem, setAddMode, orderItems } = useOrder();
+  const { setOrderItem, setAddMode, orderItems, searchRef } = useOrder();
 
   const isSelected = (productId: number) => {
     return orderItems.some((item) => item.product_id === productId);
@@ -25,6 +25,7 @@ export default function ProductsTable({
 
   function addOrderItem(product: ListProductType) {
     if (isSelected(product.id)) return;
+    searchRef?.current?.blur();
     setAddMode(true);
     setOrderItem({
       product_id: product.id,
