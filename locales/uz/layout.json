@@ -136,6 +136,17 @@
     "success": "Muvaffaqiyatli oʻchirildi",
     "error": "Xatolik yuz berdi. Iltimos, keyinroq yana urinib ko‘ring"
   },
+  "shareModal": {
+    "title": "Ushbu hujjatni ulashish",
+    "description": "Ushbu hujjatni tarmog‘ingiz bilan ulashing",
+    "tabs": {
+      "link": "Havola",
+      "social": "Ijtimoiy",
+      "email": "Elektron pochta"
+    },
+    "copy": "Nusxalash",
+    "copied": "Nusxalandi"
+  },
   "fields": {
     "name": "Nomi",
     "phone": "Telefon",

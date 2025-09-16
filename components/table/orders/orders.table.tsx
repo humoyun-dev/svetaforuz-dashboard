@@ -10,6 +10,7 @@ import { notify } from "@/lib/toast";
 import { useCurrencyStore } from "@/stores/currency.store";
 import { formatCurrencyPure } from "@/lib/currency";
 import { useDeleteStore } from "@/hooks/use-delete-store";
+import { useShare } from "@/hooks/use-share";
 
 const OrdersTable = ({
   data,
@@ -89,7 +90,19 @@ const OrdersTable = ({
     },
   ];
 
+  const { setShare } = useShare();
+
+  function shareDocument(id: number) {
+    setShare({
+      link: `/share/order/${id}`,
+      open: true,
+    });
+  }
   const actions: TableAction<ListOrderType>[] = [
+    {
+      label: t("order.table.share"),
+      onClick: (order) => shareDocument(order.id),
+    },
     {
       label: t("order.table.delete"),
       onClick: (order) => handleDelete(order.id),

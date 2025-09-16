@@ -81,6 +81,7 @@
         "accept": "Qabul qilish"
       },
       "delete": "O‘chirish",
+      "share": "Ulashish",
       "no_documents": "Hujjatlar topilmadi"
     },
     "messages": {

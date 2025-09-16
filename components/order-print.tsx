@@ -32,7 +32,7 @@ const PrintableOrder = ({ order, t }: PrintableOrderProps) => {
 
   const date = new Date();
   const { usd } = useCurrencyStore();
-  const url = `https://seller.svetafor.uz/share/order/${order.id}`;
+  const url = `${process.env.NEXT_PUBLIC_URL}/share/order/${order.id}`;
 
   const currencyFormat = useCallback(
     (number: string | number, exchange?: number): string | undefined =>

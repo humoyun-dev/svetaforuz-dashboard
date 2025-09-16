@@ -11,6 +11,7 @@ import { formatCurrencyPure } from "@/lib/currency";
 import { TransactionDocumentType } from "@/types/transaction.type";
 import { useParams } from "next/navigation";
 import { useDeleteStore } from "@/hooks/use-delete-store";
+import { useShare } from "@/hooks/use-share";
 
 const TransactionDocumentTable = ({
   data,
@@ -89,7 +90,19 @@ const TransactionDocumentTable = ({
     },
   ];
 
+  const { setShare } = useShare();
+
+  function shareDocument(id: number) {
+    setShare({
+      link: `/share/transaction/document/${id}`,
+      open: true,
+    });
+  }
   const actions: TableAction<TransactionDocumentType>[] = [
+    {
+      label: t("document.table.share"),
+      onClick: (document) => shareDocument(document.id),
+    },
     {
       label: t("document.table.delete"),
       onClick: (document) => handleDelete(document.id, document.debtuser),

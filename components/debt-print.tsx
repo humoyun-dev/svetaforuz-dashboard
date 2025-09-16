@@ -32,7 +32,7 @@ const PrintableTransaction = ({ document, t }: PrintableTransactionProps) => {
     `${document.first_name || ""} ${document.last_name || ""}`.trim() ||
     formatedPhoneNumber(document.phone_number);
 
-  const url = `https://seller.svetafor.uz/share/transaction/${document.id}`;
+  const url = `${process.env.NEXT_PUBLIC_URL}/share/transaction/document/${document.id}`;
 
   const currencyFormat = useCallback(
     (number: string | number, exchange?: number): string | undefined =>

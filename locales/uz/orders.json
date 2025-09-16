@@ -18,6 +18,7 @@
       "change_amount": "Qaytim",
       "unreturned_income": "Qoldiq summa",
       "delete": "Oʻchirish",
+      "share": "Ulashish",
       "no_orders": "Buyurtmalar mavjud emas"
     },
     "create_success": "Buyurtma muvaffaqiyatli yaratildi",

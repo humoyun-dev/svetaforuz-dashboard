@@ -7,12 +7,12 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import StoreFormModal from "@/components/modals/store-form.modal";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/next";
-import ConnectionSpeedWarning from "@/components/network-quality";
 import ConnectionStatus from "@/components/connection-status";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import ShareModal from "@/components/modals/share.modal";
 
 const sfProDisplay = localFont({
-  variable: "--font-sf-pro", // This is the CSS variable used below
+  variable: "--font-sf-pro",
   fallback: ["system-ui", "sans-serif"],
   display: "swap",
   src: [
@@ -166,6 +166,7 @@ export default async function RootLayout({
               {children}
               <Toaster theme={"system"} richColors={true} />
               <StoreFormModal />
+              <ShareModal />
             </>
           </TranslationProvider>
         </ThemeProvider>

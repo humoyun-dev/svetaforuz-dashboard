@@ -25,6 +25,8 @@ import { useTranslation } from "react-i18next";
 import { Loading } from "@/components/loading/loading";
 import Image from "next/image";
 import DebtDocumentPrint from "@/components/debt-print";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
 
 const Page = () => {
   const { selectedShop } = useStore();
@@ -73,6 +75,11 @@ const TransactionDocumentDetails = ({
       rate: usd,
       appCurrency,
     });
+  const [search, setSearch] = useState<string>("");
+
+  const filteredData = transaction.products.filter((item) =>
+    item.product.name.toLowerCase().includes(search.toLowerCase()),
+  );
 
   return (
     <div className="space-y-4">
@@ -81,20 +88,29 @@ const TransactionDocumentDetails = ({
           {transaction.products.length > 0 && (
             <Card className="shadow-sm h-fit">
               <CardHeader className="pb-4">
-                <CardTitle className="flex items-center gap-3 text-xl">
-                  <div className="p-2 bg-indigo-100 dark:bg-indigo-900/20 rounded-lg">
-                    <ShoppingCartIcon className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+                <CardTitle className="grid gap-4">
+                  <div className="flex items-center gap-3 text-xl">
+                    <div className="p-2 bg-indigo-100 dark:bg-indigo-900/20 rounded-lg">
+                      <ShoppingCartIcon className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+                    </div>
+                    {t("transaction.products")}
+                    <Badge variant="secondary" className="ml-auto">
+                      {transaction.products.length}{" "}
+                      {transaction.products.length === 1 ? "item" : "items"}
+                    </Badge>
                   </div>
-                  {t("transaction.products")}
-                  <Badge variant="secondary" className="ml-auto">
-                    {transaction.products.length}{" "}
-                    {transaction.products.length === 1 ? "item" : "items"}
-                  </Badge>
+                  <div>
+                    <Input
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      type={"search"}
+                    />
+                  </div>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {transaction.products.map((product, index) => (
+                  {filteredData.map((product, index) => (
                     <div
                       key={product.id}
                       className="flex items-center justify-between p-5 border rounded-xl hover:bg-muted/50 transition-colors"

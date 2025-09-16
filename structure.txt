@@ -60,7 +60,7 @@ D:\Muhammad_py\projects\django\Odil aka\svetaforuz
 |  |  тФЬтФАтФА systems
 |  |  тФФтФАтФА transactions
 |  тФЬтФАтФА togglies
-|  |  тФФтФАтФА currency.togglie.tsx
+|  |  тФФтФАтФА currency.toggle.tsx
 |  тФФтФАтФА ui
 |     тФЬтФАтФА accordion.tsx
 |     тФЬтФАтФА alert-dialog.tsx

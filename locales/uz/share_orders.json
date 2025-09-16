@@ -1,0 +1,42 @@
+{
+  "order": "Buyurtma",
+  "customerDetails": "Mijoz ma'lumotlari",
+  "orderSummary": "Buyurtma tafsilotlari",
+  "totalAmount": "Jami summa",
+  "orderItems": "Buyurtma mahsulotlari",
+  "search": "Qidiruv",
+  "product": "Mahsulot",
+  "quantity": "Soni",
+  "price": "Narxi",
+  "total": "Jami",
+  "paymentType": "To'lov turi",
+  "paidAmount": "To'langan summa",
+  "changeAmount": "Qaytim summasi",
+  "totalPrice": "Jami narx",
+  "check": {
+    "order_number": "BUYURTMA №",
+    "date": "Sana:",
+    "receipt_date": "Chek sanasi:",
+    "customer": "Mijoz:",
+    "phone": "Telefon:",
+    "payment_type": "To'lov turi:",
+    "image": "Rasm",
+    "product": "Mahsulot",
+    "quantity": "Soni",
+    "price": "Narxi",
+    "total": "Jami",
+    "total_price": "Umumiy narx:",
+    "paid_amount": "To'langan:",
+    "change_amount": "Qaytim:",
+    "profit": "Foyda:",
+    "thank_you_message": "Rahmat! Yana tashrif buyuring!",
+    "questions_contact": "Savollar uchun:",
+    "print": "Chop etish",
+    "no_image": "Rasm yo'q",
+    "per_unit": "/ dona"
+  },
+  "submit": {
+    "cash_payment": "Naqd to'lov",
+    "card_payment": "Karta orqali to'lov"
+  }
+}

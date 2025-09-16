@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { DynamicBreadcrumb } from "@/components/dynamic-breadcrumb";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import CurrencyToggle from "@/components/togglies/currency.togglie";
+import CurrencyToggle from "@/components/togglies/currency.toggle";
 
 interface HeaderProps {
   actions?: React.ReactNode;
