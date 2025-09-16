@@ -10,6 +10,7 @@ import { useCurrencyStore } from "@/stores/currency.store";
 import { formatCurrencyPure } from "@/lib/currency";
 import { TransactionDocumentType } from "@/types/transaction.type";
 import { useParams } from "next/navigation";
+import { useDeleteStore } from "@/hooks/use-delete-store";
 
 const TransactionDocumentTable = ({
   data,
@@ -22,6 +23,8 @@ const TransactionDocumentTable = ({
   const { currency, usd } = useCurrencyStore();
   const { selectedShop } = useStore();
   const { id } = useParams<{ id: string }>();
+
+  const { openModal, setRefetch } = useDeleteStore();
 
   const formatMoney = (value: number) =>
     formatCurrencyPure({
@@ -95,19 +98,11 @@ const TransactionDocumentTable = ({
   ];
 
   async function handleDelete(id: number, debtuser: number) {
-    try {
-      const { status } = await useCrud.delete(
-        `${selectedShop?.id}/debt/debtors/${debtuser}/documents/${id}/`,
-      );
-
-      if (status === 204) {
-        notify.success(t("document.messages.deleted_success", { id }));
-        refetch();
-      }
-    } catch (error) {
-      notify.error(t("document.messages.deleted_error", { id }));
-      console.error(error);
-    }
+    openModal(
+      `${selectedShop?.id}/debt/debtors/${debtuser}/documents/${id}/`,
+      true,
+    );
+    setRefetch(refetch);
   }
 
   return (

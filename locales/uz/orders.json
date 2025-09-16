@@ -130,6 +130,14 @@
     "noProductsDescription": "Bu do'konda hali mahsulotlar mavjud emas. Yangi mahsulot qo'shing.",
     "addProduct": "Mahsulot qo'shish"
   },
+  "deleteModal": {
+    "title": "Siz bunga toʻliq ishonchingiz komilmi?",
+    "description": "Bu amalni bekor qilib boʻlmaydi. Bu sizning savatingizdagi mahsulot(lar)ni oʻchirib tashlaydi.",
+    "cancel": "Bekor qilish",
+    "confirm": "O'chirish",
+    "success": "Muvaffaqiyatli oʻchirildi",
+    "error": "Xatolik yuz berdi. Iltimos, keyinroq yana urinib ko‘ring"
+  },
   "submit": {
     "title": "Buyurtmani tasdiqlash",
     "description": "Siz buyurtmani tasdiqlash arafasidasiz. Davom etishdan oldin maʼlumotlarni diqqat bilan tekshiring.",

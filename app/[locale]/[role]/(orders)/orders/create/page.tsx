@@ -17,6 +17,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useTranslation } from "react-i18next";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import React, { useState } from "react";
 
 const Page = () => {
   const {
@@ -32,6 +43,14 @@ const Page = () => {
   const { currency, usd } = useCurrencyStore();
   const { t } = useTranslation();
 
+  const [remove, setRemove] = useState<{
+    open: boolean;
+    id: number;
+  }>({
+    open: false,
+    id: 0,
+  });
+
   const handleQuantityChange = (index: number, newQuantity: number) => {
     const item = orderItems[index];
     if (item) {
@@ -40,7 +59,11 @@ const Page = () => {
   };
 
   const handleRemoveItem = (index: number) => {
-    removeOrderItem(index);
+    // removeOrderItem(index);
+    setRemove({
+      id: index,
+      open: true,
+    });
   };
 
   const handleEdit = (index: number) => {
@@ -79,6 +102,20 @@ const Page = () => {
 
   if (orderItems.length === 0) {
     return <EmptyCart />;
+  }
+  function handleCancel() {
+    setRemove({
+      id: 0,
+      open: false,
+    });
+  }
+
+  function handleDelete() {
+    if (remove.id > 0) {
+      removeOrderItem(remove.id);
+    } else {
+      resetOrder();
+    }
   }
 
   return (
@@ -153,7 +190,7 @@ const Page = () => {
               {t("cart.proceedToCheckout")}
             </Button>
             <Button
-              onClick={resetOrder}
+              onClick={() => setRemove({ id: 0, open: true })}
               variant="outline"
               size="sm"
               className="px-2 sm:px-3 bg-transparent text-xs sm:text-sm"
@@ -163,6 +200,31 @@ const Page = () => {
           </div>
         </div>
       </div>
+
+      <AlertDialog
+        open={remove.open}
+        onOpenChange={() => setRemove({ ...remove, open: !remove.open })}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t("deleteModal.title")}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t("deleteModal.description")}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={handleCancel}>
+              {t("deleteModal.cancel")}
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className={`bg-destructive/80 text-white hover:bg-destructive`}
+              onClick={handleDelete}
+            >
+              {t("deleteModal.confirm")}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };

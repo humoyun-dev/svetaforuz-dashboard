@@ -32,6 +32,14 @@
     "each": "dona narxi",
     "sku": "SKU"
   },
+  "deleteModal": {
+    "title": "Siz bunga toʻliq ishonchingiz komilmi?",
+    "description": "Bu amalni bekor qilib boʻlmaydi. Bu sizning savatingizdagi mahsulot(lar)ni oʻchirib tashlaydi.",
+    "cancel": "Bekor qilish",
+    "confirm": "O'chirish",
+    "success": "Muvaffaqiyatli oʻchirildi",
+    "error": "Xatolik yuz berdi. Iltimos, keyinroq yana urinib ko‘ring"
+  },
   "search_placeholder": "Qidirish ...",
   "loading_orders": "Hujjat yuklanmoqda...",
   "orders_table_title": "Hujjat ro'yxati",

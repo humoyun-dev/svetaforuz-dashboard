@@ -1,4 +1,5 @@
 "use client";
+import { useOrder } from "@/stores/order.store";
 import { formatCurrencyPure, unFormatCurrencyPure } from "@/lib/currency";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +16,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useTranslation } from "react-i18next";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import React, { useState } from "react";
 import { useDebtStore } from "@/stores/debt.store";
 import { TransactionDocumentProductForm } from "@/types/transaction.type";
 
@@ -32,6 +44,14 @@ const Page = () => {
   const { currency, usd } = useCurrencyStore();
   const { t } = useTranslation();
 
+  const [remove, setRemove] = useState<{
+    open: boolean;
+    id: number;
+  }>({
+    open: false,
+    id: 0,
+  });
+
   const handleQuantityChange = (index: number, newQuantity: number) => {
     const item = debtItems[index];
     if (item) {
@@ -40,7 +60,11 @@ const Page = () => {
   };
 
   const handleRemoveItem = (index: number) => {
-    removeDebtItem(index);
+    // removeDebtItem(index);
+    setRemove({
+      id: index,
+      open: true,
+    });
   };
 
   const handleEdit = (index: number) => {
@@ -79,6 +103,20 @@ const Page = () => {
 
   if (debtItems.length === 0) {
     return <EmptyCart />;
+  }
+  function handleCancel() {
+    setRemove({
+      id: 0,
+      open: false,
+    });
+  }
+
+  function handleDelete() {
+    if (remove.id > 0) {
+      removeDebtItem(remove.id);
+    } else {
+      resetDebt();
+    }
   }
 
   return (
@@ -153,7 +191,7 @@ const Page = () => {
               {t("cart.proceedToCheckout")}
             </Button>
             <Button
-              onClick={resetDebt}
+              onClick={() => setRemove({ id: 0, open: true })}
               variant="outline"
               size="sm"
               className="px-2 sm:px-3 bg-transparent text-xs sm:text-sm"
@@ -163,6 +201,31 @@ const Page = () => {
           </div>
         </div>
       </div>
+
+      <AlertDialog
+        open={remove.open}
+        onOpenChange={() => setRemove({ ...remove, open: !remove.open })}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t("deleteModal.title")}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t("deleteModal.description")}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={handleCancel}>
+              {t("deleteModal.cancel")}
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className={`bg-destructive/80 text-white hover:bg-destructive`}
+              onClick={handleDelete}
+            >
+              {t("deleteModal.confirm")}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
@@ -188,7 +251,12 @@ const DebtItemCard = ({
 }: DebtItemCardProps) => {
   const { currency, usd } = useCurrencyStore();
   const product = item.product_data;
-  const totalPrice = Number(item.price) * Number(item.quantity);
+  const totalPrice =
+    Number(
+      typeof item.price === "string"
+        ? item.price.replace(/,/g, ".")
+        : item.price,
+    ) * Number(item.quantity);
   const quantity = Number(item.quantity);
   const { t } = useTranslation();
 
@@ -290,7 +358,11 @@ const DebtItemCard = ({
                 <div className="text-xs text-gray-500">
                   {formatCurrencyPure({
                     currency: item.currency,
-                    number: Number(item.price),
+                    number: Number(
+                      typeof item.price === "string"
+                        ? item.price.replace(/,/g, ".")
+                        : item.price,
+                    ),
                     appCurrency: currency,
                     rate: usd,
                   })}{" "}
@@ -321,7 +393,7 @@ const DebtItemCard = ({
 
 const EmptyCart = () => {
   const { t } = useTranslation();
-  const { resetDebt } = useDebtStore();
+  const { resetOrder } = useOrder();
 
   return (
     <div className="flex flex-col items-center justify-center h-full p-8 text-center">
@@ -334,7 +406,7 @@ const EmptyCart = () => {
       <p className="text-gray-500 mb-6 max-w-sm">
         {t("cart.empty.description")}
       </p>
-      <Button onClick={resetDebt} variant="outline">
+      <Button onClick={resetOrder} variant="outline">
         {t("cart.empty.button")}
       </Button>
     </div>

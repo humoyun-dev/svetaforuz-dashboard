@@ -9,6 +9,7 @@ import { notify } from "@/lib/toast";
 import { useCurrencyStore } from "@/stores/currency.store";
 import { formatCurrencyPure } from "@/lib/currency";
 import { TransactionUserType } from "@/types/transaction.type";
+import { useDeleteStore } from "@/hooks/use-delete-store";
 
 const TransactionsUserTable = ({
   data,
@@ -20,6 +21,12 @@ const TransactionsUserTable = ({
   const { t } = useTranslation();
   const { currency, usd } = useCurrencyStore();
   const { selectedShop } = useStore();
+  const { openModal, setRefetch } = useDeleteStore();
+
+  async function handleDelete(id: number) {
+    openModal(`${selectedShop?.id}/debt/debtors/${id}/`, true);
+    setRefetch(refetch);
+  }
 
   const formatMoney = (value: number, rate?: number) =>
     formatCurrencyPure({
@@ -81,22 +88,6 @@ const TransactionsUserTable = ({
       variant: "destructive",
     },
   ];
-
-  async function handleDelete(id: number) {
-    try {
-      const { status } = await useCrud.delete(
-        `${selectedShop?.id}/debt/debtors/${id}/`,
-      );
-
-      if (status === 204) {
-        notify.success(t("messages.user_deleted_success", { id }));
-        refetch();
-      }
-    } catch (error) {
-      notify.error(t("messages.user_deleted_error", { id }));
-      console.error(error);
-    }
-  }
 
   return (
     <GenericTable

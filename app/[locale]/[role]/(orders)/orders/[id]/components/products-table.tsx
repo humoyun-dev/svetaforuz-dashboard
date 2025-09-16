@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import Image from "next/image";
 import { Package } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/table";
 import { useTranslation } from "react-i18next";
 import type { DetailOrderType } from "@/types/orders.type";
+import { Input } from "@/components/ui/input";
 
 interface ProductsTableProps {
   items: DetailOrderType["items"];
@@ -32,16 +33,30 @@ export const ProductsTable = memo(
     currencyFormat,
   }: ProductsTableProps) => {
     const { t } = useTranslation();
+    const [search, setSearch] = useState<string>("");
+
+    const filteredData = items.filter((item) =>
+      item.product.name.toLowerCase().includes(search.toLowerCase()),
+    );
 
     return (
       <Card className="shadow-sm">
         <CardHeader className="pb-4">
-          <CardTitle className="flex items-center gap-2 text-xl">
-            <Package className="w-5 h-5 text-primary" />
-            {t("order.products")}
-            <Badge variant="secondary" className="ml-auto">
-              {items.length} {t("order.items_count")}
-            </Badge>
+          <CardTitle className={`grid gap-4`}>
+            <div className="flex items-center gap-2 text-xl">
+              <Package className="w-5 h-5 text-primary" />
+              {t("order.products")}
+              <Badge variant="secondary" className="ml-auto">
+                {items.length} {t("order.items_count")}
+              </Badge>
+            </div>
+            <div>
+              <Input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                type={"search"}
+              />
+            </div>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
@@ -70,7 +85,7 @@ export const ProductsTable = memo(
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {items.map((item) => (
+                {filteredData.map((item) => (
                   <TableRow
                     key={item.id}
                     className="hover:bg-muted/30 transition-colors"

@@ -13,7 +13,6 @@ import { useStoreForm } from "@/hooks/use-store-form";
 const StoreTable = ({ data }: { data: StoreType[] }) => {
   const { t } = useTranslation();
   const { currency } = useCurrencyStore();
-  const { setOpen, setUrl } = useDeleteStore();
   const { setOpen: setOpenStore, setId } = useStoreForm();
 
   const formatMoney = (value: number, rate: number) =>
@@ -87,9 +86,11 @@ const StoreTable = ({ data }: { data: StoreType[] }) => {
     setId(String(id));
   }
 
-  function handleDelete(id: number) {
-    setOpen(true);
-    setUrl(`store/${id}/`);
+  const { openModal, setRefetch } = useDeleteStore();
+
+  async function handleDelete(id: number) {
+    openModal(`store/${id}/`, true);
+    setRefetch(undefined);
   }
 
   return (
